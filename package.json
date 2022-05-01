@@ -1,0 +1,23 @@
+{
+  "name": "practice2",
+  "version": "1.0.0",
+  "description": "노드초기세팅",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leejw-lu/practice2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leejw-lu/practice2/issues"
+  },
+  "homepage": "https://github.com/leejw-lu/practice2#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1"
+  }
+}
