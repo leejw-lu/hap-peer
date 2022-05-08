@@ -1,6 +1,7 @@
-var express = require("express");
-var router = express.Router();
-var db = require("../db");
+const express = require("express");
+const router = express.Router();
+const db = require("../db");  //db연결
+//const bcrypt = require("bcrypt"); //비번 암호화 추후 구현
 
 router.get('/', function(req,res){
     res.render("signUp");
@@ -36,7 +37,8 @@ router.post("/",function(req,res){
       res.write(`<script type="text/javascript">alert('Fill in blanks')</script>`);
       res.write('<script>window.location="/signup"</script>'); 
     }
-    
+
 })
-  
+
+//꼭 해주기
 module.exports = router;
