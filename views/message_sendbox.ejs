@@ -4,12 +4,12 @@
 <a href="/message_sendbox">보낸쪽지함</a> 
 <a href="/message_send"><button class="gotomessage_send">쪽지보내기</button></a>
 
-<p><b><%= user_id %> 님의 받은 쪽지함</b></p>
+<p><b><%= user_id %> 님의 보낸 쪽지함</b></p>
 
 <table>
     <tr>
         <td>번호</td>
-        <td>보낸사람</td>
+        <td>받은 사람</td>
         <td>쪽지내용</td>
         <td>날짜</td>
     </tr>
@@ -21,7 +21,7 @@
     %>
     <tr>
         <td><%=i+1%></td>
-        <td><%=data.idsender%></td>
+        <td><%=data.idreceiver%></td>
         <td><%=data.m_content%></td>
         <td><%=data.m_date%></td>
     </tr>

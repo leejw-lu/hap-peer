@@ -13,6 +13,7 @@ const signupRouter=require("./routes/signup");
 const logoutRouter=require("./routes/logout");
 const messageRouter=require("./routes/message");
 const messagesendRouter=require("./routes/message_send");
+const messageSendBoxRouter=require("./routes/message_sendbox");
 
 //app.use(express.static(__dirname + "/public"));
 app.set('views', __dirname + '/views');
@@ -37,7 +38,7 @@ app.use("/signup",signupRouter);
 app.use("/logout",logoutRouter);
 app.use("/message",messageRouter);
 app.use("/message_send",messagesendRouter);
-
+app.use("/message_sendbox",messageSendBoxRouter);
 
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
