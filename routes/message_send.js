@@ -15,11 +15,11 @@ router.post('/',function(req,res) {
     const date=new Date();
 
     //db에 쪽지내용 insert
-    const sql="INSERT INTO message (idsender, idreceiver, m_content, m_date) VALUES (?, ?, ?, ? )";
+    const sql="INSERT INTO message (m_sender, m_receiver, m_content, m_date) VALUES (?, ?, ?, ? )";
     const params=[sender,receiver,content,date];
 
     if (receiver.length > 0 && content.length>0 ){
-        db.query("SELECT * FROM user WHERE iduser = ?", [receiver], function(err,rows) {    //받는사람이 user테이블에 있는지 확인해야한다.
+        db.query("SELECT * FROM user WHERE user_id = ?", [receiver], function(err,rows) {    //받는사람이 user테이블에 있는지 확인해야한다.
              if (rows.length>0) {   //receiver 존재! -> db에 저장
                 db.query(sql,params,function(err) { 
                     if (err) console.error("err : " + err);

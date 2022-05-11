@@ -17,14 +17,14 @@ router.post('/', function(req,res) {
     //const param=[req.body.userid,req.body.password];
 
     if(userid.length >0 && password.length >0 ) { //빈칸없이 입력
-        db.query('SELECT * FROM user WHERE iduser=?', [userid],(err,rows) => {  //select from where문 db 테이블,속성명 정확히!
+        db.query('SELECT * FROM user WHERE user_id =?', [userid],(err,rows) => {  //select from where문 db 테이블,속성명 정확히!
             if(rows.length>0){
-                if(rows[0].password==password){ //로그인 성공
+                if(rows[0].user_password==password){ //로그인 성공
                 
                     //로그인 세션 저장
                      req.session.user = {
-                         userid: rows[0].iduser,
-                         nickname:rows[0].nickname,
+                         userid: rows[0].user_id,
+                         nickname:rows[0].user_nickname,
                          authorized: true
                      };
                      console.log(req.session.user);

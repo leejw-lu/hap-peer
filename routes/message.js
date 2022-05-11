@@ -7,7 +7,7 @@ router.get('/', function(req,res) {
     if(req.session.user){  //로그인 후 쪽지 사용가능
         //받은쪽지함 list 보이게 하기
         //const page= req.params.page;
-        const sql= "SELECT idsender, m_content, m_date FROM message WHERE idreceiver = ? ";
+        const sql= "SELECT m_sender, m_content, m_date FROM message WHERE m_receiver = ? ";
         db.query(sql,[req.session.user['userid']], function(err, rows) {
 
             if(err) console.error("err: ", err);
