@@ -1,4 +1,4 @@
-const port=3001;
+const port=3000;
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -14,6 +14,8 @@ const logoutRouter=require("./routes/logout");
 const messageRouter=require("./routes/message");
 const messagesendRouter=require("./routes/message_send");
 const messageSendBoxRouter=require("./routes/message_sendbox");
+const mypageRouter=require("./routes/mypage");
+const mypageEditProfileRouter=require("./routes/mypage_edit_profile");
 
 //app.use(express.static(__dirname + "/public"));
 app.set('views', __dirname + '/views');
@@ -39,6 +41,9 @@ app.use("/logout",logoutRouter);
 app.use("/message",messageRouter);
 app.use("/message_send",messagesendRouter);
 app.use("/message_sendbox",messageSendBoxRouter);
+app.use("/mypage",mypageRouter);
+app.use("/mypage_edit_profile",mypageEditProfileRouter);
+
 
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);

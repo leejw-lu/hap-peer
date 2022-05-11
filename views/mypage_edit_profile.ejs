@@ -1,0 +1,22 @@
+<h1>welcome HAP-PEER!</h1>
+
+<h3>프로필 편집</h3>
+<form action="/mypage_edit_profile" method="post">
+    <table>
+        <tr>
+            <td>아이디  </td>
+            <td> <%= user_id %> </td>
+        </tr>
+        <tr>
+            <td>소개</td>
+            <td><input type="text" name="userInfo"></td>
+        </tr>
+        <tr>
+            <td>STACK</td>
+            <td><input type="text" name="userStack"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="저장"></td>
+        </tr>
+    </table>
+</form>
