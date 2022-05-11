@@ -1,0 +1,29 @@
+<h1>welcome HAP-PEER!</h1>
+
+<h3> <%= user_nickname %> 님의 마이페이지</h3>
+
+<form action="/mypage" method="get">
+    <table>
+        <tr>
+            <td>아이디  </td>
+            <td> <%= user_id %> </td>
+        </tr>
+        <tr>
+        <%
+        let i;
+        for(i=0; i<rows.length; i++)
+        {
+            let data = rows[i];
+        %>
+            <td>소개</td>
+            <td> <%=data.userInfo%> </td>
+        </tr>
+        <tr>
+            <td>STACK</td>
+            <td> <%=data.userStack%> </td>
+        </tr>
+        <%}%>
+    </table>
+</form>
+
+<a href="/mypage_edit_profile"><button>프로필 편집</button></a> 
