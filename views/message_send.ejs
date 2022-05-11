@@ -1,0 +1,21 @@
+<h3>쪽지 보내기</h3>
+<!-- <p> 보낸사람: <%= sender %> </p> -->
+<form action="/message_send" method="post">
+    <table>
+        <tr>
+            <td>보내는사람  : </td>
+            <td><%= sender %><td>
+        </tr>
+        <tr>
+            <td>받는사람 :</td>
+            <td><input type="text" name="receiver"></td>
+        </tr>
+        <tr>
+            <td>쪽지내용 :</td>
+            <td><textarea name="message_content"></textarea></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="쪽지 보내기"></td>
+        </tr>
+    </table>
+</form>
