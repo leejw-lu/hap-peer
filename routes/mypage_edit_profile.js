@@ -5,20 +5,17 @@ const router = express.Router();
 const db = require("../db"); //디비연결
 
 router.get('/', function(req,res) {
-    //변경이 불가한 userid는 프로필 편집 페이지에 보이게 하기
+    //변경이 불가한 userid는 프로필 편집 페이지에 그대로 보이게 하기
     res.render("mypage_edit_profile",{
-        user_id: req.session.user['userid'],
-        user_nickname: req.session.user['nickname'],
-        user_info: req.session.user['userInfo'],
-        user_stack: req.session.user['userStack']});
+        user_id: req.session.user['userid']});
 })
 
 router.post('/', function(req,res) {
-    //db.connect();
     var userInfo=req.body.userInfo;
     var userStack=req.body.userStack;
     
-    var sql="UPDATE user SET userInfo=?, userStack=?";
+    //DB에 user_info, user_stack 업데이트
+    var sql="UPDATE user SET user_info=?, user_stack=?";
     var params = [userInfo,userStack]
 
     db.query(sql, params, function(err) {
@@ -27,15 +24,12 @@ router.post('/', function(req,res) {
         } else {
             console.log(userInfo);
             console.log(userStack);
-            res.render("mypage",{
-                user_id: req.session.user['userid'],
-                user_nickname: req.session.user['nickname'],
-                user_info: req.session.user['userInfo'],
-                user_stack: req.session.user['userStack']});
+            res.write(`<script type="text/javascript">alert('Edit Successful')</script>`);
+            res.write('<script>window.location="/mypage"</script>');
+            res.end();
         }
     })
 
-    //db.end();
 })
 
 module.exports = router;
