@@ -5,7 +5,8 @@
 <!-- 로그인/비로그인 상태 버튼 다르게 보이게 하기 -->
 <% if (user_id != "비회원" ) { %>
     <a href="/logout"><button class="gotologout">로그아웃하기</button></a>
-   <% } 
+    <a href="/project_regist"><button class="gotoProjectRegist">프로젝트 등록</button></a> 
+   <% }
 
    else  { %>
     <a href="/login"><button class="gotologin">로그인하기</button></a> 
