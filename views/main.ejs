@@ -6,20 +6,6 @@
 <% if (user_id != "비회원" ) { %>
     <a href="/logout"><button class="gotologout">로그아웃하기</button></a>
     <a href="/project_regist"><button class="gotoProjectRegist">프로젝트 등록</button></a>
-</br>
-<tr>
-    <td>
-        Title      Content </br>
-    </td>
-</tr>
-<% project_list.forEach(function(lists) { %>
-    <tr>
-        <td><%- lists.proj_title%></td>
-        <td><%- lists.proj_content%></td>
-    </tr>
-</br>
-<% }) %>
-
    <% }
 
    else  { %>
@@ -32,3 +18,4 @@
 <!-- 공통으로 but 비로그인시 누르면 alert뜸-->
 <a href="/message"><button class="gotomessage">쪽지</button></a> 
 <a href="/mypage"><button class="gotoMyPage">마이페이지</button></a>
+<a href="/project_page"><button class="gotoProjectPage">프로젝트 페이지 이동</button></a>

@@ -10,10 +10,9 @@ router.get('/', function (req, res) {
 
         var sql = 'SELECT * FROM project';
         db.query(sql, function (err, results) {
-            console.log("jjjjjjjjjjj", results);
             if (err)
                 console.log(err);
-                return res.render("main", {
+            return res.render("main", {
                     user_id: req.session.user['userid'],
                     user_nickname: req.session.user['nickname'],
                     project_list: results

@@ -1,0 +1,14 @@
+<h1>welcome HAP-PEER!</h1>
+
+<tr>
+    <td>
+        Title      Content </br>
+    </td>
+</tr>
+<% project_list.forEach(function(lists) { %>
+    <tr>
+        <td><%- lists.proj_title%></td>
+        <td><%- lists.proj_content%></td>
+    </tr>
+</br>
+<% }) %>
