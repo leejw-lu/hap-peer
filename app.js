@@ -18,6 +18,7 @@ const mypageRouter=require("./routes/mypage");
 const mypageEditProfileRouter=require("./routes/mypage_edit_profile");
 const projectRegisterRouter=require("./routes/project_regist");
 const projectPageRouter=require("./routes/project_page");
+const projectDetailRouter=require("./routes/project_detail");
 //app.use(express.static(__dirname + "/public"));
 app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
@@ -46,6 +47,7 @@ app.use("/mypage",mypageRouter);
 app.use("/mypage_edit_profile",mypageEditProfileRouter);
 app.use("/project_regist",projectRegisterRouter);
 app.use("/project_page",projectPageRouter);
+app.use("/project_detail",projectDetailRouter);
 // app.get("project_regist", (req, res) => {res.render('/project_regist', {})});
 
 
