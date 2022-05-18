@@ -23,6 +23,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 //app.use(layouts);
+app.use('/uploads',express.static(__dirname+'/uploads')); 
 
 
 //로그인 세션유지
