@@ -5,16 +5,20 @@
 <form action="/mypage" method="get">
     <table>
         <tr>
-            <td>아이디  </td>
-            <td> <%= user_id %> </td>
-        </tr>
-        <tr>
         <%
         let i;
         for(i=0; i<rows.length; i++)
         {
             let data = rows[i];
-        %>
+        %>       
+            <td>프로필 이미지</td>
+            <td><img src="<%= data.user_image %>" width="200" /></td>
+        </tr>
+        <tr>
+            <td>아이디  </td>
+            <td> <%= user_id %> </td>
+        </tr>
+        <tr></tr>
             <td>소개</td>
             <td> <%=data.user_info%> </td>
         </tr>
