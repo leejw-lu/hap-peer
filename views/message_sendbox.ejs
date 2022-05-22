@@ -10,7 +10,8 @@
         <tr>
             <td>번호</td>
             <td>받은 사람</td>
-            <td>쪽지내용</td>
+            <td>쪽지유형</td>
+            <!-- <td>쪽지내용</td> -->
             <td>날짜</td>
         </tr>
         <%
@@ -22,10 +23,20 @@
         <tr>
             <td><%=i+1%></td>
             <td><%=data.m_receiver%></td>
-            <td><%=data.m_content%></td>
+            <% 
+            if (data.m_type === "want_participate" ) { %>
+                <td>팀원으로 참가하고 싶어요~!</td>
+               <% } 
+            else if (data.m_type ==="question") { %>
+                <td>질문이요~!</td>
+                <% }
+            else { %>
+                    <td>기타</td>
+                <% }
+            %>
+            <!-- <td><%=data.m_content%></td> -->
             <td><%=data.m_date%></td>
         </tr>
         <%}%>
     </table>
 </body>
-   
