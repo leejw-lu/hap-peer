@@ -18,4 +18,13 @@
 <!-- 공통으로 but 비로그인시 누르면 alert뜸-->
 <a href="/message"><button class="gotomessage">쪽지</button></a> 
 <a href="/mypage"><button class="gotoMyPage">마이페이지</button></a>
-<a href="/project_page"><button class="gotoProjectPage">프로젝트 페이지 이동</button></a>
+</br>
+<% project_list.forEach(function(lists) { %>
+    <a href='/project_detail/<%= lists.proj_id %>'>
+    <tr>
+        <td><%- lists.proj_title%></td>
+        <!-- <td><%- lists.proj_content%></td> -->
+    </tr>
+    </a>
+</br>
+<% }) %>

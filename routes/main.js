@@ -21,7 +21,17 @@ router.get('/', function (req, res) {
 
     } else {
         console.log("비회원상태");
-        res.render("main", { user_id: "비회원", user_nickname: " " });
+        var sql = 'SELECT * FROM project';
+        db.query(sql, function (err, results) {
+            if (err)
+                console.log(err);
+            return res.render("main", {
+                    user_id: "비회원",
+                    user_nickname: " ",
+                    project_list: results
+                });
+            });
+        // res.render("main", { user_id: "비회원", user_nickname: " " });
     }
 
 
