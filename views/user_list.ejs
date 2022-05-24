@@ -1,0 +1,17 @@
+<body>
+    
+  <%- include('./partials/login_nav.ejs'); %>
+
+  <% user_list.forEach(function(lists) { %>
+    <a href='/user_page/<%= lists.user_id %>'>
+    <tr>
+        <td><%- lists.user_nickname%></td>
+        <!-- <td><%- lists.proj_content%></td> -->
+    </tr>
+    </a>
+</br>
+<% }) %>
+  <a href="/mypage_edit_profile"><button>프로필 편집</button></a> 
+</body>
+
+
