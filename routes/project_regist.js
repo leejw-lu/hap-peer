@@ -1,10 +1,17 @@
-var express = require("express");
-var router = express.Router();
-var db = require("../db"); //디비 사용위해 필요
+const express = require("express");
+const router = express.Router();
+const db = require("../db"); //디비 사용위해 필요
 
 router.get('/', function(req,res){
-	console.log("GET p_r");
-    res.render("project_regist");
+	
+    if(req.session.user){  //로그인 후 프로젝트 등록 페이지
+		res.render("project_regist");
+		console.log("GET p_r");
+    } else{
+        res.write(`<script type="text/javascript">alert('Available after login!')</script>`);
+        res.write('<script>window.location="/"</script>');
+    }
+   
 })
 router.post('/', async function(req,res) {
 	const proj_id = Date.now() % 2000000;
