@@ -5,7 +5,9 @@ const db = require("../db"); //디비 사용위해 필요
 router.get('/', function(req,res){
 	
     if(req.session.user){  //로그인 후 프로젝트 등록 페이지
-		res.render("project_regist");
+		return res.render("project_regist", {
+			user_id: req.session.user['userid'],
+		});
 		console.log("GET p_r");
     } else{
         res.write(`<script type="text/javascript">alert('Available after login!')</script>`);

@@ -4,7 +4,7 @@ const db = require("../db");
 
 router.get('/', function(req,res){
     res.render("message_send",{
-        sender: req.session.user['userid']    //쪽지보낸사람 id 보내기
+        user_id: req.session.user['userid']    //쪽지보낸사람 id 보내기
     });
 })
 

@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            <%= title %>
-        </title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        HAPPEER
+<body>
+    <% if (user_id != "비회원" ) { %>
+        <%- include('./partials/login_nav.ejs'); %>
+       <% } 
+    
+       else  { %>
+        <%- include('./partials/default_nav.ejs'); %>
+        <% }
+    %>
         <br>
             <A href = "/project_sort/date"> 최신순정렬</A>
             <A href = "/project_sort/level_1">레벨1정렬</A>
@@ -31,6 +30,5 @@
                 NAME : <%= data[i].proj_title %>    |    DATE : <%= data[i].proj_date %><br>
             <% } %>
         <% } %>
-        </form>
-    </body>
-</html>
+    </form>
+</body>
