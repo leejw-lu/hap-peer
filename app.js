@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser=require("cookie-parser");
 const expressSession=require("express-session");
-//layouts = require("express-ejs-layouts");
+const layouts = require("express-ejs-layouts");
 
 //라우터 세팅
 const mainRouter=require("./routes/main");
@@ -24,7 +24,8 @@ app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-//app.use(layouts);
+app.use(layouts);
+app.use('/uploads',express.static(__dirname+'/uploads')); 
 
 
 //로그인 세션유지

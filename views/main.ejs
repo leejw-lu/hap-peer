@@ -1,24 +1,13 @@
-<h1>welcome HAP-PEER!</h1>
-
-<p> <%= user_id %> (<%= user_nickname %>)님 환영합니다!</p>
-
-<!-- 로그인/비로그인 상태 버튼 다르게 보이게 하기 -->
-<% if (user_id != "비회원" ) { %>
-    <a href="/logout"><button class="gotologout">로그아웃하기</button></a>
-    <a href="/project_regist"><button class="gotoProjectRegist">프로젝트 등록</button></a>
-   <% }
-
-   else  { %>
-    <a href="/login"><button class="gotologin">로그인하기</button></a> 
-    <a href="/signup"><button class="gotosignup">회원가입하기</button></a>
-    <% }
-
-%>
-
-<!-- 공통으로 but 비로그인시 누르면 alert뜸-->
-<a href="/message"><button class="gotomessage">쪽지</button></a> 
-<a href="/mypage"><button class="gotoMyPage">마이페이지</button></a>
-</br>
+<body>
+    <% if (user_id != "비회원" ) { %>
+        <%- include('./partials/login_nav.ejs'); %>
+       <% } 
+    
+       else  { %>
+        <%- include('./partials/default_nav.ejs'); %>
+        <% }
+    %>
+<p>main화면</p>
 <% project_list.forEach(function(lists) { %>
     <a href='/project_detail/<%= lists.proj_id %>'>
     <tr>
@@ -27,4 +16,4 @@
     </tr>
     </a>
 </br>
-<% }) %>
+</body>

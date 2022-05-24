@@ -1,8 +1,10 @@
-<h1>welcome HAP-PEER!</h1>
-
 <h3>프로필 편집</h3>
-<form action="/mypage_edit_profile" method="post">
+<form action="/mypage_edit_profile" method="post" enctype="multipart/form-data">
     <table>
+        <tr>
+            <td>프로필 이미지</td>
+            <td><input type='file' name='img' accept='image/jpg, image/png, image/jpeg' /></td>
+        </tr>
         <tr>
             <td>아이디  </td>
             <td> <%= user_id %> </td>
