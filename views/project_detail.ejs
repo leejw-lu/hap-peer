@@ -6,7 +6,7 @@
        else  { %>
         <%- include('./partials/default_nav.ejs'); %>
         <% }
-    %>>
+    %>
 
 <h3>프로젝트 상세보기</h3>
 
@@ -19,5 +19,8 @@
         project stack : <%- project_detail.proj_stack%></br>
     </td>
 </tr>
+<% if (user_id == project_detail.proj_leader) {%>
+    <a href="/project_edit/<%= project_detail.proj_id%>">수정하기</a>
+    <% } %>
 
 </body>

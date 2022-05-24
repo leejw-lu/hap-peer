@@ -3,8 +3,8 @@ const router = express.Router();
 const db = require("../db");
 
 router.get('/*', function(req,res) {
-	const sql = `SELECT * FROM project where proj_id=${req.params['0']}`;
-	db.query(sql, function (err, results) {
+	const sql = `SELECT * FROM project WHERE proj_id=?`;
+	db.query(sql, [req.params['0']], function (err, results) {
 		if (err) console.log(err);
 			console.log(results[0]);
 

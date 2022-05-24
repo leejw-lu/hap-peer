@@ -10,7 +10,8 @@ router.get('/*', function(req,res) {
 			console.log(results[0]);
 		return res.render("user_page", {
 				users: results[0],
-        user_id: req.session.user['userid']
+        user_id: req.session.user['userid'],
+				user_nickname: req.session.user['user_nickname'],
 			});
 		})
 });

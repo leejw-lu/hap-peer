@@ -26,8 +26,10 @@
             <% if(data.length == 0) {%>
                 NULL
                 <% } %>
-            <% for(let i=0;i<data.length;i++){ %>
+                <% for(let i=0;i<data.length;i++){ %>
+                <a href='/project_detail/<%= data[i].proj_id %>'>
                 NAME : <%= data[i].proj_title %>    |    DATE : <%= data[i].proj_date %><br>
+                </a>
             <% } %>
         <% } %>
     </form>
