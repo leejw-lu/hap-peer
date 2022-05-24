@@ -6,7 +6,7 @@
         </title>
         <meta charset="utf-8">
     </head>
-    <body text="c05b00" link="bcc000" vlink="bcc000">
+    <body>
         HAPPEER
         <br>
             <A href = "./date"> 최신순정렬</A>
@@ -14,6 +14,14 @@
             <A href = "./level_2">레벨2정렬</A>
             <A href = "./level_3">레벨3정렬</A>
         <br>
+        <form action="/project_sort" method="post">
+            <table>
+                <tr>
+                    <td>스택별정렬</td>
+                    <td><input type="text" name="skillstack"></td>
+                </tr>
+            </table>
+        </form>
             프로젝트 목록<br>
         <% if(locals.data){ %>
             <% if(data.length == 0) {%>

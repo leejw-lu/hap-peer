@@ -58,8 +58,10 @@ router.get("level_3", function (req, res) {
     })
 });
 
-/*router.get("skillstacks", function (req, res) {
-    db.query("SELECT * FROM project where proj_level=3 ORDER BY proj_date desc", function(err, result, fields){
+router.post("/", function (req, res) {
+    const sql = "SELECT * FROM project where proj_stack LIKE ?";
+    const skillstack=req.body.skillstack;
+    db.query(sql, skillstack, function(err, result, fields){
         if(err) throw err;
         else{
             var page =  ejs.render(view, {
@@ -69,6 +71,6 @@ router.get("level_3", function (req, res) {
             res.send(page);
         }
     })
-});*/
+});
 
 module.exports = router;
