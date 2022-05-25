@@ -1,0 +1,20 @@
+<body>
+    <%- include('./partials/login_nav.ejs'); %>
+
+    <h3>쪽지 상세보기</h3>
+    <a href="/message">받은쪽지함</a> 
+    <a href="/message_sendbox">보낸쪽지함</a> 
+    <a href="/message_send"><button class="gotomessage_send">쪽지보내기</button></a>
+    </br>
+
+    <tr>
+        <td>
+        쪽지유형 : <%- message_detail.m_type%></br>
+        보낸사람 : <%- message_detail.m_sender%></br>
+        받는사람 : <%- message_detail.m_receiver%></br>
+        쪽지내용 : <%- message_detail.m_content%></br>
+        날짜    : <%- message_detail.m_date%></br>
+        </td>
+    </tr>
+
+</body>

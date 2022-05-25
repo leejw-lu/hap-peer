@@ -14,6 +14,7 @@ const logoutRouter=require("./routes/logout");
 const messageRouter=require("./routes/message");
 const messagesendRouter=require("./routes/message_send");
 const messageSendBoxRouter=require("./routes/message_sendbox");
+const messageDetailRouter=require("./routes/message_detail");
 const mypageRouter=require("./routes/mypage");
 const mypageEditProfileRouter=require("./routes/mypage_edit_profile");
 
@@ -42,8 +43,10 @@ app.use("/logout",logoutRouter);
 app.use("/message",messageRouter);
 app.use("/message_send",messagesendRouter);
 app.use("/message_sendbox",messageSendBoxRouter);
+app.use("/message_detail",messageDetailRouter);
 app.use("/mypage",mypageRouter);
 app.use("/mypage_edit_profile",mypageEditProfileRouter);
+
 
 
 app.listen(port, () => {

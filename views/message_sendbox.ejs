@@ -21,7 +21,8 @@
             let data = rows[i];
         %>
         <tr>
-            <td><%=i+1%></td>
+            <td><a href='/message_detail/<%= data.m_id %>'><%=i+1%></a></td>
+            <!-- <td><%=i+1%></td> -->
             <td><%=data.m_receiver%></td>
             <% 
             if (data.m_type === "want_participate" ) { %>
