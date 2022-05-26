@@ -25,13 +25,22 @@ router.post('/', async function(req,res) {
 	const user_id = req.session.user['userid'];
 	// const proj_date= Date();
 	const sql="INSERT INTO project (proj_id, proj_title, proj_content, proj_level, proj_stack, proj_date, proj_leader) VALUES (?, ?, ?, ?, ?, ?,?)";
-  const params=[proj_id, proj_title,proj_content,proj_level,proj_stack,proj_date,user_id]
+	const sql2 = "INSERT INTO participate (part_user, part_project) VALUES (?, ?)";
+  const params=[proj_id, proj_title,proj_content,proj_level,proj_stack,proj_date,user_id];
+	const params2=[user_id, proj_id];
 	
 	console.log("프로젝트 제출");
 	db.query(sql, params, function(err) {
 		if (err) {
 			console.log(err);
 		} else {
+			db.query(sql2, params2, function(err) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log("parti input success");
+				}
+			})
 			console.log("success input");
 		}
 		res.write('<script>window.location="/"</script>');
