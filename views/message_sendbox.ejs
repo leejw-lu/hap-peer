@@ -6,38 +6,32 @@
     <a href="/message_sendbox">보낸쪽지함</a> 
     <a href="/message_send"><button class="gotomessage_send">쪽지보내기</button></a>
 
-    <table>
-        <tr>
-            <td>번호</td>
-            <td>받은 사람</td>
-            <td>쪽지유형</td>
-            <!-- <td>쪽지내용</td> -->
-            <td>날짜</td>
-        </tr>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">받은사람</th>
+            <th scope="col">쪽지유형/상세</th>
+            <th scope="col">날짜</th>
+          </tr>
+        </thead>
+        
+        <tbody>
         <%
         let i;
         for(i=0; i<rows.length; i++)
         {
             let data = rows[i];
         %>
+        
         <tr>
-            <td><a href='/message_detail/<%= data.m_id %>'><%=i+1%></a></td>
-            <!-- <td><%=i+1%></td> -->
+            <td><%=i+1%></td>
             <td><%=data.m_receiver%></td>
-            <% 
-            if (data.m_type === "want_participate" ) { %>
-                <td>팀원으로 참가하고 싶어요~!</td>
-               <% } 
-            else if (data.m_type ==="question") { %>
-                <td>질문이요~!</td>
-                <% }
-            else { %>
-                    <td>기타</td>
-                <% }
-            %>
-            <!-- <td><%=data.m_content%></td> -->
+            <td><a href='/message_detail/<%= data.m_id %>'><%=data.m_type%></a></td>
             <td><%=data.m_date%></td>
         </tr>
         <%}%>
-    </table>
+        </tbody>
+      </table>
+      
 </body>
