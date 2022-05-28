@@ -14,6 +14,7 @@ const logoutRouter=require("./routes/logout");
 const messageRouter=require("./routes/message");
 const messagesendRouter=require("./routes/message_send");
 const messageSendBoxRouter=require("./routes/message_sendbox");
+const messageDetailRouter=require("./routes/message_detail");
 const mypageRouter=require("./routes/mypage");
 const mypageEditProfileRouter=require("./routes/mypage_edit_profile");
 const projectRegisterRouter=require("./routes/project_regist");
@@ -47,6 +48,7 @@ app.use("/logout",logoutRouter);
 app.use("/message",messageRouter);
 app.use("/message_send",messagesendRouter);
 app.use("/message_sendbox",messageSendBoxRouter);
+app.use("/message_detail",messageDetailRouter);
 app.use("/mypage",mypageRouter);
 app.use("/mypage_edit_profile",mypageEditProfileRouter);
 app.use("/project_regist",projectRegisterRouter);
@@ -56,6 +58,7 @@ app.use("/user_list",userListRouter);
 app.use("/user_page",userPageRouter);
 app.use("/project_edit",projectEditRouter);
 // app.get("project_regist", (req, res) => {res.render('/project_regist', {})});
+
 
 
 app.listen(port, () => {
