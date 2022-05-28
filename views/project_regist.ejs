@@ -1,0 +1,46 @@
+<body>
+    <%- include('./partials/login_nav.ejs'); %>
+
+<h3>프로젝트 등록</h3>
+<form action="/project_regist" method="post">
+    <table>
+        <tr>
+            <td>프로젝트 이름</td>
+            <td><input type="text" name="proj_title"></td>
+        </tr>
+        <tr>
+            <td>프로젝트 소개</td>
+            <td><input type="text" name="proj_content"></td>
+        </tr>
+        <tr>
+            <td>프로젝트 필요 스택</td>
+            <td><input type="text" name="proj_stack"></td>
+        </tr>
+        <tr>
+            <td>프로젝트 난이도</td>
+            <td>
+                <input type="radio" id="1" name="proj_level" value="1">
+                <label for="1">1</label>
+                <input type="radio" id="2" name="proj_level" value="2">
+                <label for="2">2</label>
+                <input type="radio" id="3" name="proj_level" value="3">
+                <label for="3">3</label>
+                <input type="radio" id="4" name="proj_level" value="4">
+                <label for="4">4</label>
+                <input type="radio" id="5" name="proj_level" value="5">
+                <label for="5">5</label>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="proj_date">날짜</label>
+                <input type="date" id="proj_date" name="proj_date"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="프로젝트 등록"></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+
+<!-- <a href="/signup"><button>회원가입하기</button></a>  -->

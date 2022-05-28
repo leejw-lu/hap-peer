@@ -1,0 +1,32 @@
+<body>
+    <% if (user_id != "비회원" ) { %>
+        <%- include('./partials/login_nav.ejs'); %>
+       <% } 
+    
+       else  { %>
+        <%- include('./partials/default_nav.ejs'); %>
+        <% }
+    %>
+
+<h3>프로젝트 상세보기</h3>
+
+<tr>
+    <td>
+        project title : <%- project_detail.proj_title%></br>
+        project leader : <%- project_detail.proj_leader%></br>
+        project info : <%- project_detail.proj_content%></br>
+        project level : <%- project_detail.proj_level%></br>
+        project stack : <%- project_detail.proj_stack%></br>
+    </td>
+</tr>
+<% if (user_id == project_detail.proj_leader) {%>
+    <a href="/project_edit/<%= project_detail.proj_id%>">수정하기</a>
+    <% } %>
+<form action="/project_detail" method="post">
+<% if (user_id == project_detail.proj_leader) {%>
+    <td><input type="text" name="member"></td>
+    <td><input type="submit" value="팀원 추가하기"></td>
+    <% } %>
+    </form>
+
+</body>

@@ -1,10 +1,13 @@
+<body>
+    <%- include('./partials/login_nav.ejs'); %>
+
 <h3>쪽지 보내기</h3>
 
 <form action="/message_send" method="post">
     <table>
         <tr>
             <td>보내는사람  : </td>
-            <td><%= sender %><td>
+            <td><%= user_id %><td>
         </tr>
         <tr>
             <td>받는사람 :</td>
@@ -38,3 +41,5 @@
         </tr>
     </table>
 </form>
+
+</body>

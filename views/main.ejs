@@ -8,4 +8,13 @@
         <% }
     %>
 <p>main화면</p>
+<% project_list.forEach(function(lists) { %>
+    <a href='/project_detail/<%= lists.proj_id %>'>
+    <tr>
+        <td><%- lists.proj_title%></td>
+        <!-- <td><%- lists.proj_content%></td> -->
+    </tr>
+    </a>
+</br>
+<% }) %>
 </body>
