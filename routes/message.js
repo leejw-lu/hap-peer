@@ -6,8 +6,7 @@ router.get('/', function(req,res) {
 
     if(req.session.user){  //로그인 후 쪽지 사용가능
         //받은쪽지함 list 보이게 하기
-        //const page= req.params.page;
-        const sql= "SELECT * FROM message WHERE m_receiver = ? ";
+        const sql= "SELECT * FROM message WHERE m_receiver = ? and delete_receiver=0 ";
         db.query(sql,[req.session.user['userid']], function(err, rows) {
             if(err) console.error("err: ", err);
             res.render("message",{ 
