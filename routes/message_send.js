@@ -13,7 +13,7 @@ router.post('/reply', function(req,res){
     const m_sender = req.body.m_sender; 
     //console.log(m_sender);
     res.render("message_send",{
-        user_id: req.session.user['userid']    //쪽지보낸사람 id 보내기
+        user_id: req.session.user['userid'],    //쪽지보낸사람 id 보내기
         receiver:m_sender                      //보낸사람에게 답장 보내기
     });
 })
