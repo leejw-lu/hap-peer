@@ -22,6 +22,7 @@ const projectSortRouter=require("./routes/project_sort");
 const userListRouter=require("./routes/user_list");
 const userPageRouter=require("./routes/user_page");
 const projectEditRouter=require("./routes/project_edit");
+const scrapRouter=require("./routes/scrap");
 //app.use(express.static(__dirname + "/public"));
 app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
@@ -55,6 +56,7 @@ app.use("/project_sort",projectSortRouter);
 app.use("/user_list",userListRouter);
 app.use("/user_page",userPageRouter);
 app.use("/project_edit",projectEditRouter);
+app.use("/scrap", scrapRouter);
 // app.get("project_regist", (req, res) => {res.render('/project_regist', {})});
 
 
