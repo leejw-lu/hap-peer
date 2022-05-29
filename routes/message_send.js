@@ -4,19 +4,30 @@ const db = require("../db");
 
 router.get('/', function(req,res){
     res.render("message_send",{
-        user_id: req.session.user['userid']    //쪽지보낸사람 id 보내기
+        user_id: req.session.user['userid'],    //쪽지보낸사람 id 보내기
+        receiver:"직접입력"
+    });
+})
+
+router.post('/reply', function(req,res){
+    const m_sender = req.body.m_sender; 
+    //console.log(m_sender);
+    res.render("message_send",{
+        user_id: req.session.user['userid'],    //쪽지보낸사람 id 보내기
+        receiver:m_sender                      //보낸사람에게 답장 보내기
     });
 })
 
 router.post('/',function(req,res) {
     const sender=req.session.user['userid'];
     const receiver=req.body.receiver;
+    const type=req.body.message_type;
     const content=req.body.message_content;
     const date=new Date();
-
+    
     //db에 쪽지내용 insert
-    const sql="INSERT INTO message (m_sender, m_receiver, m_content, m_date) VALUES (?, ?, ?, ? )";
-    const params=[sender,receiver,content,date];
+    const sql="INSERT INTO message (m_sender, m_receiver, m_type, m_content, m_date) VALUES (?, ?, ?, ?, ? )";
+    const params=[sender,receiver,type, content,date];
 
     if (receiver.length > 0 && content.length>0 ){
         db.query("SELECT * FROM user WHERE user_id = ?", [receiver], function(err,rows) {    //받는사람이 user테이블에 있는지 확인해야한다.
