@@ -20,7 +20,7 @@ router.post('/', async function(req,res) {
   const proj_content=req.body.proj_content;
 	const proj_level=req.body.proj_level;
 	const proj_stack = req.body.proj_stack;
-	const proj_date= req.body.proj_date;
+	const proj_date= new Date();
 	const user_id = req.session.user['userid'];
 	const sql="INSERT INTO project (proj_title, proj_content, proj_level, proj_stack, proj_date, proj_leader) VALUES (?, ?, ?, ?, ?,?)";
   const params=[proj_title,proj_content,proj_level,proj_stack,proj_date,user_id]
