@@ -10,17 +10,16 @@ router.get('/*', function (req, res) {
     const sc_id = Date.now() % 2000000;
     const sc_user = req.session.user['userid'];
     const sc_project = proj_id.id;
-    const sql = "INSERT INTO scrap (sc_id, sc_user, sc_project) VALUES (?, ?, ?) ";
-    const params = [sc_id, sc_user, sc_project];
-    const params2 = [sc_user, sc_project];
+    const sql = "INSERT INTO scrap (sc_id, sc_user, sc_project) VALUES (?, ?, ?) ";    //스크랩 삽입 sql
+    const params = [sc_id, sc_user, sc_project];    //스크랩 삽입 params
+    const params2 = [sc_user, sc_project];    //기존 스크랩 존재 여부 판단 params
     db.query("SELECT * FROM scrap where sc_user = ? and sc_project = ?", params2, function(err,rows) {
-        if (rows.length > 0) {
-            //이미 스크랩한 글인지 판단함
+        if (rows.length > 0) { //기존 스크랩 존재 여부 판단
             console.log("already exists");
             res.write(`<script type="text/javascript">alert('already exists')</script>`);
             res.write('<script>window.location="/project_sort"</script>');
 		 }
-	 else{
+	    else{
         db.query(sql,params,function(err) { 
             if (err) console.error(err);
             else{

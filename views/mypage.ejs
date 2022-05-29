@@ -5,27 +5,38 @@
     <h3> <%= user_id %> (<%= user_nickname %>)님의 마이페이지</h3>
     <form action="/mypage" method="get">
         <table>
-            <tr>
             <%
             let i;
-            for(i=0; i<rows.length; i++)
-            {
+            let userinfo = rows[0];
+            %>
+            <th></th>
+            <th></th>
+            <tr>
+            <td></td>
+                <td><img src="<%= userinfo.user_image %>" width="200" /></td></tr>
+            <tr>
+            <td>아이디  </td>
+                <td> <%= user_id %> </td> </tr>
+            <tr>
+            <td>소개</td>
+                <td> <%=userinfo.user_info%> </td> </tr>
+            <tr>
+            <td>STACK</td>
+                <td> <%=userinfo.user_stack%> </td> </tr>
+                
+        </table>
+        <br>
+        <hr> 스크랩 목록
+        <br>
+        <table>
+            <th></th>
+            <%
+                for(i=0; i<rows.length; i++) {
                 let data = rows[i];
             %>       
-                <td>프로필 이미지</td>
-                <td><img src="<%= data.user_image %>" width="200" /></td>
-            </tr>
             <tr>
-                <td>아이디  </td>
-                <td> <%= user_id %> </td>
-            </tr>
-            <tr></tr>
-                <td>소개</td>
-                <td> <%=data.user_info%> </td>
-            </tr>
-            <tr>
-                <td>STACK</td>
-                <td> <%=data.user_stack%> </td>
+                <td>
+                <a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </A></td>
             </tr>
             <%}%>
         </table>
