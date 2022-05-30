@@ -27,11 +27,28 @@
                 <td>STACK</td>
                 <td> <%=data.user_stack%> </td>
             </tr>
+            <%}%>      
+        </table>
+    </form>
+    <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
+
+    <form action="/mypage" method="get">
+        <br>
+        <hr> 나의 프로젝트
+        <br>
+        <table>
+            <th></th>
+            <%
+                for(i=0; i<rows.length; i++) {
+                let data = rows[i];
+            %>       
+            <tr>
+                <td>
+                <a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </A></td>
+            </tr>
             <%}%>
         </table>
     </form>
-    
-    <a href="/mypage_edit_profile"><button>프로필 편집</button></a> 
 </body>
 
 

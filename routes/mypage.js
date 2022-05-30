@@ -8,7 +8,7 @@ const path = require("path");
 router.get('/', function(req,res) {
     //req.session.user는 객체
     if(req.session.user){  //로그인 되어있는가?
-        const sql="SELECT user_info, user_stack, user_image FROM user WHERE user_id = ?";
+        const sql = "SELECT u.user_info, u.user_stack, u.user_image, p.proj_title, p.proj_id FROM user AS u LEFT OUTER JOIN participate AS pa ON u.user_id = pa.part_user LEFT OUTER JOIN project AS p ON pa.part_project = p.proj_id WHERE u.user_id = ?";
         db.query(sql,[req.session.user['userid']], function(err, rows) {
             if(err) console.error("err: ", err);
             
@@ -16,6 +16,8 @@ router.get('/', function(req,res) {
             res.render("mypage",{
                 user_id: req.session.user['userid'],
                 user_nickname: req.session.user['nickname'], rows: rows});
+
+                console.log(rows);
         })
 
     } else{  //로그인하지 않고 접근한 경우
