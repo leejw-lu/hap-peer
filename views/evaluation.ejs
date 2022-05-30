@@ -8,7 +8,7 @@
           <tr>
             <th scope="col">번호</th>
             <th scope="col">참여팀원명</th>
-            <th scope="col">평가상태</th>
+            <!-- <th scope="col">평가상태</th> -->
             <th scope="col">평가하기</th>
           </tr>
         </thead>
@@ -21,9 +21,9 @@
             let data = rows[i];
         %>
         <tr>
-            <td><%=i+1%></td>
-            <td><%=data.ev_rated%></td>
-            <td><%=data.ev_evaluated%></td>
+            <td><%=i+1%></td> 
+            <td><a href='/user_page/<%=data.ev_rated%>'><%=data.ev_rated%>(<%=data.user_nickname%>)</a></td>
+            <!-- <td><%=data.ev_evaluated%></td> -->
               <% 
               if (data.ev_evaluated == 1 ) { %>
                 <td>평가완료</td>
@@ -33,6 +33,7 @@
                   <form action="/evaluation/item" method="post">
                     <input type="hidden" name="pj_id" value="<%= pj_id %>">
                     <input type="hidden" name="ev_rated" value="<%=data.ev_rated%>">
+                    <input type="hidden" name="user_nickname" value="<%=data.user_nickname%>">
                     <input type="submit" name="evaluate" value="평가하기">
                 </form>
                 </td>

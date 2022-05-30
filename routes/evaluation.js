@@ -15,12 +15,12 @@ router.post('/', function(req,res){
         pj_title= rows[0].proj_title;
     })
 
-    const sql2="select ev_rated, ev_evaluated from evaluation where ev_project= ? and ev_rater= ? ";
+    //유저 (닉네임) join 평가(피평가자,평가유무)
+    const sql2="select u.user_nickname, e.ev_rated, e.ev_evaluated from evaluation as e join user as u on e.ev_rated=u.user_id where e.ev_project= ? and e.ev_rater= ? ";
     const params=[pj_id, req.session.user['userid']];
+
     db.query(sql2,params, function(err, rows) {
         if(err) console.error("err: ", err);
-
-        const pj_title= rows[0].proj_title;
 
         res.render("evaluation",{
             user_id: params[1],
@@ -36,11 +36,13 @@ router.post('/item', function(req,res){
     //res.send("평가하기 item항목");
     const pj_id = req.body.pj_id;
     const ev_rated=req.body.ev_rated;
+    const user_nickname=req.body.user_nickname;
 
     res.render("evaluation_item",{
         user_id: req.session.user['userid'],
         pj_id: pj_id,
-        ev_rated: ev_rated
+        ev_rated: ev_rated,
+        user_nickname:user_nickname
     });
 
 })
