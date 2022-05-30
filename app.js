@@ -11,18 +11,26 @@ const mainRouter=require("./routes/main");
 const loginRouter=require("./routes/login");
 const signupRouter=require("./routes/signup");
 const logoutRouter=require("./routes/logout");
+
 const messageRouter=require("./routes/message");
 const messagesendRouter=require("./routes/message_send");
 const messageSendBoxRouter=require("./routes/message_sendbox");
 const messageDetailRouter=require("./routes/message_detail");
+
 const mypageRouter=require("./routes/mypage");
 const mypageEditProfileRouter=require("./routes/mypage_edit_profile");
+
 const projectRegisterRouter=require("./routes/project_regist");
 const projectDetailRouter=require("./routes/project_detail");
 const projectSortRouter=require("./routes/project_sort");
+
 const userListRouter=require("./routes/user_list");
 const userPageRouter=require("./routes/user_page");
 const projectEditRouter=require("./routes/project_edit");
+
+const evaluationRouter=require("./routes/evaluation");
+
+
 //app.use(express.static(__dirname + "/public"));
 app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
@@ -57,6 +65,7 @@ app.use("/project_sort",projectSortRouter);
 app.use("/user_list",userListRouter);
 app.use("/user_page",userPageRouter);
 app.use("/project_edit",projectEditRouter);
+app.use("/evaluation",evaluationRouter);
 // app.get("project_regist", (req, res) => {res.render('/project_regist', {})});
 
 

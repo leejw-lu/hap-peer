@@ -1,0 +1,46 @@
+<body>
+    <%- include('./partials/login_nav.ejs'); %>
+
+    <h3> 프로젝트: <%= pj_title %> 에 참여한 팀원들을 평가해주세요! </h3>
+       
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">참여팀원명</th>
+            <th scope="col">평가상태</th>
+            <th scope="col">평가하기</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <%
+        let i;
+        for(i=0; i<rows.length; i++)
+        {
+            let data = rows[i];
+        %>
+        <tr>
+            <td><%=i+1%></td>
+            <td><%=data.ev_rated%></td>
+            <td><%=data.ev_evaluated%></td>
+              <% 
+              if (data.ev_evaluated == 1 ) { %>
+                <td>평가완료</td>
+                <% }
+              else { %>
+                <td>
+                  <form action="/evaluation/item" method="post">
+                    <input type="hidden" name="pj_id" value="<%= pj_id %>">
+                    <input type="hidden" name="ev_rated" value="<%=data.ev_rated%>">
+                    <input type="submit" name="evaluate" value="평가하기">
+                </form>
+                </td>
+              <% }  
+              %>
+        </tr>
+        <%}%>
+        </tbody>
+      </table>
+
+</body>
