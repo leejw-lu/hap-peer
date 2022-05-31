@@ -1,0 +1,65 @@
+<% 
+if (ev_value!="정보없음") { %>
+  <input type="hidden" id="ev_value1" value="<%-ev_value.v1%>" />
+  <input type="hidden" id="ev_value2" value="<%-ev_value.v2%>" />
+  <input type="hidden" id="ev_value3" value="<%-ev_value.v3%>" />
+  <input type="hidden" id="ev_value4" value="<%-ev_value.v4%>" />
+  <input type="hidden" id="ev_value5" value="<%-ev_value.v5%>" />
+  <!-- <input type="hidden" id="count" value="<%-ev_value.num%>"/> -->
+<% } 
+  else  { %>
+  <input type="hidden" id="ev_value1" value="0" />
+  <input type="hidden" id="ev_value2" value="0" />
+  <input type="hidden" id="ev_value3" value="0" />
+  <input type="hidden" id="ev_value4" value="0" />
+  <input type="hidden" id="ev_value5" value="0" />
+  <!-- <input type="hidden" id="count" value="0"/> -->
+  <% }
+%>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<canvas id="radar-chart" width="290" height="290"></canvas>
+<p>"<%-ev_value.num%>" 명이 평가해주었어요!</p>
+
+<script>
+const v1 = document.getElementById("ev_value1").value;
+const v2 = document.getElementById("ev_value2").value;
+const v3 = document.getElementById("ev_value3").value;
+const v4 = document.getElementById("ev_value4").value;
+const v5 = document.getElementById("ev_value5").value;
+// const count = document.getElementById("count").value;
+
+new Chart(document.getElementById("radar-chart"), {
+  type: 'radar',
+  data: {
+    labels: ["참여도", "태도", "열정", "실력", "배려"],
+    datasets: [
+      {
+        label: "평점Graph",
+        //label: count+"명이 평가해주었어요!",
+        fill: true,
+        backgroundColor: "rgba(255,99,132,0.2)",
+        borderColor: "rgba(255,99,132,1)",
+        pointBorderColor: "#fff",
+        pointBackgroundColor: "rgba(255,99,132,1)",
+        pointBorderColor: "#fff",
+        data: [v1, v2, v3, v4 ,v5]
+      }
+    ]
+  },
+  options: {
+    responsive:false,
+    scale: {
+      ticks: {  //그래프눈금 0~5
+            min: 0,
+            max: 5
+      },
+      pointLabels: {
+        fontSize: 15
+      }
+  
+    }
+  }
+});
+
+</script>
