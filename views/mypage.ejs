@@ -5,28 +5,56 @@
     <h3> <%= user_id %> (<%= user_nickname %>)님의 마이페이지</h3>
     <form action="/mypage" method="get">
         <table>
-            <%
-            let i;
-            let userinfo = rows[0];
-            %>
-            <th></th>
-            <th></th>
+            <tr>  
+                <td>프로필 이미지</td>
+                <td><img src="<%= rows[0].user_image %>" width="200" /></td>
+            </tr>
             <tr>
-            <td></td>
-                <td><img src="<%= userinfo.user_image %>" width="200" /></td></tr>
+                <td>아이디  </td>
+                <td> <%= user_id %> </td>
+            </tr>
+            <tr></tr>
+                <td>소개</td>
+                <td> <%=rows[0].user_info%> </td>
+            </tr>
             <tr>
-            <td>아이디  </td>
-                <td> <%= user_id %> </td> </tr>
-            <tr>
-            <td>소개</td>
-                <td> <%=userinfo.user_info%> </td> </tr>
-            <tr>
-            <td>STACK</td>
-                <td> <%=userinfo.user_stack%> </td> </tr>
-                
+                <td>STACK</td>
+                <td> <%=rows[0].user_stack%> </td>
+            </tr>    
         </table>
+    </form>
+    <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
+
+    <form action="/mypage" method="get">
         <br>
-        <hr> 스크랩 목록
+        <hr> 나의 프로젝트
+        <br>
+        <table>
+            <th></th>
+            <%
+                for(i=0; i<rows.length; i++) {
+                let data = rows[i];
+            %>       
+            <tr>
+                <td>
+                    
+                <td>
+                    <% if (data.recruit_status==1 && data.develop_status==1) { %>
+                        <!-- <div style="border: solid; width: 50%; padding: 10px; margin-top: 10px;"> -->
+                        <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
+                        <td><button><a href='/evaluation/<%= data.proj_id %>'>평가하기</a></button></td>
+                        <!-- </div> -->
+                    <% } else if (data.recruit_status==1 && data.develop_status==0) { %>
+                        <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
+                        <td> 진행중 </td>
+                    <% } else if (data.recruit_status==0 && data.develop_status==0) { %>
+                        <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
+                        <td> 모집중 </td>
+                    <% } else { %>
+                        <td> 참여중인 프로젝트가 없습니다. </td>
+                    <% } %>
+                </td>
+                <hr> 스크랩 목록
         <br>
         <table>
             <th></th>
@@ -40,9 +68,9 @@
             </tr>
             <%}%>
         </table>
-    </form>
-    
-    <a href="/mypage_edit_profile"><button>프로필 편집</button></a> 
+    </form>  
+
+    <br>
 </body>
 
 

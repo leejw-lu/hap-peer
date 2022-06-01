@@ -26,23 +26,32 @@ router.get('/*', function(req,res) {
 }});
 
 router.post('/*',function(req,res) {
-	const proj_leader=req.session.user['userid'];
 	const proj = proj_id.id;
 	const member=req.body.member;
 	const sql="INSERT INTO participate (part_user, part_project) VALUES (?, ?)";
 	const params=[member,proj];
-	db.query("SELECT * FROM user WHERE user_id = ?", [member], function(err,rows) {    //받는사람이 user테이블에 있는지 확인해야한다.
-		if (rows.length>0) {   //receiver 존재! -> db에 저장
-			 db.query(sql,params,function(err) { 
-					 if (err) console.error("err : " + err);
-					 else{
-							 console.log(params);
-							 res.write(`<script type="text/javascript">alert('member add successfully!')</script>`);
-							 res.write('<script>window.location="/project_sort"</script>');
-					 }
-			 })
+	db.query("SELECT * FROM user WHERE user_id = ?", [member], function(err,rows) {
+		if (rows.length>0) {
+			db.query(`SELECT * FROM participate WHERE part_user=? AND part_project=?`, [member, proj], function(error,row) {
+				if (error) console.error("err : " + error);
+				if (row.length > 0) {
+					console.log("이미 존재하는 멤버");
+					res.write(`<script type="text/javascript">alert('Member already exit!')</script>`);
+					res.write('<script>window.location="/project_sort"</script>'); 
+				}
+				else {
+					db.query(sql,params,function(err) { 
+							if (err) console.error("err : " + err);
+							else{
+									console.log(params);
+									res.write(`<script type="text/javascript">alert('member add successfully!')</script>`);
+									res.write('<script>window.location="/project_sort"</script>');
+							}
+					})
+				}
+			})
 		 }
-	 else{ //receiver존재X
+	 else{
 			 console.log(err);
 			 console.log("member 존재하지 않음");
 			 res.write(`<script type="text/javascript">alert('Member ID does not exit!')</script>`);

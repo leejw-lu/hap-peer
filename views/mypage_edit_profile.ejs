@@ -5,6 +5,12 @@
 <form action="/mypage_edit_profile" method="post" enctype="multipart/form-data">
     <table>
         <tr>
+        <%
+        let i;
+        for(i=0; i<rows.length; i++)
+        {
+            let data = rows[i];
+        %>
             <td>프로필 이미지</td>
             <td><input type='file' name='img' accept='image/jpg, image/png, image/jpeg' /></td>
         </tr>
@@ -14,15 +20,16 @@
         </tr>
         <tr>
             <td>소개</td>
-            <td><input type="text" name="userInfo"></td>
+            <td><input type="text" name="userInfo" value="<%=data.user_info%>" ></td>
         </tr>
         <tr>
             <td>STACK</td>
-            <td><input type="text" name="userStack"></td>
+            <td><input type="text" name="userStack" value="<%=data.user_stack%>"></td>
         </tr>
         <tr>
             <td><input type="submit" value="저장"></td>
         </tr>
+        <%}%>
     </table>
 </form>
 

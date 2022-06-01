@@ -36,8 +36,10 @@ router.post('/*', async function (req, res) {
     const proj_level = req.body.proj_level;
     const proj_stack = req.body.proj_stack;
     const proj_date = req.body.proj_date;
-    const sql = "UPDATE project SET proj_title=?, proj_content=?, proj_level=?, proj_stack=?, proj_date=? WHERE proj_id=?";
-    const params = [proj_title, proj_content, proj_level, proj_stack, proj_date, proj_id.id]
+    const recruit_status = req.body.recruit_status;
+    const develop_status = req.body.develop_status;
+    const sql = "UPDATE project SET proj_title=?, proj_content=?, proj_level=?, proj_stack=?, recruit_status=?, develop_status=? WHERE proj_id=?";
+    const params = [proj_title, proj_content, proj_level, proj_stack, recruit_status, develop_status, proj_id.id]
     db.query(sql, params, function (err) {
         if (err) {
             console.log(err);
