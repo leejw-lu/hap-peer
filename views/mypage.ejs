@@ -40,13 +40,15 @@
                     
                 <td>
                     <% if (data.recruit_status==1 && data.develop_status==1) { %>
-                        <div style="border: solid; width: 50%; padding: 10px; margin-top: 10px;">
-                        <a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a>
-                        <button><a href='/evaluation/<%= data.proj_id %>'>평가하기</a></button>
-                        </div>
+                        <!-- <div style="border: solid; width: 50%; padding: 10px; margin-top: 10px;"> -->
+                        <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
+                        <td><button><a href='/evaluation/<%= data.proj_id %>'>평가하기</a></button></td>
+                        <!-- </div> -->
                     <% } else if (data.recruit_status==1 && data.develop_status==0) { %>
+                        <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
                         <td> 진행중 </td>
                     <% } else if (data.recruit_status==0 && data.develop_status==0) { %>
+                        <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
                         <td> 모집중 </td>
                     <% } else { %>
                         <td> 참여중인 프로젝트가 없습니다. </td>
@@ -56,7 +58,7 @@
             <%}%>
         </table>
     </form>  
-    <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
+
     <br>
 </body>
 
