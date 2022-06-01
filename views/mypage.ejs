@@ -5,15 +5,9 @@
     <h3> <%= user_id %> (<%= user_nickname %>)님의 마이페이지</h3>
     <form action="/mypage" method="get">
         <table>
-            <tr>
-            <%
-            let i;
-            for(i=0; i<rows.length; i++)
-            {
-                let data = rows[i];
-            %>       
+            <tr>  
                 <td>프로필 이미지</td>
-                <td><img src="<%= data.user_image %>" width="200" /></td>
+                <td><img src="<%= rows[0].user_image %>" width="200" /></td>
             </tr>
             <tr>
                 <td>아이디  </td>
@@ -21,20 +15,45 @@
             </tr>
             <tr></tr>
                 <td>소개</td>
-                <td> <%=data.user_info%> </td>
+                <td> <%=rows[0].user_info%> </td>
             </tr>
             <tr>
                 <td>STACK</td>
-                <td> <%=data.user_stack%> </td>
+                <td> <%=rows[0].user_stack%> </td>
+            </tr>    
+        </table>
+    </form>
+    <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
+
+    <form action="/mypage" method="get">
+        <br>
+        <hr> 나의 프로젝트
+        <br>
+        <table>
+            <th></th>
+            <%
+                for(i=0; i<rows.length; i++) {
+                let data = rows[i];
+            %>       
+            <tr>
+                <td>
+                    <a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </A></td>
+                <td>
+                    <% if (data.recruit_status==1 && data.develop_status==1) { %>
+                        <a href="/evaluation"><button>평가하기</button></a>
+                    <% } else if (data.recruit_status==1 && data.develop_status==0) { %>
+                        <td> 진행중 </td>
+                    <% } else if (data.recruit_status==0 && data.develop_status==0) { %>
+                        <td> 모집중 </td>
+                    <% } else { %>
+                        <td> 참여중인 프로젝트가 없습니다. </td>
+                    <% } %>
+                </td>
             </tr>
             <%}%>
         </table>
-    </form>
-    
+    </form>  
     <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
-
-
-
 
     <!-- 평가버튼 임시 -->
     <br>

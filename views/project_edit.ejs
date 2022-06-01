@@ -6,7 +6,7 @@
   <table>
       <tr>
           <td>프로젝트 이름</td>
-          <td><input type='text' name='proj_title'/></td>
+          <td><input type="text" name="proj_title" value="<%=project_detail.proj_title%>"></td>
       </tr>
       <tr>
         <td>팀장</td>
@@ -14,11 +14,11 @@
       </tr>
       <tr>
           <td>프로젝트 소개</td>
-          <td><input type="text" name="proj_content"></td>
+          <td><input type="text" name="proj_content" value="<%=project_detail.proj_content%>"></td>
       </tr>
       <tr>
         <td>프로젝트 필요 스택</td>
-        <td><input type="text" name="proj_stack"></td>
+        <td><input type="text" name="proj_stack" value="<%=project_detail.proj_stack%>"></td>
     </tr>
     <tr>
         <td>프로젝트 난이도</td>
@@ -36,9 +36,23 @@
         </td>
     </tr>
     <tr>
-        <td><label for="proj_date">날짜</label>
-            <input type="date" id="proj_date" name="proj_date"></td>
-    </tr>
+      <td>팀원 모집 마감</td>
+      <td>
+          <input type="radio" id="on" name="recruit_status" value="1">
+          <label for="on">on</label>
+          <input type="radio" id="off" name="recruit_status" value="0">
+          <label for="off">off</label>
+      </td>
+  </tr>
+    <tr>
+      <td>프로젝트 마감</td>
+      <td>
+          <input type="radio" id="on" name="develop_status" value="1">
+          <label for="on">on</label>
+          <input type="radio" id="off" name="develop_status" value="0">
+          <label for="off">off</label>
+      </td>
+  </tr>
       <tr>
           <td><input type="submit" value="저장"></td>
       </tr>
