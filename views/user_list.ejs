@@ -5,7 +5,7 @@
   <% user_list.forEach(function(lists) { %>
     <a href='/user_page/<%= lists.user_id %>'>
     <tr>
-        <td><%- lists.user_nickname%></td>
+        <td><%- lists.user_nickname%>(<%- lists.user_id%>)</td>
         <!-- <td><%- lists.proj_content%></td> -->
     </tr>
     </a>
