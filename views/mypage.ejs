@@ -37,10 +37,13 @@
             %>       
             <tr>
                 <td>
-                    <a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </A></td>
+                    
                 <td>
                     <% if (data.recruit_status==1 && data.develop_status==1) { %>
-                        <a href="/evaluation"><button>평가하기</button></a>
+                        <div style="border: solid; width: 50%; padding: 10px; margin-top: 10px;">
+                        <a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a>
+                        <button><a href='/evaluation/<%= data.proj_id %>'>평가하기</a></button>
+                        </div>
                     <% } else if (data.recruit_status==1 && data.develop_status==0) { %>
                         <td> 진행중 </td>
                     <% } else if (data.recruit_status==0 && data.develop_status==0) { %>
@@ -54,20 +57,7 @@
         </table>
     </form>  
     <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
-
-    <!-- 평가버튼 임시 -->
     <br>
-    <!-- <form action="/evaluation" method="post" style="border: solid; width: 10%; padding: 10px; margin-top: 10px;">
-        <p>프로젝트이름: happeer</p>
-        <input type="hidden" name="pj_id" value="3">
-        <input type="submit" name="evaluate" value="평가하기">
-    </form> -->
-
-    <div style="border: solid; width: 15%; padding: 10px; margin-top: 10px;">
-    <p>프로젝트이름: happeer</p>
-    <button><a href='/evaluation/3'>평가하기</a></button>
-    </div>
-
 </body>
 
 
