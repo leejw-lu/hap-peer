@@ -8,11 +8,19 @@ router.get('/*', function(req,res) {
 		if (err)
 			console.log(err);
 			console.log(results[0]);
+		if (req.session.user) {
 		return res.render("user_page", {
 				users: results[0],
         user_id: req.session.user['userid'],
 				user_nickname: req.session.user['user_nickname'],
 			});
+		} else {
+			return res.render("user_page", {
+				users: results[0],
+        user_id: "비회원",
+				user_nickname: " ",
+			});
+		}
 		})
 });
 
