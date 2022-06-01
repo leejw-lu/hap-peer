@@ -6,9 +6,10 @@ let proj_id = {
 	id: 0
 };
 router.get('/*', function(req,res) {
-	const sql = `SELECT * FROM project WHERE proj_id=?`;
+	const sql = `SELECT * FROM project LEFT OUTER JOIN scrap ON (proj_id = sc_project and sc_user = ?) WHERE proj_id=?`;
 	proj_id.id = req.params['0'];
-	db.query(sql, [req.params['0']], function (err, results) {
+	const params = [req.session.user['userid'], proj_id.id]
+	db.query(sql, params, function (err, results) {
 		if (err) console.log(err);
 			console.log(results[0]);
 

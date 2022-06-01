@@ -19,9 +19,14 @@
         project stack : <%- project_detail.proj_stack%></br>
     </td>
 </tr>
-<% if (user_id != "비회원" && user_id != project_detail.proj_leader) {%>
+<% if (user_id != "비회원" && user_id != project_detail.proj_leader && project_detail.sc_user != user_id) {%>
     <button><a href="/scrap/<%= project_detail.proj_id%>">스크랩하기</a></button>
     <% } %>
+<form action="/scrap/<%= project_detail.proj_id%>" method= "post">
+<% if (user_id != "비회원" && user_id != project_detail.proj_leader && project_detail.sc_user == user_id) {%>
+    <td><input type = "submit" value = "스크랩삭제"></td>
+    <% } %>
+</form>  
 <% if (user_id == project_detail.proj_leader) {%>
     <a href="/project_edit/<%= project_detail.proj_id%>">수정하기</a>
     <% } %>

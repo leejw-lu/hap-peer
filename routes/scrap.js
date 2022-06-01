@@ -31,4 +31,21 @@ router.get('/*', function (req, res) {
 }) 
 });
 
+router.post('/*', function (req, res) {
+    proj_id.id = req.params['0'];
+    const sc_id = Date.now() % 2000000;
+    //const sc_user = req.session.user['userid'];
+    const sc_project = proj_id.id;
+    const sql = "DELETE FROM scrap WHERE sc_project = ? and sc_user =?";
+    const params = [sc_project, req.session.user['userid']];
+    db.query(sql, params, function(err) {
+        if (err) console.error(err);
+            else{
+                    console.log("스크랩삭제");
+                    res.write(`<script type="text/javascript">alert('successfully removed')</script>`);
+                    res.write('<script>window.location="/project_sort"</script>');
+            }
+    })}
+);
+
 module.exports = router;
