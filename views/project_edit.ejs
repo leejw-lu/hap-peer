@@ -36,9 +36,23 @@
         </td>
     </tr>
     <tr>
-        <td><label for="proj_date">날짜</label>
-            <input type="date" id="proj_date" name="proj_date"></td>
-    </tr>
+      <td>팀원 모집 마감</td>
+      <td>
+          <input type="radio" id="on" name="recruit_status" value="1">
+          <label for="on">on</label>
+          <input type="radio" id="off" name="recruit_status" value="0">
+          <label for="off">off</label>
+      </td>
+  </tr>
+    <tr>
+      <td>프로젝트 마감</td>
+      <td>
+          <input type="radio" id="on" name="develop_status" value="1">
+          <label for="on">on</label>
+          <input type="radio" id="off" name="develop_status" value="0">
+          <label for="off">off</label>
+      </td>
+  </tr>
       <tr>
           <td><input type="submit" value="저장"></td>
       </tr>

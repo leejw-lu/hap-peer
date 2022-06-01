@@ -8,13 +8,13 @@ router.get('/', function(req,res){
 		return res.render("project_regist", {
 			user_id: req.session.user['userid'],
 		});
-		console.log("GET p_r");
     } else{
         res.write(`<script type="text/javascript">alert('Available after login!')</script>`);
         res.write('<script>window.location="/"</script>');
     }
    
 })
+
 router.post('/', async function(req,res) {
 	const proj_title=req.body.proj_title;
   const proj_content=req.body.proj_content;
@@ -29,13 +29,6 @@ router.post('/', async function(req,res) {
 		if (err) {
 			console.log(err);
 		} else {
-			db.query(sql2, params2, function(err) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log("parti input success");
-				}
-			})
 			console.log("success input");
 		}
 		res.write('<script>window.location="/"</script>');
