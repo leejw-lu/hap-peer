@@ -54,6 +54,17 @@
                         <td> 참여중인 프로젝트가 없습니다. </td>
                     <% } %>
                 </td>
+                <hr> 스크랩 목록
+        <br>
+        <table>
+            <th></th>
+            <%
+                for(i=0; i<rows.length; i++) {
+                let data = rows[i];
+            %>       
+            <tr>
+                <td>
+                <a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </A></td>
             </tr>
             <%}%>
         </table>

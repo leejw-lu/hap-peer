@@ -6,27 +6,24 @@ let proj_id = {
 	id: 0
 };
 router.get('/*', function(req,res) {
-	const sql = `SELECT * FROM project WHERE proj_id=?`;
+	const sql = 'SELECT * FROM project WHERE proj_id=?';
+	const sql2 = 'SELECT * FROM project LEFT OUTER JOIN scrap ON (proj_id = sc_project and sc_user = ?) where proj_id = ?';
 	proj_id.id = req.params['0'];
-	db.query(sql, [req.params['0']], function (err, results) {
-		if (err) console.log(err);
-			console.log(results[0]);
-
-		if (req.session.user){
-			return res.render("project_detail", {
-				user_id: req.session.user['userid'],
-				project_detail: results[0]
-			});
-		}
-		else{
-			return res.render("project_detail", {
-				user_id: "비회원",
-				project_detail: results[0]
-			});
-		}
-
-		})
-});
+	if (req.session.user){
+		db.query(sql2, [req.session.user['userid'],proj_id.id], function(err, results){
+		return res.render("project_detail", {
+			user_id: req.session.user['userid'],
+			project_detail: results[0]
+		});
+	})}
+	else{
+		db.query(sql, [proj_id.id], function(err, results){
+		return res.render("project_detail", {
+			user_id: "비회원",
+			project_detail: results[0]
+		});
+	})
+}});
 
 router.post('/*',function(req,res) {
 	const proj = proj_id.id;
