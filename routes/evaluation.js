@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db"); 
 
-router.post('/', function(req,res){
+router.get('/*', function(req,res){
 
-    //res.send("평가하기 페이지 넘어옴"+ pj_id);
-    const pj_id = req.body.pj_id; 
+    const pj_id=[req.params['0']];
+    console.log("pj_id: " , pj_id);
     let pj_title;
 
     //프로젝트 이름 가져오기
@@ -32,7 +32,7 @@ router.post('/', function(req,res){
 
 })
 
-router.post('/item', function(req,res){
+router.post('/:pj_id/item', function(req,res){
     //res.send("평가하기 item항목");
     const pj_id = req.body.pj_id;
     const ev_rated=req.body.ev_rated;
@@ -48,7 +48,7 @@ router.post('/item', function(req,res){
 })
 
 
-router.post('/submit',function(req,res){
+router.post('/:pj_id/submit',function(req,res){
 
     const pj_id=req.body.pj_id;
     const ev_rated=req.body.ev_rated;
@@ -65,12 +65,9 @@ router.post('/submit',function(req,res){
     db.query(sql,params,function(err) { 
         if (err) console.error("err : " + err);
         else{
-            console.log(params);
-            res.write(`<script type="text/javascript">alert('evaluation has been completed!')</script>`);
-            res.write('<script>window.location="/mypage"</script>');
-            //res.write(`<script type="text/javascript"history.go(-2); window.location.reload();</script>`);
-            //res.write('<script>window.location=document.referrer;</script>');
-            //return res.redirect("/evaluation");
+            console.log("평점정보:", params);
+            //res.write(`<script type="text/javascript">alert('evaluation has been completed!')</script>`);
+            return res.redirect("/evaluation/"+pj_id);
         }
     })
 })

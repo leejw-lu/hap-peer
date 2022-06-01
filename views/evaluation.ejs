@@ -30,7 +30,7 @@
                 <% }
               else { %>
                 <td>
-                  <form action="/evaluation/item" method="post">
+                  <form action="/evaluation/<%= pj_id %>/item" method="post">
                     <input type="hidden" name="pj_id" value="<%= pj_id %>">
                     <input type="hidden" name="ev_rated" value="<%=data.ev_rated%>">
                     <input type="hidden" name="user_nickname" value="<%=data.user_nickname%>">

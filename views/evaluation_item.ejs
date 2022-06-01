@@ -3,7 +3,7 @@
 
   <h3> <%= ev_rated %>(<%= user_nickname %>) 님에 에 대한 평점을 작성해주세요! </h3>
      
-  <form action="/evaluation/submit" method="post">
+  <form action="/evaluation/<%= pj_id %>/submit" method="post">
     <table class="table table-hover">
       <thead>
         <tr>
