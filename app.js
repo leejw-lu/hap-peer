@@ -29,7 +29,9 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(layouts);
-app.use('/uploads',express.static(__dirname+'/uploads')); 
+app.use('/uploads',express.static(__dirname+'/uploads'));
+app.use('/js', express.static('./src/js'));
+app.use('/css', express.static('./src/css'));
 
 
 //로그인 세션유지
