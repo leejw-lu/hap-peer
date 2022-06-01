@@ -3,29 +3,26 @@
     <%- include('./partials/login_nav.ejs'); %>
 
     <h3> <%= user_id %> (<%= user_nickname %>)님의 마이페이지</h3>
-    <form action="/mypage" method="get">
-        <table>
-            <tr>  
-                <td>프로필 이미지</td>
-                <td><img src="<%= rows[0].user_image %>" width="200" /></td>
-            </tr>
-            <tr>
-                <td>아이디  </td>
-                <td> <%= user_id %> </td>
-            </tr>
-            <tr></tr>
-                <td>소개</td>
-                <td> <%=rows[0].user_info%> </td>
-            </tr>
-            <tr>
-                <td>STACK</td>
-                <td> <%=rows[0].user_stack%> </td>
-            </tr>    
-        </table>
-    </form>
-    <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
+    <table>
+        <tr>  
+            <td>프로필 이미지</td>
+            <td><img src="<%= rows[0].user_image %>" width="200" /></td>
+        </tr>
+        <tr>
+            <td>아이디  </td>
+            <td> <%= user_id %> </td>
+        </tr>
+        <tr></tr>
+            <td>소개</td>
+            <td> <%=rows[0].user_info%> </td>
+        </tr>
+        <tr>
+            <td>STACK</td>
+            <td> <%=rows[0].user_stack%> </td>
+        </tr>    
+    </table>
 
-    <form action="/mypage" method="get">
+    <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
         <br>
         <hr> 나의 프로젝트
         <br>
@@ -54,23 +51,23 @@
                         <td> 참여중인 프로젝트가 없습니다. </td>
                     <% } %>
                 </td>
-                <hr> 스크랩 목록
-        <br>
-        <table>
-            <th></th>
-            <%
-                for(i=0; i<rows.length; i++) {
-                let data = rows[i];
-            %>       
-            <tr>
-                <td>
-                <a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </A></td>
             </tr>
             <%}%>
         </table>
-    </form>  
+
+        <table>
+            <hr> 스크랩 목록
+            <th></th>
+            <%
+                for(i=0; i<rows2.length; i++) {
+                let data2 = rows2[i];
+            %>       
+            <tr>
+                <td><a href='/project_detail/<%= data2.proj_id %>'><%=data2.proj_title%></a></td>
+            </tr>
+            <%}
+            %>
+        </table>        
 
     <br>
 </body>
-
-
