@@ -1,6 +1,13 @@
 <body>
     
-  <%- include('./partials/login_nav.ejs'); %>
+  <% if (user_id != "비회원" ) { %>
+    <%- include('./partials/login_nav.ejs'); %>
+   <% } 
+
+   else  { %>
+    <%- include('./partials/default_nav.ejs'); %>
+    <% }
+%>
 
   <% user_list.forEach(function(lists) { %>
     <a href='/user_page/<%= lists.user_id %>'>

@@ -10,8 +10,8 @@ router.get('/', function (req, res) {
             if (err)
                 console.log(err);
             return res.render("user_list", {
-                // user_id: req.session.user['userid'],
-                // user_nickname: req.session.user['nickname'],
+                user_id: req.session.user['userid'],
+                user_nickname: req.session.user['nickname'],
                 user_list: results
             });
         })
