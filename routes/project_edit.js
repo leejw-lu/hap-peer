@@ -34,7 +34,14 @@ router.post('/*', async function (req, res) {
     const proj_title = req.body.proj_title;
     const proj_content = req.body.proj_content;
     const proj_level = req.body.proj_level;
-    const proj_stack = req.body.proj_stack;
+    let proj_stack = "";
+	if (req.body.skillstack instanceof Array){
+	req.body.skillstack.forEach(element => {
+		proj_stack = proj_stack + element;
+	});}
+    //skillstack배열의 값을 문자열로 변환하여 저장 (앞 뒤 " "로 구분) 
+	else {proj_stack = req.body.proj_stack;};
+    //스택이 하나일 경우 이를 배열로 인식하지못해 forEach오류발생 -> 문자열로 저장
     const proj_date = req.body.proj_date;
     const recruit_status = req.body.recruit_status;
     const develop_status = req.body.develop_status;

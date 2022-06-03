@@ -18,9 +18,16 @@ router.get('/', function(req,res){
 router.post('/', async function(req,res) {
 	const proj_id = new Date() % 10000;
 	const proj_title=req.body.proj_title;
-  const proj_content=req.body.proj_content;
+	let proj_stack = "";
+	if (req.body.skillstack instanceof Array){
+	req.body.skillstack.forEach(element => {
+		proj_stack = proj_stack + element;
+	});}
+	//skillstack배열의 값을 문자열로 변환하여 저장 (앞 뒤 " "로 구분) 
+	else {proj_stack = req.body.skillstack;};
+	//스택이 하나일 경우 이를 배열로 인식하지못해 forEach오류발생 -> 문자열로 저장
+    const proj_content=req.body.proj_content;
 	const proj_level=req.body.proj_level;
-	const proj_stack = req.body.proj_stack;
 	const proj_date= new Date();
 	const user_id = req.session.user['userid'];
 	const sql="INSERT INTO project (proj_id, proj_title, proj_content, proj_level, proj_stack, proj_date, proj_leader) VALUES (?, ?, ?, ?, ?, ?,?)";

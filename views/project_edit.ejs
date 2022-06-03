@@ -18,7 +18,18 @@
       </tr>
       <tr>
         <td>프로젝트 필요 스택</td>
-        <td><input type="text" name="proj_stack" value="<%=project_detail.proj_stack%>"></td>
+        <td>
+          <input type="checkbox" name="skillstack" value=" C " <% if (project_detail.proj_stack.includes(" C ")){ %> checked <%}%> > C 
+          <input type="checkbox" name="skillstack" value=" C# " <% if (project_detail.proj_stack.includes(" C# ")){ %> checked <%}%> > C# 
+          <input type="checkbox" name="skillstack" value=" C++ " <% if (project_detail.proj_stack.includes(" C++ ")){ %> checked <%}%> > C++ 
+          <input type="checkbox" name="skillstack" value=" JAVA "<% if (project_detail.proj_stack.includes(" JAVA ")){ %>checked <%}%>> JAVA 
+          <input type="checkbox" name="skillstack" value=" Python "<% if (project_detail.proj_stack.includes(" Python ")){ %>checked <%}%>> Python 
+          <input type="checkbox" name="skillstack" value=" Visual Basic "<% if (project_detail.proj_stack.includes(" Visual Basic ")){ %>checked <%}%>> Visual Basic 
+          <input type="checkbox" name="skillstack" value=" JS "<% if (project_detail.proj_stack.includes(" JS ")){ %>checked <%}%>> JS 
+          <input type="checkbox" name="skillstack" value=" SQL "<% if (project_detail.proj_stack.includes(" SQL ")){ %>checked <%}%>> SQL 
+          <input type="checkbox" name="skillstack" value=" PHP "<% if (project_detail.proj_stack.includes(" PHP ")){ %>checked <%}%>> PHP 
+          <input type="checkbox" name="skillstack" value=" 기타 " />기타 
+      </td>
     </tr>
     <tr>
         <td>프로젝트 난이도</td>
