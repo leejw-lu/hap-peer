@@ -8,7 +8,35 @@
       </td>
   </tr>
 
+
+  <!-- 평균 평점 및 이모티콘 -->
+  <% let ev_average = (ev_value.v1 + ev_value.v2 + ev_value.v3 + ev_value.v4 + ev_value.v5)/5 %>
+
+  <td> 평균 평점 : <%- ev_average %>   </td>
+  <% if (ev_average >= 0 && ev_average < 1) { %>
+    <td> (0-1 점) </td>
+    <img src="/uploads/emoticons/0-1.png" width="50" />
+  <% } else if (ev_average >= 1 && ev_average < 2.5) { %>
+    <td> (1-2.5 점) </td>
+    <img src="/uploads/emoticons/1-2.5.png" width="50" />
+  <% } else if (ev_average >= 2.5 && ev_average < 3.5) { %>
+    <td> (2.5-3.5 점) </td>
+    <img src="/uploads/emoticons/2.5-3.5.png" width="50" />
+  <% } else if (ev_average >= 3.5 && ev_average < 4.5) { %>
+    <td> (3.5-4.5 점) </td>
+    <img src="/uploads/emoticons/3.5-4.5.png" width="50" />
+  <% } else if (ev_average >= 4.5 && ev_average <= 5) { %>
+    <td> (4.5-5 점) </td>
+    <img src="/uploads/emoticons/4.5-5.png" width="50" />
+  <% } else { %>
+    <td> -- </td>
+  <% } %>
+
+
   <!-- 평점 radar Graph 보이기-->
   <%- include('./partials/ev_RadarGraph.ejs'); %>
 
 </body>
+
+
+  
