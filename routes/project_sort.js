@@ -25,7 +25,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function (req, res) {
-    const sql = "SELECT * FROM project where (proj_title LIKE ?) and (proj_leader LIKE ?) and (proj_level LIKE ?) AND (proj_stack LIKE ?)";
+    const sql = "SELECT * FROM project where (proj_title LIKE ?) and (proj_leader LIKE ?) and (proj_level LIKE ?) AND (proj_stack LIKE ?) ORDER BY proj_date desc";
     let title = '%'+req.body.title+'%';
     let teamleader = '%'+req.body.teamleader+'%';
     let level = req.body.level;
