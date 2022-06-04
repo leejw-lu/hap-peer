@@ -23,6 +23,10 @@
     </table>
 
     <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
+
+        <!-- 평점 radar Graph 보이기-->
+        <%- include('./partials/ev_RadarGraph.ejs'); %>
+
         <br>
         <hr> 나의 프로젝트
         <br>
@@ -34,7 +38,6 @@
             %>       
             <tr>
                 <td>
-                    
                 <td>
                     <% if (data.recruit_status==1 && data.develop_status==1) { %>
                         <!-- <div style="border: solid; width: 50%; padding: 10px; margin-top: 10px;"> -->
