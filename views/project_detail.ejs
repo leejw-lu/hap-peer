@@ -20,6 +20,9 @@
         recruit_status : <%- project_detail.recruit_status%></br>
         develop_status : <%- project_detail.develop_status%></br>
     </td>
+    <% if (user_id == project_detail.proj_leader) {%>
+        <a href="/project_edit/<%= project_detail.proj_id%>">수정하기</a>
+        <% } %>
     <h3> 참여 팀원 </h3>
     <td>
     <% part_proj.forEach(function(lists) { %>
@@ -40,9 +43,7 @@
     <td><input type = "submit" value = "스크랩삭제"></td>
     <% } %>
 </form>  
-<% if (user_id == project_detail.proj_leader) {%>
-    <a href="/project_edit/<%= project_detail.proj_id%>">수정하기</a>
-    <% } %>
+
 <form action="/project_detail" method="post">
 <% if (user_id == project_detail.proj_leader) {%>
     <td><input type="text" name="member"></td>
