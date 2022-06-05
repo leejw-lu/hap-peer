@@ -20,6 +20,17 @@
         recruit_status : <%- project_detail.recruit_status%></br>
         develop_status : <%- project_detail.develop_status%></br>
     </td>
+    <h3> 참여 팀원 </h3>
+    <td>
+    <% part_proj.forEach(function(lists) { %>
+        <a href='/user_page/<%= lists.part_user %>'>
+        <tr>
+            <td><%- lists.part_user%></td>
+        </tr>
+        </a>
+    </br>
+    <% }) %>
+    </td>
 </tr>
 <% if (user_id != "비회원" && user_id != project_detail.proj_leader && project_detail.sc_user != user_id) {%>
     <button><a href="/scrap/<%= project_detail.proj_id%>">스크랩하기</a></button>
