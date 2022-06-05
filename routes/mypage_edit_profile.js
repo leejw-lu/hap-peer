@@ -5,9 +5,7 @@ const router = express.Router();
 const db = require("../db"); //디비연결
 const multer = require('multer');
 const path = require('path');
-//const fs = require('fs');
-//const sharp = require("sharp");
-//import express from "express";
+
 
 
 router.get('/', function(req,res) {
@@ -43,6 +41,9 @@ const upload = multer({
         }
     }),
 })
+
+
+
 
 router.post('/', upload.single('img'), function(req,res) {
     var userInfo=req.body.userInfo;

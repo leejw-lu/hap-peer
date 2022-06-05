@@ -2,8 +2,7 @@ const express = require("express");
 const { NULL } = require("mysql/lib/protocol/constants/types");
 const router = express.Router();
 const db = require("../db"); //디비연결
-const multer = require("multer");
-const path = require("path");
+
 
 router.get('/', function(req,res) {
 
@@ -41,5 +40,6 @@ router.get('/', function(req,res) {
     }
 
 })
+
 
 module.exports = router;
