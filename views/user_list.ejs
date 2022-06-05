@@ -8,7 +8,35 @@
     <%- include('./partials/default_nav.ejs'); %>
     <% }
 %>
-
+<h4>유저 목록</h4>
+        <form action="/user_list" method="post">
+            아이디 : 
+            <input type="text" name="id"> &nbsp;
+            닉네임 :
+            <input type="text" name="nickname"> &nbsp;
+            기술스택 : 
+            <select id="stack" name="skillstack">
+                <option value = "%">전체</option>
+                <option value = " C ">C</option>
+                <option value = " C++ ">C++</option>
+                <option value = " C# ">C#</option>
+                <option value = " JAVA ">Java</option>
+                <option value = " Python ">Python</option>
+                <option value = " Visual Basic ">Visual Basic</option>
+                <option value = " JS ">JS</option>
+                <option value = " SQL ">SQL</option>
+                <option value = " PHP ">PHP</option>
+                <option value = " OBJECTIVE-C ">OBJECTIVE-C</option>
+                <option value = " RUBY ">RUBY</option>
+                <option value = " HTML ">HTML</option>
+                <option value = " Assembly Language ">Assembly</option>
+                <option value = " Groovy ">Groovy</option>
+                <option value = " R ">R</option>
+                <option value = " Swift ">Swift</option>
+                <option value = " + ">기타</option>
+            </select> &nbsp;
+            <input type="submit" value ="검색"></br>
+        </form>
   <% user_list.forEach(function(lists) { %>
     <a href='/user_page/<%= lists.user_id %>'>
     <tr>
