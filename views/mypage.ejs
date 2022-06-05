@@ -43,6 +43,10 @@
     </table>
 
     <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
+
+        <!-- 평점 radar Graph 보이기-->
+        <%- include('./partials/ev_RadarGraph.ejs'); %>
+
         <br>
         <hr> 나의 프로젝트
         <br>
@@ -51,19 +55,25 @@
             <%
                 for(i=0; i<rows.length; i++) {
                 let data = rows[i];
+                let statusEv= statusEvaluated[i];
             %>       
             <tr>
                 <td>
-                    
                 <td>
                     <% if (data.recruit_status==1 && data.develop_status==1) { %>
                         <!-- <div style="border: solid; width: 50%; padding: 10px; margin-top: 10px;"> -->
                         <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
-                        <td><button><a href='/evaluation/<%= data.proj_id %>'>평가하기</a></button></td>
+                        
+                        <% if (statusEv=="평가완료") { %>
+                            <td> 평가완료 </td>
+                        <% } else { %>
+                            <td><button><a href='/evaluation/<%= data.proj_id %>'>평가하기</a></button></td>
+                        <% }
+                        %>
                         <!-- </div> -->
                     <% } else if (data.recruit_status==1 && data.develop_status==0) { %>
                         <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
-                        <td> 진행중 </td>
+                        <td> 개발진행중 </td>
                     <% } else if (data.recruit_status==0 && data.develop_status==0) { %>
                         <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
                         <td> 모집중 </td>

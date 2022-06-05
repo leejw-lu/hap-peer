@@ -14,7 +14,6 @@ router.get('/*', function (req, res) {
     db.query(sql, [req.params['0']], function (err, results) {
         if (err) console.log(err);
         console.log(results[0]);
-
         if (req.session.user) {
             return res.render("project_edit", {
                 user_id: req.session.user['userid'],
@@ -44,9 +43,10 @@ router.post('/*', async function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.write(`<script type="text/javascript">alert('Edit Successful')</script>`);
-            res.write('<script>window.location="/project_sort"</script>');
-            res.end();
+            // res.write(`<script type="text/javascript">alert('Edit Successful')</script>`);
+            // res.write('<script>window.location="/project_sort"</script>');
+            // res.end();
+            res.redirect("/project_detail/"+proj_id.id);
         }
     })
 
