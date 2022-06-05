@@ -15,19 +15,19 @@
   <td> 평균 평점 : <%- ev_average %>   </td>
   <% if (ev_average >= 0 && ev_average < 1) { %>
     <td> (0-1 점) </td>
-    <img src="/uploads/emoticons/0-1.png" width="50" />
+    <img src="/public/emoticons/0-1.png" width="50" />
   <% } else if (ev_average >= 1 && ev_average < 2.5) { %>
     <td> (1-2.5 점) </td>
-    <img src="/uploads/emoticons/1-2.5.png" width="50" />
+    <img src="/public/emoticons/1-2.5.png" width="50" />
   <% } else if (ev_average >= 2.5 && ev_average < 3.5) { %>
     <td> (2.5-3.5 점) </td>
-    <img src="/uploads/emoticons/2.5-3.5.png" width="50" />
+    <img src="/public/emoticons/2.5-3.5.png" width="50" />
   <% } else if (ev_average >= 3.5 && ev_average < 4.5) { %>
     <td> (3.5-4.5 점) </td>
-    <img src="/uploads/emoticons/3.5-4.5.png" width="50" />
+    <img src="/public/emoticons/3.5-4.5.png" width="50" />
   <% } else if (ev_average >= 4.5 && ev_average <= 5) { %>
     <td> (4.5-5 점) </td>
-    <img src="/uploads/emoticons/4.5-5.png" width="50" />
+    <img src="/public/emoticons/4.5-5.png" width="50" />
   <% } else { %>
     <td> -- </td>
   <% } %>
