@@ -1,23 +1,43 @@
+<style>
+    .profile-user-img{
+        width: 120px;
+        height: 120px;
+        border-radius: 70%;
+        overflow: hidden;
+    }
+
+    .profile-user-img-img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
+
 <body>
     
     <%- include('./partials/login_nav.ejs'); %>
 
     <h3> <%= user_id %> (<%= user_nickname %>)님의 마이페이지</h3>
+    <br>
+    <br>
     <table>
-        <tr>  
-            <td>프로필 이미지</td>
-            <td><img src="<%= rows[0].user_image %>" width="200" /></td>
-        </tr>
+        <div class="profile-user-img" >
+            <img src="<%= rows[0].user_image %>" alt="profile-user-img" class="profile-user-img-img" />
+        </div>           
+    </table>
+    <br>
+    <table>
         <tr>
-            <td>아이디  </td>
+            <td>아이디 </td>
             <td> <%= user_id %> </td>
         </tr>
         <tr></tr>
-            <td>소개</td>
+            <td>소개 </td>
             <td> <%=rows[0].user_info%> </td>
         </tr>
         <tr>
-            <td>STACK</td>
+            <td>STACK </td>
             <td> <%=rows[0].user_stack%> </td>
         </tr>    
     </table>

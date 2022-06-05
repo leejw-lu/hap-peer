@@ -4,6 +4,7 @@ const router = express.Router();
 const db = require("../db"); //디비연결
 const multer = require("multer");
 
+
 router.get('/', function(req,res) {
 
     let scrap;  //scrap한 정보 객체 담기
@@ -100,5 +101,6 @@ router.get('/', function(req,res) {
     }
 
 })
+
 
 module.exports = router;

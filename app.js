@@ -37,6 +37,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(layouts);
 app.use('/uploads',express.static(__dirname+'/uploads'));
+app.use('/public',express.static(__dirname+'/public'));
 app.use('/js', express.static('./src/js'));
 app.use('/css', express.static('./src/css'));
 

@@ -5,9 +5,7 @@ const router = express.Router();
 const db = require("../db"); //디비연결
 const multer = require('multer');
 const path = require('path');
-//const fs = require('fs');
-//const sharp = require("sharp");
-//import express from "express";
+
 
 
 router.get('/', function(req,res) {
@@ -44,10 +42,13 @@ const upload = multer({
     }),
 })
 
+
+
+
 router.post('/', upload.single('img'), function(req,res) {
     var userInfo=req.body.userInfo;
     var userStack=req.body.userStack;
-    let userImage = req.file == undefined ? '' : req.file.path; // req.file : object
+    let userImage = req.file == undefined ? '/public/images/default_user_image.png' : req.file.path; // req.file : object
     
     //DB에 user_info, user_stack, user_image(경로) 업데이트
     var sql="UPDATE user SET user_info=?, user_stack=?, user_image=? WHERE user_id=?";
