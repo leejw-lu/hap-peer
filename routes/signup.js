@@ -14,8 +14,8 @@ router.post("/",function(req,res){
     const nickname=req.body.nickname;
     const image=req.body.image;
 
-    const sql="INSERT INTO user (user_id, user_password, user_nickname, user_image) VALUES (?, ?, ?, ?)";
-    const params=[userid,password,nickname,'/public/images/default_user_image.png']
+    const sql="INSERT INTO user (user_id, user_password, user_nickname, user_image, user_stack) VALUES (?, ?, ?, ?, ?)";
+    const params=[userid,password,nickname,'/public/images/default_user_image.png', " "]
 
     if(userid.length>0 && password.length>0 && check_pw.length>0 && nickname.length>0 ){ //빈칸없게 작성
       if(password==check_pw){

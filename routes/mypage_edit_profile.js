@@ -46,8 +46,18 @@ const upload = multer({
 
 
 router.post('/', upload.single('img'), function(req,res) {
-    var userInfo=req.body.userInfo;
-    var userStack=req.body.userStack;
+    let userInfo=req.body.userInfo;
+    let userStack = "";
+	//skillstack배열의 값을 문자열로 변환하여 저장 (앞 뒤 " "로 구분) 
+	if (req.body.skillstack instanceof Array){
+	req.body.skillstack.forEach(element => {
+		userStack = userStack + element;
+	});}
+	//스택이 없을 경우 스페이스 저장
+    else if (req.body.skillstack = 'NULL'){userStack=" ";}
+    //스택이 하나일 경우 이를 배열로 인식하지못해 forEach오류발생 -> 문자열로 저장
+    else {userStack = req.body.skillstack;};
+	userStack = userStack + ' '+req.body.etc+' ';
     let userImage = req.file == undefined ? '/public/images/default_user_image.png' : req.file.path; // req.file : object
     
     //DB에 user_info, user_stack, user_image(경로) 업데이트
