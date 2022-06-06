@@ -41,6 +41,7 @@ router.post("/", function (req, res) {
     if (id=='NULL') id = '';
     if (nickname=='NULL') nickname = '';
     if (skillstack=='NULL') skillstack = '';
+    if (skillstack =='%'+'other'+'%') skillstack = '%'+req.body.etc+'%';
     const params = [id, nickname, skillstack];
     db.query(sql, params, function(err, results){
         if(err) throw err;

@@ -15,7 +15,7 @@
             닉네임 :
             <input type="text" name="nickname"> &nbsp;
             기술스택 : 
-            <select id="stack" name="skillstack">
+            <select id="skillstack" name="skillstack">
                 <option value = "%">전체</option>
                 <option value = " C ">C</option>
                 <option value = " C++ ">C++</option>
@@ -33,8 +33,23 @@
                 <option value = " Groovy ">Groovy</option>
                 <option value = " R ">R</option>
                 <option value = " Swift ">Swift</option>
-                <option value = " + ">기타</option>
-            </select> &nbsp;
+                <option value = "other">직접입력</option>
+            </select>
+            <input type="text" id="etc" name="etc"/>
+<script>
+$(function(){
+      //입력박스 숨어있다가
+$("#etc").hide();
+$("#skillstack").change(function() {
+                //기타를 선택하면 등장
+        if($("#skillstack").val() == "other") {
+            $("#etc").show();
+        }  else {
+            $("#etc").hide();
+        }
+    }) 
+});
+</script>
             <input type="submit" value ="검색"></br>
         </form>
         <hr>
