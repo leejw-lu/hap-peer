@@ -40,9 +40,9 @@ router.post('/*', async function (req, res) {
 		proj_stack = proj_stack + element;
 	});}
     //스택이 하나일 경우 이를 배열로 인식하지못해 forEach오류발생 -> 문자열로 저장
-    else {proj_stack = req.body.proj_stack;};
+    else {proj_stack = req.body.skillstack;};
     //기타 스택 저장
-    if (typeof req.body.etc != 'undefined' ) proj_stack = proj_stack + ' '+req.body.etc+' ';
+    if (typeof req.body.etc != 'undefined') proj_stack = proj_stack + ' '+req.body.etc+' ';
     const proj_date = req.body.proj_date;
     const recruit_status = req.body.recruit_status;
     const develop_status = req.body.develop_status;
