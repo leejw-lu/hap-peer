@@ -45,19 +45,19 @@
               </td></tr></td>
               </tr><tr><td></td><td>
                 기타 스택 입력 <input type="checkbox" name="skilletc" id="ok" name = "choice" value="기타"/>
-                <input type="text" id="etc" name="etc" value="기타" disabled="disabled">
+                <input type="text" id="etc" name="etc" value="선택안함" disabled="disabled">
 <script>
  $(document).ready(function () {
  //있음을 선택하면 기타의 텍스트박스 내용을 지우고 보이지 않음
  $('input:checkbox[id="ok"]').change(function(){
    if($('input:checkbox[id="ok"]').is(":checked") == false)
    {
-     $('input:text[name="etc"]').val("선택");
+     $('input:text[name="etc"]').val("선택안함");
      $('input:text[name="etc"]').attr("disabled", true);
    }
    else
    {
-     $('input:text[name="etc"]').val("text");
+     $('input:text[name="etc"]').val("");
      $('input:text[name="etc"]').attr("disabled", false);
    }
  });

@@ -19,14 +19,16 @@ router.post('/', async function(req,res) {
 	const proj_id = new Date() % 10000;
 	const proj_title=req.body.proj_title;
 	let proj_stack = "";
+	//skillstack배열의 값을 문자열로 변환하여 저장 (앞 뒤 " "로 구분) 
 	if (req.body.skillstack instanceof Array){
 	req.body.skillstack.forEach(element => {
 		proj_stack = proj_stack + element;
 	});}
-	//skillstack배열의 값을 문자열로 변환하여 저장 (앞 뒤 " "로 구분) 
-	else {proj_stack = req.body.skillstack;};
 	//스택이 하나일 경우 이를 배열로 인식하지못해 forEach오류발생 -> 문자열로 저장
-    const proj_content=req.body.proj_content;
+    else {proj_stack = req.body.skillstack;};
+	//기타 스택 저장
+	if (req.body.etc != 'NULL') proj_stack = proj_stack + ' '+req.body.etc+' ';
+	const proj_content=req.body.proj_content;
 	const proj_level=req.body.proj_level;
 	const proj_date= new Date();
 	const user_id = req.session.user['userid'];

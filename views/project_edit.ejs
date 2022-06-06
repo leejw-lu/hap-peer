@@ -38,8 +38,25 @@
           <input type="checkbox" name="skillstack" value=" Swift "<% if (project_detail.proj_stack.includes(" Swift ")){ %>checked <%}%>> Swift
         </td></tr></td>
         </tr><tr><td></td><td>
-          &nbsp; 기타 스택 입력 <input type="text" name="skillstack" /> 
-        </td></tr>
+          기타 스택 입력 <input type="checkbox" name="skilletc" id="ok" name = "choice" value="기타"/>
+                <input type="text" id="etc" name="etc" value="선택안함" disabled="disabled">
+<script>
+ $(document).ready(function () {
+ //있음을 선택하면 기타의 텍스트박스 내용을 지우고 보이지 않음
+ $('input:checkbox[id="ok"]').change(function(){
+   if($('input:checkbox[id="ok"]').is(":checked") == false)
+   {
+     $('input:text[name="etc"]').val("선택안함");
+     $('input:text[name="etc"]').attr("disabled", true);
+   }
+   else
+   {
+     $('input:text[name="etc"]').val("");
+     $('input:text[name="etc"]').attr("disabled", false);
+   }
+ });
+});
+</script></td></tr>
     <tr>
         <td>프로젝트 난이도</td>
         <td>
