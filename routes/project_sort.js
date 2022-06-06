@@ -38,7 +38,6 @@ router.post("/", function (req, res) {
     db.query(sql, params, function(err, result, fields){
         if(err) throw err;
         else{
-            console.log(skillstack);
             if (req.session.user){
                 return res.render("project_sort", {
                     user_id: req.session.user['userid'],

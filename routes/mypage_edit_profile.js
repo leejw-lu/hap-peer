@@ -58,7 +58,7 @@ router.post('/', upload.single('img'), function(req,res) {
     //스택이 하나일 경우 이를 배열로 인식하지못해 forEach오류발생 -> 문자열로 저장
     else {userStack = req.body.skillstack;};
     //기타 스택 저장
-	if (req.body.etc != 'NULL') userStack = userStack + ' '+req.body.etc+' ';
+	if (typeof req.body.etc != 'undefined') userStack = userStack + ' '+req.body.etc+' ';
     let userImage = req.file == undefined ? '/public/images/default_user_image.png' : req.file.path; // req.file : object
     
     //DB에 user_info, user_stack, user_image(경로) 업데이트

@@ -27,7 +27,7 @@ router.post('/', async function(req,res) {
 	//스택이 하나일 경우 이를 배열로 인식하지못해 forEach오류발생 -> 문자열로 저장
     else {proj_stack = req.body.skillstack;};
 	//기타 스택 저장
-	if (req.body.etc != 'NULL') proj_stack = proj_stack + ' '+req.body.etc+' ';
+	if (typeof req.body.etc != 'undefined') proj_stack = proj_stack + ' '+req.body.etc+' ';
 	const proj_content=req.body.proj_content;
 	const proj_level=req.body.proj_level;
 	const proj_date= new Date();
