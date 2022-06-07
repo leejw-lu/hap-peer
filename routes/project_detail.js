@@ -10,15 +10,27 @@ router.get('/*', function(req,res) {
 	const sql_parti = 'SELECT * FROM participate WHERE part_project=?';
 	const sql2 = 'SELECT * FROM project LEFT OUTER JOIN scrap ON (proj_id = sc_project and sc_user = ?) where proj_id = ?';
 	proj_id.id = req.params['0'];
+	// 프로젝트 테이블->recruit 상태 확인->1->parti 테이블-> 프로젝트 id로 select->팀원 1명당 평가 db n-1 개 생성
 	
-	// const sql_insert = 'INSERT INTO evaluation (ev_project, ev) VALUES (?, ?)';
-	// const params_insert = [];
-	// db.query(sql_insert, params_insert, function(err) {
-	// 	if (err) console.log(err);
-	// 	else console.log("eval input success");
-	// })
-	
-	db.query(sql_parti, req.params['0'], function(error, part_res) {
+	db.query(sql, [proj_id.id], function(err, res) {
+		if (err)
+			console.log(err);
+		if (res[0].recruit_status == 1) {
+			db.query(sql_parti, proj_id.id, function(error, result) {
+				for (let i = 0; i < result.length; i++) {
+					for (let j = 0; j < result.length; j++) {
+						const insert_sql = `INSERT INTO evaluation (ev_project, ev_rater, ev_rated) VALUES (?, ?, ?)`;
+						const insert_params = [proj_id.id, result[i].part_user, result[j].part_user];
+						if (i != j) {
+							db.query(insert_sql, insert_params, function(error_, insert_res){});
+						}
+					}
+				}
+			})
+		}
+	})
+
+	db.query(sql_parti, proj_id.id, function(error, part_res) {
 		if(error) console.log(error);
 		if (req.session.user){
 			db.query(sql2, [req.session.user['userid'],proj_id.id], function(err, results){
