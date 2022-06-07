@@ -7,12 +7,12 @@
         <%- include('./partials/default_nav.ejs'); %>
         <% }
     %>
-        <br>
+        <h4>프로젝트 목록</h4>
         <form action="/project_sort" method="post">
             제목 : 
-            <input type="text" name="title"></br>
+            <input type="text" name="title"> &nbsp;
             작성자 :
-            <input type="text" name="teamleader"></br>
+            <input type="text" name="teamleader"> &nbsp;
             난이도 :
             <select name="level">
                 <option value = "%">전체</option>
@@ -21,9 +21,9 @@
                 <option value = "3">3</option>
                 <option value = "4">4</option>
                 <option value = "5">5</option>
-            </select></br>
+            </select> &nbsp;
             기술스택 : 
-            <select id="stack" name="skillstack">
+            <select id="skillstack" name="skillstack">
                 <option value = "%">전체</option>
                 <option value = " C ">C</option>
                 <option value = " C++ ">C++</option>
@@ -41,19 +41,38 @@
                 <option value = " Groovy ">Groovy</option>
                 <option value = " R ">R</option>
                 <option value = " Swift ">Swift</option>
-            </select></br>
-            <input type="submit" value ="검색"></br>
+                <option value = "other">직접입력</option>
+            </select> &nbsp;
+            <input type="text" id="etc" name="etc"/>
+<script>
+$(function(){
+      //입력박스 숨어있다가
+$("#etc").hide();
+$("#skillstack").change(function() {
+                //기타를 선택하면 등장
+        if($("#skillstack").val() == "other") {
+            $("#etc").show();
+        }  else {
+            $("#etc").hide();
+        }
+    }) 
+});
+</script>
+<input type="submit" value ="검색"></br>
         </form>
-            프로젝트 목록<br>
-        <% if(locals.data){ %>
+    </body>
+<hr>
+<table>
+            <% if(locals.data){ %>
             <% if(data.length == 0) {%>
                 NULL
                 <% } %>
-                <% for(let i=0;i<data.length;i++){ %>
-                <a href='/project_detail/<%= data[i].proj_id %>'>
-                NAME : <%= data[i].proj_title %>    |    DATE : <%= data[i].proj_date %><br>
-                </a>
+                <% let a = 1;%>
+                <tr><% for(let i=0;i<data.length;i++){ %><td><%= a %>.</td> 
+                <td><a href='/project_detail/<%= data[i].proj_id %>'>
+                    <%= data[i].proj_title %>
+                <% a++ %>
+                </a></td></tr>
             <% } %>
         <% } %>
-    </form>
-</body>
+</table>

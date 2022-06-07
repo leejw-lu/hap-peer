@@ -33,6 +33,7 @@ router.post("/", function (req, res) {
     if (title=='NULL') title = '';
     if (teamleader=='NULL') teamleader = '';
     if (skillstack=='NULL') skillstack = '';
+    if (skillstack =='%'+'other'+'%') skillstack = '%'+req.body.etc+'%';
     const params = [title,teamleader,level,skillstack];
     db.query(sql, params, function(err, result, fields){
         if(err) throw err;

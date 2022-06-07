@@ -8,7 +8,51 @@
     <%- include('./partials/default_nav.ejs'); %>
     <% }
 %>
-
+<h4>유저 목록</h4>
+        <form action="/user_list" method="post">
+            아이디 : 
+            <input type="text" name="id"> &nbsp;
+            닉네임 :
+            <input type="text" name="nickname"> &nbsp;
+            기술스택 : 
+            <select id="skillstack" name="skillstack">
+                <option value = "%">전체</option>
+                <option value = " C ">C</option>
+                <option value = " C++ ">C++</option>
+                <option value = " C# ">C#</option>
+                <option value = " JAVA ">Java</option>
+                <option value = " Python ">Python</option>
+                <option value = " Visual Basic ">Visual Basic</option>
+                <option value = " JS ">JS</option>
+                <option value = " SQL ">SQL</option>
+                <option value = " PHP ">PHP</option>
+                <option value = " OBJECTIVE-C ">OBJECTIVE-C</option>
+                <option value = " RUBY ">RUBY</option>
+                <option value = " HTML ">HTML</option>
+                <option value = " Assembly Language ">Assembly</option>
+                <option value = " Groovy ">Groovy</option>
+                <option value = " R ">R</option>
+                <option value = " Swift ">Swift</option>
+                <option value = "other">직접입력</option>
+            </select>
+            <input type="text" id="etc" name="etc"/>
+<script>
+$(function(){
+      //입력박스 숨어있다가
+$("#etc").hide();
+$("#skillstack").change(function() {
+                //기타를 선택하면 등장
+        if($("#skillstack").val() == "other") {
+            $("#etc").show();
+        }  else {
+            $("#etc").hide();
+        }
+    }) 
+});
+</script>
+            <input type="submit" value ="검색"></br>
+        </form>
+        <hr>
   <% user_list.forEach(function(lists) { %>
     <a href='/user_page/<%= lists.user_id %>'>
     <tr>
@@ -18,7 +62,6 @@
     </a>
 </br>
 <% }) %>
-  <a href="/mypage_edit_profile"><button>프로필 편집</button></a> 
 </body>
 
 
