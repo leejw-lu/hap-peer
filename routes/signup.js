@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");  //db연결
-//const bcrypt = require("bcrypt"); //비번 암호화 추후 구현
+const bcrypt = require("bcrypt"); //비번 암호화
 
 router.get('/', function(req,res){
     res.render("signUp");
@@ -12,10 +12,11 @@ router.post("/",function(req,res){
     const password=req.body.password;
     const check_pw=req.body.check_pw;
     const nickname=req.body.nickname;
+    const passwordBy = bcrypt.hashSync(password, 5);
     const image=req.body.image;
 
     const sql="INSERT INTO user (user_id, user_password, user_nickname, user_image, user_stack) VALUES (?, ?, ?, ?, ?)";
-    const params=[userid,password,nickname,'/public/images/default_user_image.png', " "]
+    const params=[userid,passwordBy,nickname,'/public/images/default_user_image.png', " "]
 
     if(userid.length>0 && password.length>0 && check_pw.length>0 && nickname.length>0 ){ //빈칸없게 작성
       if(password==check_pw){
@@ -27,6 +28,7 @@ router.post("/",function(req,res){
               res.write('<script>window.location="/signup"</script>'); 
             } else {  
               //회원가입 성공 -> login 페이지로
+              res.write(`<script type="text/javascript">alert('You have successfully registered!!')</script>`);
               res.write('<script>window.location="/login"</script>');
               res.end();
             }
