@@ -1,36 +1,36 @@
 <body>
-    <%- include('./partials/login_nav.ejs'); %>
+  <%- include('./partials/login_nav.ejs'); %>
 
-    <h3><%= user_id %> 님의 보낸 쪽지함</h3>
-    <a href="/message">받은쪽지함</a> 
-    <a href="/message_sendbox">보낸쪽지함</a> 
-    <a href="/message_send"><button class="gotomessage_send">쪽지보내기</button></a>
+  <h3><%= user_id %> 님의 보낸 쪽지함</h3>
+  <a href="/message">받은쪽지함</a>
+  <a href="/message_sendbox">보낸쪽지함</a>
+  <a href="/message_send"><button class="gotomessage_send">쪽지보내기</button></a>
 
-    <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">번호</th>
-            <th scope="col">받은사람</th>
-            <th scope="col">쪽지유형/상세</th>
-            <th scope="col">날짜</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-        <%
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">번호</th>
+        <th scope="col">받은사람</th>
+        <th scope="col">쪽지유형/상세</th>
+        <th scope="col">날짜</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%
         let i;
         for(i=0; i<rows.length; i++)
         {
             let data = rows[i];
         %>
-        
-        <tr>
-            <td><%=i+1%></td>
-            <td><%=data.m_receiver%></td>
-            <td><a href='/message_detail/<%= data.m_id %>'><%=data.m_type%></a></td>
-            <td><%=data.m_date%></td>
-        </tr>
-        <%}%>
+
+      <tr>
+        <td><%=i+1%></td>
+        <td><%=data.m_receiver%></td>
+        <td><a href='/message_detail/<%= data.m_id %>'><%=data.m_type%></a></td>
+        <td><%=data.m_date%></td>
+      </tr>
+      <%}%>
         </tbody>
       </table>
       

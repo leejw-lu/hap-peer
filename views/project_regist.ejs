@@ -1,79 +1,84 @@
 <body>
-    <%- include('./partials/login_nav.ejs'); %>
+  <%- include('./partials/login_nav.ejs'); %>
 
-<h3>프로젝트 등록</h3>
-<form name="form" action="/project_regist" method="post">
+  <h3>프로젝트 등록</h3>
+  <form name="form" action="/project_regist" method="post">
     <table>
-        <tr>
-            <td>프로젝트 이름</td>
-            <td><input type="text" name="proj_title"></td>
-        </tr>
-        <tr>
-            <td>프로젝트 소개</td>
-            <td><input type="text" name="proj_content"></td>
-        </tr>
-        <tr>
-            <td>프로젝트 필요 스택</td>
-            <td>
-                <input type="checkbox" name="skillstack" value=" C " />C 
-                <input type="checkbox" name="skillstack" value=" C# " />C# 
-                <input type="checkbox" name="skillstack" value=" C++ " />C++ 
-                <input type="checkbox" name="skillstack" value=" JAVA " />JAVA 
-                <input type="checkbox" name="skillstack" value=" Python " />Python 
-                <input type="checkbox" name="skillstack" value=" Visual Basic " />Visual Basic 
-                <input type="checkbox" name="skillstack" value=" JS " />JS 
-                <input type="checkbox" name="skillstack" value=" SQL " />SQL 
-                </td></tr><tr><td></td><td>
-                <input type="checkbox" name="skillstack" value=" PHP " />PHP 
-                <input type="checkbox" name="skillstack" value=" OBJECTIVE-C " />OBJECTIVE-C 
-                <input type="checkbox" name="skillstack" value=" RUBY " />RUBY 
-                <input type="checkbox" name="skillstack" value=" HTML " />HTML 
-                <input type="checkbox" name="skillstack" value=" Assembly Language " />Assembly Language 
-                <input type="checkbox" name="skillstack" value=" Groovy " />Groovy 
-                <input type="checkbox" name="skillstack" value=" R " />R 
-                <input type="checkbox" name="skillstack" value=" Swift " />Swift 
-                </tr><tr><td></td><td>
-                기타 스택 입력 <input type="checkbox" name="skilletc" id="ok" name = "choice" value="기타"/>
-                <input type="text" id="etc" name="etc" value="선택안함" disabled="disabled">
-<script>
- $(document).ready(function () {
- //있음을 선택하면 기타의 텍스트박스 내용을 지우고 보이지 않음
- $('input:checkbox[id="ok"]').change(function(){
-   if($('input:checkbox[id="ok"]').is(":checked") == false)
-   {
-     $('input:text[name="etc"]').val("선택안함");
-     $('input:text[name="etc"]').attr("disabled", true);
-   }
-   else
-   {
-     $('input:text[name="etc"]').val("");
-     $('input:text[name="etc"]').attr("disabled", false);
-   }
- });
-});
-</script></td></tr></td></td>
-        </tr>
-        <tr>
-            <td>프로젝트 난이도</td>
-            <td>
-                <input type="radio" id="1" name="proj_level" value="1">
-                <label for="1">1</label>
-                <input type="radio" id="2" name="proj_level" value="2">
-                <label for="2">2</label>
-                <input type="radio" id="3" name="proj_level" value="3">
-                <label for="3">3</label>
-                <input type="radio" id="4" name="proj_level" value="4">
-                <label for="4">4</label>
-                <input type="radio" id="5" name="proj_level" value="5">
-                <label for="5">5</label>
-            </td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="프로젝트 등록"></td>
-        </tr>
+      <tr>
+        <td>프로젝트 이름</td>
+        <td><input type="text" name="proj_title"></td>
+      </tr>
+      <tr>
+        <td>프로젝트 소개</td>
+        <td><input type="text" name="proj_content"></td>
+      </tr>
+      <tr>
+        <td>프로젝트 필요 스택</td>
+        <td>
+          <input type="checkbox" name="skillstack" value=" C " />C
+          <input type="checkbox" name="skillstack" value=" C# " />C#
+          <input type="checkbox" name="skillstack" value=" C++ " />C++
+          <input type="checkbox" name="skillstack" value=" JAVA " />JAVA
+          <input type="checkbox" name="skillstack" value=" Python " />Python
+          <input type="checkbox" name="skillstack" value=" Visual Basic " />Visual Basic
+          <input type="checkbox" name="skillstack" value=" JS " />JS
+          <input type="checkbox" name="skillstack" value=" SQL " />SQL
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <input type="checkbox" name="skillstack" value=" PHP " />PHP
+          <input type="checkbox" name="skillstack" value=" OBJECTIVE-C " />OBJECTIVE-C
+          <input type="checkbox" name="skillstack" value=" RUBY " />RUBY
+          <input type="checkbox" name="skillstack" value=" HTML " />HTML
+          <input type="checkbox" name="skillstack" value=" Assembly Language " />Assembly Language
+          <input type="checkbox" name="skillstack" value=" Groovy " />Groovy
+          <input type="checkbox" name="skillstack" value=" R " />R
+          <input type="checkbox" name="skillstack" value=" Swift " />Swift
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          기타 스택 입력 <input type="checkbox" name="skilletc" id="ok" name="choice" value="기타" />
+          <input type="text" id="etc" name="etc" value="선택안함" disabled="disabled">
+          <script>
+            $(document).ready(function () {
+              $('input:checkbox[id="ok"]').change(function () {
+                if ($('input:checkbox[id="ok"]').is(":checked") == false) {
+                  $('input:text[name="etc"]').val("선택안함");
+                  $('input:text[name="etc"]').attr("disabled", true);
+                } else {
+                  $('input:text[name="etc"]').val("");
+                  $('input:text[name="etc"]').attr("disabled", false);
+                }
+              });
+            });
+          </script>
+        </td>
+      </tr>
+      </td>
+      </td>
+      </tr>
+      <tr>
+        <td>프로젝트 난이도</td>
+        <td>
+          <input type="radio" id="1" name="proj_level" value="1">
+          <label for="1">1</label>
+          <input type="radio" id="2" name="proj_level" value="2">
+          <label for="2">2</label>
+          <input type="radio" id="3" name="proj_level" value="3">
+          <label for="3">3</label>
+          <input type="radio" id="4" name="proj_level" value="4">
+          <label for="4">4</label>
+          <input type="radio" id="5" name="proj_level" value="5">
+          <label for="5">5</label>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="프로젝트 등록"></td>
+      </tr>
     </table>
-</form>
+  </form>
 
 </body>
-
-<!-- <a href="/signup"><button>회원가입하기</button></a>  -->

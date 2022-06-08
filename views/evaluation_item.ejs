@@ -2,7 +2,7 @@
   <%- include('./partials/login_nav.ejs'); %>
 
   <h3> <%= ev_rated %>(<%= user_nickname %>) 님에 에 대한 평점을 작성해주세요! </h3>
-     
+
   <form action="/evaluation/<%= pj_id %>/submit" method="post">
     <table class="table table-hover">
       <thead>
@@ -43,7 +43,7 @@
           <td><input type="radio" id="4" name="ev_value3" value="4"></td>
           <td><input type="radio" id="5" name="ev_value3" value="5"></td>
         </tr>
-        
+
         <tr>
           <th scope="row">개발 실력 면에서 많은 도움이 되었나요?</th>
           <td><input type="radio" id="1" name="ev_value4" value="1"></td>
@@ -52,7 +52,7 @@
           <td><input type="radio" id="4" name="ev_value4" value="4"></td>
           <td><input type="radio" id="5" name="ev_value4" value="5"></td>
         </tr>
-        
+
         <tr>
           <th scope="row">갈등 상황이 있을 때 상대를 배려하였나요?</th>
           <td><input type="radio" id="1" name="ev_value5" value="1"></td>
@@ -68,7 +68,7 @@
     <input type="hidden" name="pj_id" value="<%= pj_id %>">
     <input type="hidden" name="ev_rated" value="<%=ev_rated%>">
     <input type="submit" name="evaluate_submit" value="평가완료하기"
-    onClick="return confirm('Do you want to submit this evaluation?')">
+      onClick="return confirm('Do you want to submit this evaluation?')">
 
   </form>
 

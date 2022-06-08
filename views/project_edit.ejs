@@ -1,40 +1,54 @@
 <body>
   <%- include('./partials/login_nav.ejs'); %>
 
-<h3>프로젝트 편집</h3>
-<form action="/project_edit" method="post">
-  <table>
+  <h3>프로젝트 편집</h3>
+  <form action="/project_edit" method="post">
+    <table>
       <tr>
-          <td>프로젝트 이름</td>
-          <td><input type="text" name="proj_title" value="<%=project_detail.proj_title%>"></td>
+        <td>프로젝트 이름</td>
+        <td><input type="text" name="proj_title" value="<%=project_detail.proj_title%>"></td>
       </tr>
       <tr>
         <td>팀장</td>
         <td> <%= user_id %> </td>
       </tr>
       <tr>
-          <td>프로젝트 소개</td>
-          <td><input type="text" name="proj_content" value="<%=project_detail.proj_content%>"></td>
+        <td>프로젝트 소개</td>
+        <td><input type="text" name="proj_content" value="<%=project_detail.proj_content%>"></td>
       </tr>
       <tr>
         <td>프로젝트 필요 스택</td>
         <td>
-          <input type="checkbox" name="skillstack" value=" C " <% if (project_detail.proj_stack.includes(" C ")){ %> checked <%}%> > C 
-          <input type="checkbox" name="skillstack" value=" C# " <% if (project_detail.proj_stack.includes(" C# ")){ %> checked <%}%> > C# 
-          <input type="checkbox" name="skillstack" value=" C++ " <% if (project_detail.proj_stack.includes(" C++ ")){ %> checked <%}%> > C++ 
-          <input type="checkbox" name="skillstack" value=" JAVA "<% if (project_detail.proj_stack.includes(" JAVA ")){ %>checked <%}%>> JAVA 
-          <input type="checkbox" name="skillstack" value=" Python "<% if (project_detail.proj_stack.includes(" Python ")){ %>checked <%}%>> Python 
-          <input type="checkbox" name="skillstack" value=" Visual Basic "<% if (project_detail.proj_stack.includes(" Visual Basic ")){ %>checked <%}%>> Visual Basic 
+          <input type="checkbox" name="skillstack" value=" C " <% if (project_detail.proj_stack.includes(" C ")){ %>
+            checked <%}%> > C 
+          <input type="checkbox" name="skillstack" value=" C# " <% if (project_detail.proj_stack.includes(" C# ")){ %>
+            checked
+            <%}%> > C# 
+          <input type="checkbox" name="skillstack" value=" C++ " <% if (project_detail.proj_stack.includes(" C++ ")){ %>
+            checked
+            <%}%> > C++ 
+          <input type="checkbox" name="skillstack" value=" JAVA "<% if (project_detail.proj_stack.includes(" JAVA ")){ %>checked
+            <%}%>> JAVA 
+          <input type="checkbox" name="skillstack" value=" Python "<% if (project_detail.proj_stack.includes(" Python ")){ %>checked
+            <%}%>> Python 
+          <input type="checkbox" name="skillstack" value=" Visual Basic "<% if (project_detail.proj_stack.includes(" Visual Basic ")){ %>checked
+            <%}%>> Visual Basic 
           <input type="checkbox" name="skillstack" value=" JS "<% if (project_detail.proj_stack.includes(" JS ")){ %>checked <%}%>> JS 
-          <input type="checkbox" name="skillstack" value=" SQL "<% if (project_detail.proj_stack.includes(" SQL ")){ %>checked <%}%>> SQL 
+          <input type="checkbox" name="skillstack" value=" SQL "<% if (project_detail.proj_stack.includes(" SQL ")){ %>checked
+            <%}%>> SQL 
         </tr><tr><td></td><td>
           <input type="checkbox" name="skillstack" value=" PHP "<% if (project_detail.proj_stack.includes(" PHP ")){ %>checked <%}%>> PHP 
-          <input type="checkbox" name="skillstack" value=" OBJECTIVE-C "<% if (project_detail.proj_stack.includes(" OBJECTIVE-C ")){ %>checked <%}%>> OBJECTIVE-C
+          <input type="checkbox" name="skillstack" value=" OBJECTIVE-C "<% if (project_detail.proj_stack.includes(" OBJECTIVE-C ")){ %>checked
+            <%}%>> OBJECTIVE-C
           <input type="checkbox" name="skillstack" value=" RUBY "<% if (project_detail.proj_stack.includes(" RUBY ")){ %>checked <%}%>> RUBY
-          <input type="checkbox" name="skillstack" value=" HTML "<% if (project_detail.proj_stack.includes(" HTML ")){ %>checked <%}%>> HTML
-          <input type="checkbox" name="skillstack" value=" Assembly Language "<% if (project_detail.proj_stack.includes(" Assembly Language ")){ %>checked <%}%>> Assembly Language
-          <input type="checkbox" name="skillstack" value=" Groovy "<% if (project_detail.proj_stack.includes(" Groovy ")){ %>checked <%}%>> Groovy   
-          <input type="checkbox" name="skillstack" value=" R "<% if (project_detail.proj_stack.includes(" R ")){ %>checked <%}%>> R
+          <input type="checkbox" name="skillstack" value=" HTML "<% if (project_detail.proj_stack.includes(" HTML ")){ %>checked
+            <%}%>> HTML
+          <input type="checkbox" name="skillstack" value=" Assembly Language "<% if (project_detail.proj_stack.includes(" Assembly Language ")){ %>checked
+            <%}%>> Assembly Language
+          <input type="checkbox" name="skillstack" value=" Groovy "<% if (project_detail.proj_stack.includes(" Groovy ")){ %>checked
+            <%}%>> Groovy   
+          <input type="checkbox" name="skillstack" value=" R "<% if (project_detail.proj_stack.includes(" R ")){ %>checked
+            <%}%>> R
           <input type="checkbox" name="skillstack" value=" Swift "<% if (project_detail.proj_stack.includes(" Swift ")){ %>checked <%}%>> Swift
         </td></tr></td>
         </tr><tr><td></td><td>
@@ -42,7 +56,6 @@
                 <input type="text" id="etc" name="etc" value="선택안함" disabled="disabled">
 <script>
  $(document).ready(function () {
- //있음을 선택하면 기타의 텍스트박스 내용을 지우고 보이지 않음
  $('input:checkbox[id="ok"]').change(function(){
    if($('input:checkbox[id="ok"]').is(":checked") == false)
    {
@@ -64,62 +77,60 @@
         <td>
             <input type="hidden" id="projLevel" value="<%=project_detail.proj_level%>">
 
-            <input type="radio" id="1" name="proj_level" value="1">
-            <label for="1">1</label>
-            <input type="radio" id="2" name="proj_level" value="2">
-            <label for="2">2</label>
-            <input type="radio" id="3" name="proj_level" value="3">
-            <label for="3">3</label>
-            <input type="radio" id="4" name="proj_level" value="4">
-            <label for="4">4</label>
-            <input type="radio" id="5" name="proj_level" value="5">
-            <label for="5">5</label>            
+          <input type="radio" id="1" name="proj_level" value="1">
+          <label for="1">1</label>
+          <input type="radio" id="2" name="proj_level" value="2">
+          <label for="2">2</label>
+          <input type="radio" id="3" name="proj_level" value="3">
+          <label for="3">3</label>
+          <input type="radio" id="4" name="proj_level" value="4">
+          <label for="4">4</label>
+          <input type="radio" id="5" name="proj_level" value="5">
+          <label for="5">5</label>
         </td>
-    </tr>
-    <tr>
-      <td>팀원 모집 마감</td>
-      <td>
+      </tr>
+      <tr>
+        <td>팀원 모집 마감</td>
+        <td>
           <input type="hidden" id="recruitStatus" value="<%=project_detail.recruit_status%>">
           <input type="radio" id="on" name="recruit_status" value="1">
           <label for="on">on</label>
           <input type="radio" id="off" name="recruit_status" value="0">
           <label for="off">off</label>
-      </td>
-  </tr>
-    <tr>
-      <td>프로젝트 마감</td>
-      <td>
-        <input type="hidden" id="developStatus" value="<%=project_detail.develop_status%>">
+        </td>
+      </tr>
+      <tr>
+        <td>프로젝트 마감</td>
+        <td>
+          <input type="hidden" id="developStatus" value="<%=project_detail.develop_status%>">
           <input type="radio" id="on" name="develop_status" value="1">
           <label for="on">on</label>
           <input type="radio" id="off" name="develop_status" value="0">
           <label for="off">off</label>
-      </td>
-  </tr>
-  
-  <script>
-    //radio 기존값 세팅하기
-    const level = document.getElementById("projLevel").value;
-    const recruit=document.getElementById("recruitStatus").value;
-    const develop=document.getElementById("developStatus").value;
-    $.fn.radioSelect = function(val) {  
-      this.each(function() {    
-        var $this = $(this);    
-        if($this.val() == val)      
-        $this.attr('checked', true);  
-      });  
-      return this;
-    };
-    $(":radio[name='proj_level']").radioSelect(level);
-    $(":radio[name='recruit_status']").radioSelect(recruit);
-    $(":radio[name='develop_status']").radioSelect(develop);
+        </td>
+      </tr>
 
-  </script>
+      <script>
+        const level = document.getElementById("projLevel").value;
+        const recruit = document.getElementById("recruitStatus").value;
+        const develop = document.getElementById("developStatus").value;
+        $.fn.radioSelect = function (val) {
+          this.each(function () {
+            var $this = $(this);
+            if ($this.val() == val)
+              $this.attr('checked', true);
+          });
+          return this;
+        };
+        $(":radio[name='proj_level']").radioSelect(level);
+        $(":radio[name='recruit_status']").radioSelect(recruit);
+        $(":radio[name='develop_status']").radioSelect(develop);
+      </script>
 
       <tr>
-          <td><input type="submit" value="저장"></td>
+        <td><input type="submit" value="저장"></td>
       </tr>
-  </table>
-</form>
+    </table>
+  </form>
 
 </body>

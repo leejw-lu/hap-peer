@@ -1,75 +1,71 @@
 <body>
-    <% if (user_id != "비회원" ) { %>
-        <%- include('./partials/login_nav.ejs'); %>
-       <% } 
+  <% if (user_id != "비회원" ) { %>
+  <%- include('./partials/login_nav.ejs'); %>
+  <% } 
     
        else  { %>
-        <%- include('./partials/default_nav.ejs'); %>
-        <% }
+  <%- include('./partials/default_nav.ejs'); %>
+  <% }
     %>
-<p>main화면</p>
-<hr><h4>LEVEL 1</h4>
-<% project_list.forEach(function(lists) { %>
-    <% if (lists.proj_level == 1) {%>
-        ▶ <a href='/project_detail/<%= lists.proj_id %>'>
+  <p>main화면</p>
+  <hr>
+  <h4>LEVEL 1</h4>
+  <% project_list.forEach(function(lists) { %>
+  <% if (lists.proj_level == 1) {%>
+  ▶ <a href='/project_detail/<%= lists.proj_id %>'>
     <tr>
-        <td><%= lists.proj_title%></td>
-        <!-- <td><%- lists.proj_content%></td> -->
+      <td><%= lists.proj_title%></td>
     </tr>
-    </a>
-</br>
-<%}%>
+  </a>
+  </br>
+  <%}%>
 <% }) %>
-<hr>
-<h4>LEVEL 2</h4>
-<% project_list.forEach(function(lists) { %>
-    <% if (lists.proj_level == 2) {%>
-        ▶ <a href='/project_detail/<%= lists.proj_id %>'>
+  <hr>
+  <h4>LEVEL 2</h4>
+  <% project_list.forEach(function(lists) { %>
+  <% if (lists.proj_level == 2) {%>
+  ▶ <a href='/project_detail/<%= lists.proj_id %>'>
     <tr>
-        <td><%= lists.proj_title%></td>
-        <!-- <td><%- lists.proj_content%></td> -->
+      <td><%= lists.proj_title%></td>
     </tr>
-    </a>
-</br>
-<%}%>
+  </a>
+  </br>
+  <%}%>
 <% }) %>
-<hr>
-<h4>LEVEL 3</h4>
-<% project_list.forEach(function(lists) { %>
-    <% if (lists.proj_level == 3) {%>
-        ▶ <a href='/project_detail/<%= lists.proj_id %>'>
+  <hr>
+  <h4>LEVEL 3</h4>
+  <% project_list.forEach(function(lists) { %>
+  <% if (lists.proj_level == 3) {%>
+  ▶ <a href='/project_detail/<%= lists.proj_id %>'>
     <tr>
-        <td><%= lists.proj_title%></td>
-        <!-- <td><%- lists.proj_content%></td> -->
+      <td><%= lists.proj_title%></td>
     </tr>
-    </a>
-</br>
-<%}%>
+  </a>
+  </br>
+  <%}%>
 <% }) %>
-<hr>
-<h4>LEVEL 4</h4>
-<% project_list.forEach(function(lists) { %>
-    <% if (lists.proj_level == 4) {%>
-        ▶ <a href='/project_detail/<%= lists.proj_id %>'>
+  <hr>
+  <h4>LEVEL 4</h4>
+  <% project_list.forEach(function(lists) { %>
+  <% if (lists.proj_level == 4) {%>
+  ▶ <a href='/project_detail/<%= lists.proj_id %>'>
     <tr>
-        <td><%= lists.proj_title%></td>
-        <!-- <td><%- lists.proj_content%></td> -->
+      <td><%= lists.proj_title%></td>
     </tr>
-    </a>
-</br>
-<%}%>
+  </a>
+  </br>
+  <%}%>
 <% }) %>
-<hr>
-<h4>LEVEL 5</h4>
-<% project_list.forEach(function(lists) { %>
-    <% if (lists.proj_level == 5) {%>
-        ▶ <a href='/project_detail/<%= lists.proj_id %>'>
+  <hr>
+  <h4>LEVEL 5</h4>
+  <% project_list.forEach(function(lists) { %>
+  <% if (lists.proj_level == 5) {%>
+  ▶ <a href='/project_detail/<%= lists.proj_id %>'>
     <tr>
-        <td><%= lists.proj_title%></td>
-        <!-- <td><%- lists.proj_content%></td> -->
+      <td><%= lists.proj_title%></td>
     </tr>
-    </a>
-</br>
-<%}%>
+  </a>
+  </br>
+  <%}%>
 <% }) %>
 </body>

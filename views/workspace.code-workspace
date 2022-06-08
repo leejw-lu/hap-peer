@@ -1,9 +1,9 @@
 {
-	"folders": [
-		{
-			"name": "hap-peer",
-			"path": ".."
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "name": "hap-peer",
+      "path": ".."
+    }
+  ],
+  "settings": {}
 }

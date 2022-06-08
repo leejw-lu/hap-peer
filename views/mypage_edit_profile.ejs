@@ -1,46 +1,57 @@
 <body>
-    <%- include('./partials/login_nav.ejs'); %>
+  <%- include('./partials/login_nav.ejs'); %>
 
-<h3>프로필 편집</h3>
-<form action="/mypage_edit_profile" method="post" enctype="multipart/form-data">
+  <h3>프로필 편집</h3>
+  <form action="/mypage_edit_profile" method="post" enctype="multipart/form-data">
     <table>
-        <tr>
+      <tr>
         <%
         let i;
         for(i=0; i<rows.length; i++)
         {
             let data = rows[i];
         %>
-            <td>프로필 이미지</td>
-            <td><input type='file' name='img' accept='image/jpg, image/png, image/jpeg' /></td>
-        </tr>
-        <tr>
-            <td>아이디  </td>
-            <td> <%= user_id %> </td>
-        </tr>
-        <tr>
-            <td>소개</td>
-            <td><input type="text" name="userInfo" value="<%=data.user_info%>" ></td>
-        </tr>
-        <tr>
-            <td>STACK</td>
-            <td>
-                <input type="checkbox" name="skillstack" value=" C " <% if (data.user_stack.includes(" C ")){ %> checked <%}%> > C 
-                <input type="checkbox" name="skillstack" value=" C# " <% if (data.user_stack.includes(" C# ")){ %> checked <%}%> > C# 
-                <input type="checkbox" name="skillstack" value=" C++ " <% if (data.user_stack.includes(" C++ ")){ %> checked <%}%> > C++ 
-                <input type="checkbox" name="skillstack" value=" JAVA "<% if (data.user_stack.includes(" JAVA ")){ %>checked <%}%>> JAVA 
-                <input type="checkbox" name="skillstack" value=" Python "<% if (data.user_stack.includes(" Python ")){ %>checked <%}%>> Python 
-                <input type="checkbox" name="skillstack" value=" Visual Basic "<% if (data.user_stack.includes(" Visual Basic ")){ %>checked <%}%>> Visual Basic 
+        <td>프로필 이미지</td>
+        <td><input type='file' name='img' accept='image/jpg, image/png, image/jpeg' /></td>
+      </tr>
+      <tr>
+        <td>아이디 </td>
+        <td> <%= user_id %> </td>
+      </tr>
+      <tr>
+        <td>소개</td>
+        <td><input type="text" name="userInfo" value="<%=data.user_info%>"></td>
+      </tr>
+      <tr>
+        <td>STACK</td>
+        <td>
+          <input type="checkbox" name="skillstack" value=" C " <% if (data.user_stack.includes(" C ")){ %> checked <%}%> > C 
+                <input type="checkbox" name="skillstack" value=" C# " <% if (data.user_stack.includes(" C# ")){ %>
+            checked <%}%> > C# 
+                <input type="checkbox" name="skillstack" value=" C++ " <% if (data.user_stack.includes(" C++ ")){ %>
+            checked
+            <%}%> > C++ 
+                <input type="checkbox" name="skillstack" value=" JAVA "<% if (data.user_stack.includes(" JAVA ")){ %>checked
+            <%}%>> JAVA 
+                <input type="checkbox" name="skillstack" value=" Python "<% if (data.user_stack.includes(" Python ")){ %>checked
+            <%}%>> Python 
+                <input type="checkbox" name="skillstack" value=" Visual Basic "<% if (data.user_stack.includes(" Visual Basic ")){ %>checked
+            <%}%>> Visual Basic 
                 <input type="checkbox" name="skillstack" value=" JS "<% if (data.user_stack.includes(" JS ")){ %>checked <%}%>> JS 
-                <input type="checkbox" name="skillstack" value=" SQL "<% if (data.user_stack.includes(" SQL ")){ %>checked <%}%>> SQL 
+                <input type="checkbox" name="skillstack" value=" SQL "<% if (data.user_stack.includes(" SQL ")){ %>checked
+            <%}%>> SQL 
               </tr><tr><td></td><td>
                 <input type="checkbox" name="skillstack" value=" PHP "<% if (data.user_stack.includes(" PHP ")){ %>checked <%}%>> PHP 
-                <input type="checkbox" name="skillstack" value=" OBJECTIVE-C "<% if (data.user_stack.includes(" OBJECTIVE-C ")){ %>checked <%}%>> OBJECTIVE-C
+                <input type="checkbox" name="skillstack" value=" OBJECTIVE-C "<% if (data.user_stack.includes(" OBJECTIVE-C ")){ %>checked
+            <%}%>> OBJECTIVE-C
                 <input type="checkbox" name="skillstack" value=" RUBY "<% if (data.user_stack.includes(" RUBY ")){ %>checked <%}%>> RUBY
-                <input type="checkbox" name="skillstack" value=" HTML "<% if (data.user_stack.includes(" HTML ")){ %>checked <%}%>> HTML
-                <input type="checkbox" name="skillstack" value=" Assembly Language "<% if (data.user_stack.includes(" Assembly Language ")){ %>checked <%}%>> Assembly Language
+                <input type="checkbox" name="skillstack" value=" HTML "<% if (data.user_stack.includes(" HTML ")){ %>checked
+            <%}%>> HTML
+                <input type="checkbox" name="skillstack" value=" Assembly Language "<% if (data.user_stack.includes(" Assembly Language ")){ %>checked
+            <%}%>> Assembly Language
                 <input type="checkbox" name="skillstack" value=" Groovy "<% if (data.user_stack.includes(" Groovy ")){ %>checked <%}%>> Groovy   
-                <input type="checkbox" name="skillstack" value=" R "<% if (data.user_stack.includes(" R ")){ %>checked <%}%>> R
+                <input type="checkbox" name="skillstack" value=" R "<% if (data.user_stack.includes(" R ")){ %>checked
+            <%}%>> R
                 <input type="checkbox" name="skillstack" value=" Swift "<% if (data.user_stack.includes(" Swift ")){ %>checked <%}%>> Swift
               </td></tr></td>
               </tr><tr><td></td><td>
@@ -48,7 +59,6 @@
                 <input type="text" id="etc" name="etc" value="선택안함" disabled="disabled">
 <script>
  $(document).ready(function () {
- //있음을 선택하면 기타의 텍스트박스 내용을 지우고 보이지 않음
  $('input:checkbox[id="ok"]').change(function(){
    if($('input:checkbox[id="ok"]').is(":checked") == false)
    {
@@ -63,14 +73,13 @@
  });
 });
 </script>
-                
-              </td></tr>
-        </tr>
-        <tr>
-            <td><input type="submit" value="저장"></td>
-        </tr>
-        <%}%>
-    </table>
+</td>
+</tr>
+</tr>
+<tr>
+<td><input type="submit" value="저장"></td>
+</tr>
+<%}%> 
+</table>
 </form>
-
 </body>

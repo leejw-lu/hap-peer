@@ -1,127 +1,115 @@
 <style>
-    .profile-user-img{
-        width: 120px;
-        height: 120px;
-        border-radius: 70%;
-        overflow: hidden;
-    }
+  .profile-user-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 70%;
+    overflow: hidden;
+  }
 
-    .profile-user-img-img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+  .profile-user-img-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 </style>
 
-
 <body>
-    
-    <%- include('./partials/login_nav.ejs'); %>
+  <%- include('./partials/login_nav.ejs'); %>
+  <h3> <%= user_id %> (<%= user_nickname %>)님의 마이페이지</h3>
+  <br>
+  <br>
+  <table>
+    <div class="profile-user-img">
+      <img src="<%= rows[0].user_image %>" alt="profile-user-img" class="profile-user-img-img" />
+    </div>
+  </table>
+  <br>
+  <table>
+    <tr>
+      <td>아이디 </td>
+      <td> <%= user_id %> </td>
+    </tr>
+    <tr></tr>
+    <td>소개 </td>
+    <td> <%=rows[0].user_info%> </td>
+    </tr>
+    <tr>
+      <td>STACK </td>
+      <td> <%=rows[0].user_stack%> </td>
+    </tr>
+  </table>
 
-    <h3> <%= user_id %> (<%= user_nickname %>)님의 마이페이지</h3>
-    <br>
-    <br>
-    <table>
-        <div class="profile-user-img" >
-            <img src="<%= rows[0].user_image %>" alt="profile-user-img" class="profile-user-img-img" />
-        </div>           
-    </table>
-    <br>
-    <table>
-        <tr>
-            <td>아이디 </td>
-            <td> <%= user_id %> </td>
-        </tr>
-        <tr></tr>
-            <td>소개 </td>
-            <td> <%=rows[0].user_info%> </td>
-        </tr>
-        <tr>
-            <td>STACK </td>
-            <td> <%=rows[0].user_stack%> </td>
-        </tr>    
-    </table>
+  <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
+  <br>
 
-    <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
-    <br>
+  <% let ev_average = (ev_value.v1 + ev_value.v2 + ev_value.v3 + ev_value.v4 + ev_value.v5)/5 %>
+  <td> 평균 평점 : <%- ev_average %> </td>
+  <% if (ev_average >= 0 && ev_average < 1) { %>
+  <td> (0-1 점) </td>
+  <img src="/public/emoticons/0-1.png" width="50" />
+  <% } else if (ev_average >= 1 && ev_average < 2.5) { %>
+  <td> (1-2.5 점) </td>
+  <img src="/public/emoticons/1-2.5.png" width="50" />
+  <% } else if (ev_average >= 2.5 && ev_average < 3.5) { %>
+  <td> (2.5-3.5 점) </td>
+  <img src="/public/emoticons/2.5-3.5.png" width="50" />
+  <% } else if (ev_average >= 3.5 && ev_average < 4.5) { %>
+  <td> (3.5-4.5 점) </td>
+  <img src="/public/emoticons/3.5-4.5.png" width="50" />
+  <% } else if (ev_average >= 4.5 && ev_average <= 5) { %>
+  <td> (4.5-5 점) </td>
+  <img src="/public/emoticons/4.5-5.png" width="50" />
+  <% } else { %>
+  <td> -- </td>
+  <% } %>
 
-         <!-- 평균 평점 및 이모티콘 -->
-        <% let ev_average = (ev_value.v1 + ev_value.v2 + ev_value.v3 + ev_value.v4 + ev_value.v5)/5 %>
+  <%- include('./partials/ev_RadarGraph.ejs'); %>
+  <br>
+  <hr> 나의 프로젝트
+  <br>
+  <table>
+    <th></th>
+    <%
+      for(i=0; i<rows.length; i++) {
+      let data = rows[i];
+      let statusEv= statusEvaluated[i];
+    %>
+    <tr>
+      <td>
+      <td>
+        <% if (data.recruit_status==1 && data.develop_status==1) { %>
+      <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
 
-        <td> 평균 평점 : <%- ev_average %>   </td>
-        <% if (ev_average >= 0 && ev_average < 1) { %>
-            <td> (0-1 점) </td>
-            <img src="/public/emoticons/0-1.png" width="50" />
-        <% } else if (ev_average >= 1 && ev_average < 2.5) { %>
-            <td> (1-2.5 점) </td>
-            <img src="/public/emoticons/1-2.5.png" width="50" />
-        <% } else if (ev_average >= 2.5 && ev_average < 3.5) { %>
-            <td> (2.5-3.5 점) </td>
-            <img src="/public/emoticons/2.5-3.5.png" width="50" />
-        <% } else if (ev_average >= 3.5 && ev_average < 4.5) { %>
-            <td> (3.5-4.5 점) </td>
-            <img src="/public/emoticons/3.5-4.5.png" width="50" />
-        <% } else if (ev_average >= 4.5 && ev_average <= 5) { %>
-            <td> (4.5-5 점) </td>
-            <img src="/public/emoticons/4.5-5.png" width="50" />
-        <% } else { %>
-            <td> -- </td>
-        <% } %>
-
-        <!-- 평점 radar Graph 보이기-->
-        <%- include('./partials/ev_RadarGraph.ejs'); %>
-
-        <br>
-        <hr> 나의 프로젝트
-        <br>
-        <table>
-            <th></th>
-            <%
-                for(i=0; i<rows.length; i++) {
-                let data = rows[i];
-                let statusEv= statusEvaluated[i];
-            %>       
-            <tr>
-                <td>
-                <td>
-                    <% if (data.recruit_status==1 && data.develop_status==1) { %>
-                        <!-- <div style="border: solid; width: 50%; padding: 10px; margin-top: 10px;"> -->
-                        <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
-                        
-                        <% if (statusEv=="평가완료") { %>
-                            <td> 평가완료 </td>
-                        <% } else { %>
-                            <td><button><a href='/evaluation/<%= data.proj_id %>'>평가하기</a></button></td>
-                        <% }
+      <% if (statusEv=="평가완료") { %>
+      <td> 평가완료 </td>
+      <% } else { %>
+      <td><button><a href='/evaluation/<%= data.proj_id %>'>평가하기</a></button></td>
+      <% }
                         %>
-                        <!-- </div> -->
-                    <% } else if (data.recruit_status==1 && data.develop_status==0) { %>
-                        <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
-                        <td> 개발진행중 </td>
-                    <% } else if (data.recruit_status==0 && data.develop_status==0) { %>
-                        <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
-                        <td> 모집중 </td>
-                    <% } else { %>
-                        <td> 참여중인 프로젝트가 없습니다. </td>
-                    <% } %>
-                </td>
-            </tr>
-            <%}%>
+      <% } else if (data.recruit_status==1 && data.develop_status==0) { %>
+      <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
+      <td> 개발진행중 </td>
+      <% } else if (data.recruit_status==0 && data.develop_status==0) { %>
+      <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
+      <td> 모집중 </td>
+      <% } else { %>
+      <td> 참여중인 프로젝트가 없습니다. </td>
+      <% } %>
+      </td>
+    </tr>
+    <%}%>
         </table>
-
         <table>
             <hr> 스크랩 목록
             <th></th>
             <%
                 for(i=0; i<rows2.length; i++) {
                 let data2 = rows2[i];
-            %>       
-            <tr>
-                <td><a href='/project_detail/<%= data2.proj_id %>'><%=data2.proj_title%></a></td>
-            </tr>
-            <%}
             %>
-        </table>        
-
-    <br>
+    <tr>
+      <td><a href='/project_detail/<%= data2.proj_id %>'><%=data2.proj_title%></a></td>
+    </tr>
+    <%}%>
+  </table>
+  <br>
 </body>
