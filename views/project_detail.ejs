@@ -12,13 +12,33 @@
 
 <tr>
     <td>
-        project title : <%- project_detail.proj_title%></br>
-        project leader : <%- project_detail.proj_leader%></br>
-        project info : <%- project_detail.proj_content%></br>
-        project level : <%- project_detail.proj_level%></br>
-        project stack : <%- project_detail.proj_stack%></br>
-        recruit_status : <%- project_detail.recruit_status%></br>
-        develop_status : <%- project_detail.develop_status%></br>
+        프로젝트 제목 : <%- project_detail.proj_title%></br>
+        프로젝트 팀장 : <%- project_detail.proj_leader%>
+        <% if (user_id != project_detail.proj_leader) { %>
+            <form action="/message_send/reply" method="post" style="display: inline;">
+                <input type="hidden" name="m_sender" value="<%= project_detail.proj_leader%>">
+                <input type="submit" name="reply" value="쪽지 바로 보내기" >
+            </form>
+           <% }
+         %>
+        <br>
+        프로젝트 소개 : <%- project_detail.proj_content%></br>
+        프로젝트 난이도 : <%- project_detail.proj_level%></br>
+        필요기술스택 : <%- project_detail.proj_stack%></br>
+        <% if (project_detail.recruit_status == 0 ) { %>
+            팀원모집이 마감되었나요? : NO<br>
+           <% } 
+           else  { %>
+            팀원모집이 마감되었나요? : YES<br>
+            <% }
+        %>
+        <% if (project_detail.develop_status == 0 ) { %>
+            개발완료된 프로젝트인가요? : NO</br>
+           <% } 
+           else  { %>
+            개발완료된 프로젝트인가요? : YES</br>
+            <% }
+        %>
     </td>
     <% if (user_id == project_detail.proj_leader) {%>
         <a href="/project_edit/<%= project_detail.proj_id%>">프로젝트 수정하기</a>
@@ -35,6 +55,7 @@
     <% }) %>
     </td>
 </tr>
+<br>
 <% if (user_id != "비회원" && user_id != project_detail.proj_leader && project_detail.sc_user != user_id) {%>
     <button><a href="/scrap/<%= project_detail.proj_id%>">스크랩하기</a></button>
     <% } %>
@@ -44,11 +65,13 @@
     <% } %>
 </form>  
 
-<form action="/project_detail" method="post">
 <% if (user_id == project_detail.proj_leader) {%>
-    <td><input type="text" name="member"></td>
-    <td><input type="submit" value="팀원 추가하기"></td>
+    <% if (project_detail.recruit_status == 0) {%>
+        <form action="/project_detail" method="post"></form>
+        <td><input type="text" name="member"></td>
+        <td><input type="submit" value="팀원 추가하기"></td>
+        </form>
     <% } %>
-    </form>
+<% } %>
 
 </body>

@@ -56,10 +56,14 @@
    }
  });
 });
-</script></td></tr>
+</script>
+
+</td></tr>
     <tr>
         <td>프로젝트 난이도</td>
         <td>
+            <input type="hidden" id="projLevel" value="<%=project_detail.proj_level%>">
+
             <input type="radio" id="1" name="proj_level" value="1">
             <label for="1">1</label>
             <input type="radio" id="2" name="proj_level" value="2">
@@ -69,12 +73,13 @@
             <input type="radio" id="4" name="proj_level" value="4">
             <label for="4">4</label>
             <input type="radio" id="5" name="proj_level" value="5">
-            <label for="5">5</label>
+            <label for="5">5</label>            
         </td>
     </tr>
     <tr>
       <td>팀원 모집 마감</td>
       <td>
+          <input type="hidden" id="recruitStatus" value="<%=project_detail.recruit_status%>">
           <input type="radio" id="on" name="recruit_status" value="1">
           <label for="on">on</label>
           <input type="radio" id="off" name="recruit_status" value="0">
@@ -84,12 +89,33 @@
     <tr>
       <td>프로젝트 마감</td>
       <td>
+        <input type="hidden" id="developStatus" value="<%=project_detail.develop_status%>">
           <input type="radio" id="on" name="develop_status" value="1">
           <label for="on">on</label>
           <input type="radio" id="off" name="develop_status" value="0">
           <label for="off">off</label>
       </td>
   </tr>
+  
+  <script>
+    //radio 기존값 세팅하기
+    const level = document.getElementById("projLevel").value;
+    const recruit=document.getElementById("recruitStatus").value;
+    const develop=document.getElementById("developStatus").value;
+    $.fn.radioSelect = function(val) {  
+      this.each(function() {    
+        var $this = $(this);    
+        if($this.val() == val)      
+        $this.attr('checked', true);  
+      });  
+      return this;
+    };
+    $(":radio[name='proj_level']").radioSelect(level);
+    $(":radio[name='recruit_status']").radioSelect(recruit);
+    $(":radio[name='develop_status']").radioSelect(develop);
+
+  </script>
+
       <tr>
           <td><input type="submit" value="저장"></td>
       </tr>
