@@ -26,10 +26,10 @@
         프로젝트 난이도 : <%- project_detail.proj_level%></br>
         필요기술스택 : <%- project_detail.proj_stack%></br>
         <% if (project_detail.recruit_status == 0 ) { %>
-            팀원모집중 인가요? : YES<br>
+            팀원모집이 마감되었나요? : NO<br>
            <% } 
            else  { %>
-            팀원모집중 인가요? : NO<br>
+            팀원모집이 마감되었나요? : YES<br>
             <% }
         %>
         <% if (project_detail.develop_status == 0 ) { %>
@@ -65,11 +65,13 @@
     <% } %>
 </form>  
 
-<form action="/project_detail" method="post">
 <% if (user_id == project_detail.proj_leader) {%>
-    <td><input type="text" name="member"></td>
-    <td><input type="submit" value="팀원 추가하기"></td>
+    <% if (project_detail.recruit_status == 0) {%>
+        <form action="/project_detail" method="post"></form>
+        <td><input type="text" name="member"></td>
+        <td><input type="submit" value="팀원 추가하기"></td>
+        </form>
     <% } %>
-    </form>
+<% } %>
 
 </body>
