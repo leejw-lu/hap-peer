@@ -24,13 +24,14 @@ router.post('/', async function (req, res) {
     });
   }
   else { proj_stack = req.body.skillstack; };
-  if (typeof req.body.etc != 'undefined') proj_stack = proj_stack + ' ' + req.body.etc + ' ';
+  let proj_skilletc="";
+  if (typeof req.body.etc != 'undefined') proj_skilletc = proj_skilletc + ' ' + req.body.etc + ' ';
   const proj_content = req.body.proj_content;
   const proj_level = req.body.proj_level;
   const proj_date = new Date();
   const user_id = req.session.user['userid'];
-  const sql = "INSERT INTO project (proj_id, proj_title, proj_content, proj_level, proj_stack, proj_date, proj_leader) VALUES (?, ?, ?, ?, ?, ?,?)";
-  const params = [proj_id, proj_title, proj_content, proj_level, proj_stack, proj_date, user_id]
+  const sql = "INSERT INTO project (proj_id, proj_title, proj_content, proj_level, proj_stack, proj_date, proj_leader, proj_stacketc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+  const params = [proj_id, proj_title, proj_content, proj_level, proj_stack, proj_date, user_id, proj_skilletc]
   const sql2 = "INSERT INTO participate (part_project, part_user) VALUES (?, ?)";
   const params2 = [proj_id, user_id];
   db.query(sql, params, function (err) {

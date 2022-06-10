@@ -24,7 +24,8 @@
       <br>
       프로젝트 소개 : <%- project_detail.proj_content%></br>
       프로젝트 난이도 : <%- project_detail.proj_level%></br>
-      필요기술스택 : <%- project_detail.proj_stack%></br>
+      필요기술스택 : <% if (project_detail.proj_stack!=''){%> <%-project_detail.proj_stack%> <%}%>
+        <% if (project_detail.proj_stacketc!=''){%> <%-project_detail.proj_stacketc%> <%}%></br>
       <% if (project_detail.recruit_status == 0 ) { %>
       팀원모집이 마감되었나요? : NO<br>
       <% } 
