@@ -47,11 +47,14 @@
     <h3> 참여 팀원 </h3>
     <td>
       <% part_proj.forEach(function(lists) { %>
-      <a href='/user_page/<%= lists.part_user %>'>
-  <tr>
-    <td><%- lists.part_user%></td>
-  </tr>
-  </a>
+        <a href='/user_page/<%= lists.part_user %>'><%- lists.part_user%></a>
+        <% if (user_id == project_detail.proj_leader && lists.part_user != project_detail.proj_leader && project_detail.recruit_status == 0) {%>
+        <form style="display: inline" action="/project_detail/delete" method="post">
+          <input type="hidden" name="delete_user" value="<%= lists.part_user%>">
+          <input type="hidden" name="proj_id" value="<%= project_detail.proj_id%>">
+          <input type="submit" value="팀원삭제">
+        </form>
+      <% } %>
   </br>
   <% }) %>
   </td>
@@ -68,7 +71,7 @@
 
   <% if (user_id == project_detail.proj_leader) {%>
   <% if (project_detail.recruit_status == 0) {%>
-  <form action="/project_detail" method="post"></form>
+  <form action="/project_detail" method="post">
   <td><input type="text" name="member"></td>
   <td><input type="submit" value="팀원 추가하기"></td>
   </form>
