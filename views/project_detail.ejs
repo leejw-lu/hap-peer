@@ -14,13 +14,17 @@
     <td>
       프로젝트 제목 : <%- project_detail.proj_title%></br>
       프로젝트 팀장 : <%- project_detail.proj_leader%>
-      <% if (user_id != project_detail.proj_leader) { %>
-      <form action="/message_send/reply" method="post" style="display: inline;">
-        <input type="hidden" name="m_sender" value="<%= project_detail.proj_leader%>">
-        <input type="submit" name="reply" value="쪽지 바로 보내기">
-      </form>
-      <% }
-         %>
+      <% if (user_id != "비회원" ) { %>
+        <% if (user_id != project_detail.proj_leader) { %>
+          <form action="/message_send/reply" method="post" style="display: inline;">
+            <input type="hidden" name="m_sender" value="<%= project_detail.proj_leader%>">
+            <input type="submit" name="reply" value="쪽지 바로 보내기">
+          </form>
+          <% }
+             %>
+        <% }
+      %>
+
       <br>
       프로젝트 소개 : <%- project_detail.proj_content%></br>
       프로젝트 난이도 : <%- project_detail.proj_level%></br>
