@@ -53,6 +53,21 @@ router.get('/*', function (req, res) {
   });
 });
 
+router.post('/delete', function(req, res) {
+  const delete_user = req.body.delete_user;
+  const p_id = req.body.proj_id;
+  const sql = "delete FROM participate WHERE part_project=? and part_user=?";
+  const params = [p_id, delete_user];
+  db.query(sql, params, function (err, result) {
+    if (err){
+      console.log("err: ", err)
+    } else {
+      res.write(`<script type="text/javascript">alert('Member Delete Success!')</script>`);
+      res.write(`<script>window.location="/project_detail/${p_id}"</script>`);
+    }
+  });
+});
+
 router.post('/*', function (req, res) {
   const proj = proj_id.id;
   const member = req.body.member;
