@@ -40,7 +40,7 @@ router.post('/*', async function (req, res) {
   }
   else { proj_stack = req.body.skillstack; };
   let proj_skilletc="";
-  if (typeof req.body.etc != 'undefined') proj_skilletc = proj_skilletc + ' ' + req.body.etc + ' ';
+  if (typeof req.body.etc != 'undefined') proj_skilletc = req.body.etc;
   const recruit_status = req.body.recruit_status;
   const develop_status = req.body.develop_status;
   const sql = "UPDATE project SET proj_title=?, proj_content=?, proj_level=?, proj_stack=?, recruit_status=?, develop_status=?, proj_stacketc=? WHERE proj_id=?";
