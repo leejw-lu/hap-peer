@@ -29,7 +29,6 @@ router.get('/', function (req, res) {
   }
 });
 
-var bodyParser = require('body-parser')
 router.post("/", function (req, res) {
   const sql = "SELECT * FROM user WHERE (user_id LIKE ?) AND (user_nickname LIKE ?) AND (user_stack LIKE ?) AND (user_stacketc LIKE ?)";
   let id = '%' + req.body.id + '%';
@@ -45,7 +44,6 @@ router.post("/", function (req, res) {
   db.query(sql, params, function (err, results) {
     if (err) throw err;
     else {
-      console.log(req.body);
       if (req.session.user) {
         return res.render("user_list", {
           user_id: req.session.user['userid'],
