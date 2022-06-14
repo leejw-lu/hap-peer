@@ -35,15 +35,13 @@ router.post("/", function (req, res) {
   let nickname = '%' + req.body.nickname + '%';
   let skillstack = '%' + req.body.skillstack + '%';
   let skilletc = '%' + req.body.etc + '%';
-  if (id == 'NULL') id = '';
-  if (nickname == 'NULL') nickname = '';
-  if (skillstack == 'NULL') skillstack = '';
-  if (skilletc == 'NULL') skilletc = '%%';
   if (skillstack == '%'+'other'+'%') skillstack = '%%';
+  if (skillstack == '%'+'total'+'%') skillstack = '%%';
   const params = [id, nickname, skillstack, skilletc];
   db.query(sql, params, function (err, results) {
     if (err) throw err;
     else {
+      console.log(req.body.id);
       if (req.session.user) {
         return res.render("user_list", {
           user_id: req.session.user['userid'],

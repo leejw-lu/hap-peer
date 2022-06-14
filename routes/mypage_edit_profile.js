@@ -44,7 +44,7 @@ router.post('/', upload.single('img'), function (req, res) {
   }
   else { userStack = req.body.skillstack; }
   if (typeof req.body.etc != 'undefined') userStacketc = req.body.etc
-  if (!userStack) { userStack = ""; }
+  if (!userStack) { userStack = " "; }
   let userImage = req.file == undefined ? '/public/images/default_user_image.png' : req.file.path;
   const sql = "UPDATE user SET user_info=?, user_stack=?, user_image=?, user_stacketc=? WHERE user_id=?";
   const params = [userInfo, userStack, userImage, userStacketc, req.session.user['userid']]
