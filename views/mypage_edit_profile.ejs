@@ -55,8 +55,12 @@
                 <input type="checkbox" name="skillstack" value=" Swift "<% if (data.user_stack.includes(" Swift ")){ %>checked <%}%>> Swift
               </td></tr></td>
               </tr><tr><td></td><td>
-                기타 스택 입력 <input type="checkbox" name="skilletc" id="ok" name = "choice" value="기타"/>
-                <input type="text" id="etc" name="etc" value="선택안함" disabled="disabled">
+                기타 스택 입력 <% if (data.user_stacketc == "") {%>
+                  <input type="checkbox" name="skilletc" id="ok" name = "choice" value="기타"/>
+                  <input type="text" id="etc" name="etc" value="선택안함" disabled="disabled"/><%}%>
+                <% if (data.user_stacketc != "") {%>
+                  <input type="checkbox" name="skilletc" id="ok" name = "choice" value="기타" checked/>
+                  <input type = "text" id="etc" name="etc" value="<%=data.user_stacketc%>"/><%}%>
 <script>
  $(document).ready(function () {
  $('input:checkbox[id="ok"]').change(function(){

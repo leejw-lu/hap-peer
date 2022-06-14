@@ -30,15 +30,17 @@ router.get('/', function (req, res) {
 });
 
 router.post("/", function (req, res) {
-  const sql = "SELECT * FROM user WHERE (user_id LIKE ?) AND (user_nickname LIKE ?) AND (user_stack LIKE ?)";
+  const sql = "SELECT * FROM user WHERE (user_id LIKE ?) AND (user_nickname LIKE ?) AND (user_stack LIKE ?) AND (user_stacketc LIKE ?)";
   let id = '%' + req.body.id + '%';
   let nickname = '%' + req.body.nickname + '%';
   let skillstack = '%' + req.body.skillstack + '%';
+  let skilletc = '%' + req.body.etc + '%';
   if (id == 'NULL') id = '';
   if (nickname == 'NULL') nickname = '';
   if (skillstack == 'NULL') skillstack = '';
-  if (skillstack == '%' + 'other' + '%') skillstack = '%' + req.body.etc + '%';
-  const params = [id, nickname, skillstack];
+  if (skilletc == 'NULL') skilletc = '%%';
+  if (skillstack == '%'+'other'+'%') skillstack = '%%';
+  const params = [id, nickname, skillstack, skilletc];
   db.query(sql, params, function (err, results) {
     if (err) throw err;
     else {

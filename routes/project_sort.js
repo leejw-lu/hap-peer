@@ -22,17 +22,20 @@ router.get("/", function (req, res) {
   })
 });
 
+
 router.post("/", function (req, res) {
-  const sql = "SELECT * FROM project where (proj_title LIKE ?) and (proj_leader LIKE ?) and (proj_level LIKE ?) AND (proj_stack LIKE ?) ORDER BY proj_date desc";
+  const sql = "SELECT * FROM project where (proj_title LIKE ?) and (proj_leader LIKE ?) and (proj_level LIKE ?) AND (proj_stack LIKE ?) AND (proj_stacketc LIKE ?) ORDER BY proj_date desc";
   let title = '%' + req.body.title + '%';
   let teamleader = '%' + req.body.teamleader + '%';
   let level = req.body.level;
   let skillstack = '%' + req.body.skillstack + '%';
-  if (title == 'NULL') title = '';
-  if (teamleader == 'NULL') teamleader = '';
-  if (skillstack == 'NULL') skillstack = '';
-  if (skillstack == '%' + 'other' + '%') skillstack = '%' + req.body.etc + '%';
-  const params = [title, teamleader, level, skillstack];
+  let skilletc = '%' + req.body.etc + '%';
+  if (title == 'NULL') title = '%%';
+  if (teamleader == 'NULL') teamleader = '%%';
+  if (skillstack == 'NULL') skillstack = '%%';
+  if (skilletc == 'NULL') skilletc = '%%';
+  if (skillstack == '%'+'other'+'%') skillstack = '%%';
+  const params = [title, teamleader, level, skillstack, skilletc];
   db.query(sql, params, function (err, result, fields) {
     if (err) throw err;
     else {
