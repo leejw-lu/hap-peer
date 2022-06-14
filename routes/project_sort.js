@@ -22,7 +22,6 @@ router.get("/", function (req, res) {
   })
 });
 
-var bodyParser = require('body-parser')
 
 router.post("/", function (req, res) {
   const sql = "SELECT * FROM project where (proj_title LIKE ?) and (proj_leader LIKE ?) and (proj_level LIKE ?) AND (proj_stack LIKE ?) AND (proj_stacketc LIKE ?) ORDER BY proj_date desc";
@@ -40,7 +39,6 @@ router.post("/", function (req, res) {
   db.query(sql, params, function (err, result, fields) {
     if (err) throw err;
     else {
-      console.log(req.body);
       if (req.session.user) {
         return res.render("project_sort", {
           user_id: req.session.user['userid'],
