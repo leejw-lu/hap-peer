@@ -1,17 +1,21 @@
 <body>
   <%- include('./partials/login_nav.ejs'); %>
-  <tr>
-    <td>
-      user name : <%- users.user_nickname%></br>
-      user stack : <%- users.user_stack%> <%- users.user_stacketc%> </br>
-      user info : </br>
-      <div style = "white-space:pre;" ><%- users.user_info%></div> </br>
-    </td>
-  </tr>
+      <h4 style="margin-left: 30px; "><b>사용자 정보</b></h4>
+      <div class = "mypage1">
+        <div class = "userinfo">
+      <p><b>닉네임 : </b></p>
+      <p><%- users.user_nickname%></p>
+      <p><b>사용가능한 기술스택 : </b></p>
+      <p><%- users.user_stack%> <%- users.user_stacketc%> </p>
+      <p><b>소개 : </b></p>
+      <p><%- users.user_info%></p>
+        </div>
+    
 
+<div class="evaluation_box">
   <% let ev_average = (ev_value.v1 + ev_value.v2 + ev_value.v3 + ev_value.v4 + ev_value.v5)/5 %>
 
-  <td> 평균 평점 : <%- ev_average %> </td>
+  <td> <b> 평균 평점 : <%- ev_average %> </b></td>
   <% if (ev_average >= 0 && ev_average < 1) { %>
   <td> (0-1 점) </td>
   <img src="/public/emoticons/0-1.png" width="50" />
@@ -30,7 +34,9 @@
   <% } else { %>
   <td> -- </td>
   <% } %>
-
+  <div class = "graph">
   <%- include('./partials/ev_RadarGraph.ejs'); %>
+</div>
+</div></div>
 
 </body>
