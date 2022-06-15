@@ -15,7 +15,7 @@
     <input type="text" name="nickname"> &nbsp;
     기술스택 :
     <select id="skillstack" name="skillstack">
-      <option value="total">전체</option>
+      <option value="">전체</option>
       <option value=" C ">C</option>
       <option value=" C++ ">C++</option>
       <option value=" C# ">C#</option>
@@ -32,7 +32,7 @@
       <option value=" Groovy ">Groovy</option>
       <option value=" R ">R</option>
       <option value=" Swift ">Swift</option>
-      <option value="other">직접입력</option>
+      <option value="other">기타</option>
     </select>
     <input type="text" id="etc" name="etc" />
     <script>
@@ -50,6 +50,17 @@
     <input type="submit" value="검색"></br>
   </form>
   <hr>
+  <% if(locals.sortData){ %>
+    <% if(sortData[0]!="") {%>
+      &nbsp; 아이디 : <%=sortData[0]%> <%}%>
+    <% if(sortData[1]!="") {%>
+      &nbsp; 닉네임 : <%=sortData[1]%> <%}%>
+    <% if(sortData[2]!=""&&sortData[2]!="other") {%>
+      &nbsp; 기술스택 : <%=sortData[2]%> <%}%>
+    <% if(sortData[3]!="") {%>
+      &nbsp; 기술스택 : <%=sortData[3]%> <%}%>
+  &nbsp; 검색결과 </br></br>
+  <%}%>
   <% user_list.forEach(function(lists) { %>
   <a href='/user_page/<%= lists.user_id %>'>
     <tr>
