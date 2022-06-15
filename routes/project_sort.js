@@ -31,9 +31,6 @@ router.post("/", function (req, res) {
   let level = req.body.level;
   let skillstack = '%' + req.body.skillstack + '%';
   let skilletc = '%' + req.body.etc + '%';
-  if (title == '') title = '%%';
-  if (teamleader == '') teamleader = '%%';
-  if (skilletc == '') skilletc = '%%';
   if (level == '') level = '%';
   if (skillstack == '%'+'other'+'%') skillstack = '%%';
   if (skillstack == '%'+'total'+'%') skillstack = '%%';
