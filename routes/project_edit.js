@@ -28,7 +28,7 @@ router.get('/*', function (req, res) {
   })
 })
 
-router.post('/*', async function (req, res) {
+router.post('/*', function (req, res) {
   const proj_title = req.body.proj_title;
   const proj_content = req.body.proj_content;
   const proj_level = req.body.proj_level;
