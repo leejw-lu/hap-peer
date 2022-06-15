@@ -33,11 +33,10 @@
         <p> <%= user_id %> </p>
 
         <p><b>소개: </b></p>
-        <p> <div style = "white-space:pre;" ><%=rows[0].user_info%></div> </p>
+        <p><%=rows[0].user_info%></p>
 
         <p><b>사용가능한 기술스택: </b></p>
         <p><%=rows[0].user_stack%>  <%=rows[0].user_stacketc%> </p>
-
         
       <a href="/mypage_edit_profile"><button id="editProfile">프로필 편집</button></a>
     </div>
