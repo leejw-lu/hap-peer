@@ -15,35 +15,36 @@
 
 <body>
   <%- include('./partials/login_nav.ejs'); %>
-  <h3> <%= user_id %> (<%= user_nickname %>)님의 마이페이지</h3>
-  <br>
-  <br>
-  <table>
-    <div class="profile-user-img">
-      <img src="<%= rows[0].user_image %>" alt="profile-user-img" class="profile-user-img-img" />
+
+      <h3 style="text-align: center;"> <%= user_id %> (<%= user_nickname %>)님의 마이페이지</h3>
+      <br>
+      <h4 style="margin-left: 30px; "><b>사용자 정보</b></h4>
+
+      <div class="mypage1">
+        <div class="userinfo">
+      <table>
+        <div class="profile-user-img">
+          <img src="<%= rows[0].user_image %>" alt="profile-user-img" class="profile-user-img-img" />
+        </div>
+      </table>
+      <br>
+
+        <p><b>아이디: </b></p>
+        <p> <%= user_id %> </p>
+
+        <p><b>소개: </b></p>
+        <p> <%=rows[0].user_info%> </p>
+
+        <p><b>사용가능한 기술스택: </b></p>
+        <p><%=rows[0].user_stack%>  <%=rows[0].user_stacketc%> </p>
+
+        
+      <a href="/mypage_edit_profile"><button id="editProfile">프로필 편집</button></a>
     </div>
-  </table>
-  <br>
-  <table>
-    <tr>
-      <td>아이디 </td>
-      <td> <%= user_id %> </td>
-    </tr>
-    <tr></tr>
-    <td>소개 </td>
-    <td> <%=rows[0].user_info%> </td>
-    </tr>
-    <tr>
-      <td>STACK </td>
-      <td> <%=rows[0].user_stack%> <%=rows[0].user_stacketc%> </td>
-    </tr>
-  </table>
-
-  <a href="/mypage_edit_profile"><button>프로필 편집</button></a>
-  <br>
-
+  
+  <div class="evaluation_box">
   <% let ev_average = (ev_value.v1 + ev_value.v2 + ev_value.v3 + ev_value.v4 + ev_value.v5)/5 %>
-  <td> 평균 평점 : <%- ev_average %> </td>
+  <td> <b>평균 평점 : <%- ev_average %> </b></td>
   <% if (ev_average >= 0 && ev_average < 1) { %>
   <td> (0-1 점) </td>
   <img src="/public/emoticons/0-1.png" width="50" />
@@ -64,11 +65,18 @@
   <% } %>
 
   <%- include('./partials/ev_RadarGraph.ejs'); %>
+  </div>
+
+  </div>
+
+
+  <hr>  
+  <div class="mypage2">
   <br>
-  <hr> 나의 프로젝트
-  <br>
+  <h4 style="margin-left:10px; "><b>나의 참여한 프로젝트</b></h4>
   <table>
     <th></th>
+
     <%
       for(i=0; i<rows.length; i++) {
       let data = rows[i];
@@ -78,14 +86,14 @@
       <td>
       <td>
         <% if (data.recruit_status==1 && data.develop_status==1) { %>
-      <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
+      <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%></a></td>
 
       <% if (statusEv=="평가완료") { %>
       <td> 평가완료 </td>
       <% } else { %>
       <td><button><a href='/evaluation/<%= data.proj_id %>'>평가하기</a></button></td>
       <% }
-                        %>
+       %>
       <% } else if (data.recruit_status==1 && data.develop_status==0) { %>
       <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
       <td> 개발진행중 </td>
@@ -93,14 +101,15 @@
       <td><a href='/project_detail/<%= data.proj_id %>'><%=data.proj_title%> </a></td>
       <td> 모집중 </td>
       <% } else { %>
-      <td> 참여중인 프로젝트가 없습니다. </td>
+      <td> 참여중인 프로젝트가 없습니다. </td><br>
       <% } %>
       </td>
     </tr>
     <%}%>
         </table>
         <table>
-            <hr> 스크랩 목록
+            <hr>
+            <h4 style="margin-left: 10px;"><b>스크랩 목록</b></h4>
             <th></th>
             <%
                 for(i=0; i<rows2.length; i++) {
@@ -111,5 +120,7 @@
     </tr>
     <%}%>
   </table>
+
+</div>
   <br>
 </body>
