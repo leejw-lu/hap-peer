@@ -15,7 +15,7 @@
     <input type="text" name="teamleader"> &nbsp;
     난이도 :
     <select name="level">
-      <option value="%">전체</option>
+      <option value="">전체</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -24,7 +24,7 @@
     </select> &nbsp;
     기술스택 :
     <select id="skillstack" name="skillstack">
-      <option value="%">전체</option>
+      <option value="">전체</option>
       <option value=" C ">C</option>
       <option value=" C++ ">C++</option>
       <option value=" C# ">C#</option>
@@ -41,7 +41,7 @@
       <option value=" Groovy ">Groovy</option>
       <option value=" R ">R</option>
       <option value=" Swift ">Swift</option>
-      <option value="other">직접입력</option>
+      <option value="other">기타</option>
     </select> &nbsp;
     <input type="text" id="etc" name="etc" value="" />
     <script>
@@ -60,6 +60,20 @@
   </form>
 </body>
 <hr>
+
+<% if(locals.sortData){ %>
+  <% if(sortData[0]!="") {%>
+    &nbsp; 제목 : <%=sortData[0]%> <%}%>
+  <% if(sortData[1]!="") {%>
+    &nbsp; 작성자 : <%=sortData[1]%> <%}%>
+  <% if(sortData[2]!="") {%>
+    &nbsp; 난이도 : <%=sortData[2]%> <%}%>
+  <% if(sortData[3]!=""&&sortData[3]!="other") {%>
+    &nbsp; 기술스택 : <%=sortData[3]%> <%}%>
+  <% if(sortData[4]!="" ) {%>
+    &nbsp; 기술스택 : <%=sortData[4]%> <%}%>
+&nbsp; 검색결과 </br></br>
+<%}%>
 <table>
   <% if(locals.data){ %>
   <% if(data.length == 0) {%>
