@@ -13,7 +13,7 @@
       <lable class="col-sm-2 col-form-label">프로젝트 소개</lable>
       <div class="col-sm-7">
         <textarea class="form-control" style="width: 700px;height:250px;resize: none;" type="text" name="proj_content"
-          value="<%=project_detail.proj_content%>"></textarea>
+          value="<%=project_detail.proj_content%>"><%=project_detail.proj_content%></textarea>
       </div>
     </div>
     <div>
@@ -46,7 +46,8 @@
           <input type="checkbox" name="skillstack" value=" Groovy "<% if (selectedStack.includes(" Groovy ")){ %>checked <%}%>> Groovy   
           <input type="checkbox" name="skillstack" value=" R "<% if (selectedStack.includes(" R ")){ %>checked <%}%>> R
           <input type="checkbox" name="skillstack" value=" Swift "<% if (selectedStack.includes(" Swift ")){ %>checked <%}%>> Swift
-        
+        <br>
+        <lable class="col-sm-2 col-form-label"></lable>
         기타 스택 입력
           <% if (project_detail.proj_stacketc == "") {%> <input type="checkbox" name="skilletc" id="ok" name="choice"
       value="기타" />
