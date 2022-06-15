@@ -25,7 +25,8 @@ router.post('/', async function (req, res) {
   }
   else { proj_stack = req.body.skillstack; };
   let proj_skilletc="";
-  if (typeof req.body.etc != 'undefined') proj_skilletc = proj_skilletc + ' ' + req.body.etc + ' ';
+  if (typeof req.body.etc != 'undefined') proj_skilletc = req.body.etc;
+  if (!proj_stack) proj_stack = " ";
   const proj_content = req.body.proj_content;
   const proj_level = req.body.proj_level;
   const proj_date = new Date();

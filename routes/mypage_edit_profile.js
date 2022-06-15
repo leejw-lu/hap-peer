@@ -8,7 +8,7 @@ const path = require('path');
 
 router.get('/', function (req, res) {
   if (req.session.user) {
-    const sql = "SELECT user_info, user_stack, user_image FROM user WHERE user_id = ?";
+    const sql = "SELECT user_info, user_stack, user_image, user_stacketc FROM user WHERE user_id = ?";
     db.query(sql, [req.session.user['userid']], function (err, rows) {
       if (err) console.error(err);
       res.render("mypage_edit_profile", {
@@ -36,17 +36,18 @@ const upload = multer({
 router.post('/', upload.single('img'), function (req, res) {
   let userInfo = req.body.userInfo;
   let userStack = "";
+  let userStacketc = "";
   if (req.body.skillstack instanceof Array) {
     req.body.skillstack.forEach(element => {
       userStack = userStack + element;
     });
   }
   else { userStack = req.body.skillstack; }
-  if (typeof req.body.etc != 'undefined') userStack = userStack + ' ' + req.body.etc + ' '
-  if (!userStack) { userStack = ' '; }
+  if (typeof req.body.etc != 'undefined') userStacketc = req.body.etc
+  if (!userStack) { userStack = " "; }
   let userImage = req.file == undefined ? '/public/images/default_user_image.png' : req.file.path;
-  const sql = "UPDATE user SET user_info=?, user_stack=?, user_image=? WHERE user_id=?";
-  const params = [userInfo, userStack, userImage, req.session.user['userid']]
+  const sql = "UPDATE user SET user_info=?, user_stack=?, user_image=?, user_stacketc=? WHERE user_id=?";
+  const params = [userInfo, userStack, userImage, userStacketc, req.session.user['userid']]
   db.query(sql, params, function (err) {
     if (err) {
       console.log(err);
