@@ -140,7 +140,6 @@
                 <% } else { %>
                   <%- lists.proj_content.substring(0,35) %></p>
                 <% } %>
-                
               ▶ <a href='/project_detail/<%= lists.proj_id %>'>바로가기</a>
             </div>
           </div>
@@ -162,7 +161,12 @@
               <div class="card-header">★★☆☆☆</div>
               <div class="card-body">
                 <h4 class="card-title">PROJECT : <%= lists.proj_title %></h4>
-                <p class="card-text"><%- lists.proj_content%></p>
+                <p class="card-text">
+                  <% if (lists.proj_content.length > 35) { %>
+                    <%- lists.proj_content.substring(0,35) + "..." %></p>
+                  <% } else { %>
+                    <%- lists.proj_content.substring(0,35) %></p>
+                  <% } %>
                 ▶ <a href='/project_detail/<%= lists.proj_id %>'>바로가기</a>
               </div>
             </div>
@@ -183,7 +187,12 @@
               <div class="card-header">★★★☆☆</div>
               <div class="card-body">
                 <h4 class="card-title">PROJECT : <%= lists.proj_title %></h4>
-                <p class="card-text"><%- lists.proj_content%></p>
+                <p class="card-text">
+                  <% if (lists.proj_content.length > 35) { %>
+                    <%- lists.proj_content.substring(0,35) + "..." %></p>
+                  <% } else { %>
+                    <%- lists.proj_content.substring(0,35) %></p>
+                  <% } %>
                 ▶ <a href='/project_detail/<%= lists.proj_id %>'>바로가기</a>
               </div>
             </div>
@@ -204,7 +213,12 @@
           <div class="card-header">★★★★☆</div>
           <div class="card-body">
             <h4 class="card-title">PROJECT : <%= lists.proj_title %></h4>
-            <p class="card-text"><%- lists.proj_content%></p>
+            <p class="card-text">
+              <% if (lists.proj_content.length > 35) { %>
+                <%- lists.proj_content.substring(0,35) + "..." %></p>
+              <% } else { %>
+                <%- lists.proj_content.substring(0,35) %></p>
+              <% } %>
             ▶ <a href='/project_detail/<%= lists.proj_id %>'>바로가기</a>
           </div>
         </div>
@@ -225,7 +239,12 @@
           <div class="card-header">★★★★★</div>
           <div class="card-body">
             <h4 class="card-title">PROJECT : <%= lists.proj_title %></h4>
-            <p class="card-text"><%- lists.proj_content%></p>
+            <p class="card-text">
+              <% if (lists.proj_content.length > 35) { %>
+                <%- lists.proj_content.substring(0,35) + "..." %></p>
+              <% } else { %>
+                <%- lists.proj_content.substring(0,35) %></p>
+              <% } %>
             ▶ <a href='/project_detail/<%= lists.proj_id %>'>바로가기</a>
           </div>
         </div>
