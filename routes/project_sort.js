@@ -25,15 +25,16 @@ router.get("/", function (req, res) {
 
 router.post("/", function (req, res) {
   const sql = "SELECT * FROM project where (proj_title LIKE ?) and (proj_leader LIKE ?) and (proj_level LIKE ?) AND (proj_stack LIKE ?) AND (proj_stacketc LIKE ?) ORDER BY proj_date desc";
+  const sortData = [req.body.title,req.body.teamleader,req.body.level,req.body.skillstack,req.body.etc];
   let title = '%' + req.body.title + '%';
   let teamleader = '%' + req.body.teamleader + '%';
   let level = req.body.level;
   let skillstack = '%' + req.body.skillstack + '%';
   let skilletc = '%' + req.body.etc + '%';
-  if (title == 'NULL') title = '%%';
-  if (teamleader == 'NULL') teamleader = '%%';
-  if (skillstack == 'NULL') skillstack = '%%';
-  if (skilletc == 'NULL') skilletc = '%%';
+  if (title == '') title = '%%';
+  if (teamleader == '') teamleader = '%%';
+  if (skilletc == '') skilletc = '%%';
+  if (level == '') level = '%';
   if (skillstack == '%'+'other'+'%') skillstack = '%%';
   if (skillstack == '%'+'total'+'%') skillstack = '%%';
   const params = [title, teamleader, level, skillstack, skilletc];
@@ -45,6 +46,7 @@ router.post("/", function (req, res) {
           user_id: req.session.user['userid'],
           title: "Projects",
           data: result,
+          sortData: sortData,
         });
       }
       else {
@@ -52,6 +54,7 @@ router.post("/", function (req, res) {
           user_id: "비회원",
           title: "Projects",
           data: result,
+          sortData: sortData,
         });
       }
     }
