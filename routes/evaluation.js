@@ -49,17 +49,27 @@ router.post('/:pj_id/submit', function (req, res) {
   const value4 = req.body.ev_value4;
   const value5 = req.body.ev_value5;
 
+  console.log("52행",value1);
+
   const sql =
     "UPDATE evaluation SET ev_evaluated=1, ev_value1=?, ev_value2=?, ev_value3=? ,ev_value4=? ,ev_value5=? WHERE ev_project =? AND ev_rater=? AND ev_rated=? ";
   const params = [value1, value2, value3, value4, value5, pj_id, req.session.user['userid'], ev_rated];
 
-  db.query(sql, params, function (err) {
-    if (err) console.error("err : " + err);
-    else {
-      console.log("평점정보:", params);
-      return res.redirect("/evaluation/" + pj_id);
-    }
-  })
+  if(value1==undefined || value2==undefined || value3==undefined || value4 ==undefined || value5==undefined){
+    res.write(`<script type="text/javascript">alert('Fill in Evaluation!!')</script>`);
+    res.write(`<script type="text/javascript">history.go(-1);</script>`);
+  }
+  else{
+    db.query(sql, params, function (err) {
+      if (err) console.error("err : " + err);
+      else {
+        console.log("평점정보:", params);
+        return res.redirect("/evaluation/" + pj_id);
+      }
+    })
+    
+  }
+
 })
 
 module.exports = router;

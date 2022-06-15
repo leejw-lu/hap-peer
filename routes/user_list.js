@@ -31,29 +31,30 @@ router.get('/', function (req, res) {
 
 router.post("/", function (req, res) {
   const sql = "SELECT * FROM user WHERE (user_id LIKE ?) AND (user_nickname LIKE ?) AND (user_stack LIKE ?) AND (user_stacketc LIKE ?)";
+  const sortData = [req.body.id, req.body.nickname, req.body.skillstack, req.body.etc];
   let id = '%' + req.body.id + '%';
   let nickname = '%' + req.body.nickname + '%';
   let skillstack = '%' + req.body.skillstack + '%';
   let skilletc = '%' + req.body.etc + '%';
   if (skillstack == '%'+'other'+'%') skillstack = '%%';
-  if (skillstack == '%'+'total'+'%') skillstack = '%%';
   const params = [id, nickname, skillstack, skilletc];
   db.query(sql, params, function (err, results) {
     if (err) throw err;
     else {
-      console.log(req.body.id);
       if (req.session.user) {
         return res.render("user_list", {
           user_id: req.session.user['userid'],
           user_nickname: req.session.user['nickname'],
-          user_list: results
+          user_list: results,
+          sortData: sortData,
         });
       }
       else {
         return res.render("user_list", {
           user_id: "비회원",
           user_nickname: " ",
-          user_list: results
+          user_list: results,
+          sortData: sortData,
         });
       }
     }

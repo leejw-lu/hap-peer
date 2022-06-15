@@ -17,14 +17,14 @@ router.get('/*', function (req, res) {
   db.query("SELECT * FROM scrap where sc_user = ? and sc_project = ?", params2, function (err, rows) {
     if (rows.length > 0) {
       res.write(`<script type="text/javascript">alert('already exists')</script>`);
-      res.write('<script>window.location="/project_sort"</script>');
+      res.write(`<script>window.location="/project_detail/${sc_project}"</script>`);
     }
     else {
       db.query(sql, params, function (err) {
         if (err) console.error(err);
         else {
           res.write(`<script type="text/javascript">alert('successfully bookmarked')</script>`);
-          res.write('<script>window.location="/project_sort"</script>');
+          res.write(`<script>window.location="/project_detail/${sc_project}"</script>`);
         }
       })
     }
@@ -40,7 +40,7 @@ router.post('/*', function (req, res) {
     if (err) console.error(err);
     else {
       res.write(`<script type="text/javascript">alert('successfully removed')</script>`);
-      res.write('<script>window.location="/project_sort"</script>');
+      res.write(`<script>window.location="/project_detail/${sc_project}"</script>`);
     }
   })
 }
