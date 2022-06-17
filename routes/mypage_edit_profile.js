@@ -36,15 +36,15 @@ const upload = multer({
 router.post('/', upload.single('img'), function (req, res) {
   let userInfo = req.body.userInfo;
   let userStack = "";
-  let userStacketc = "";
+  let userStacketc = req.body.etc;
   if (req.body.skillstack instanceof Array) {
     req.body.skillstack.forEach(element => {
       userStack = userStack + element;
     });
   }
+  //skillstack 배열로 받아서 스트링으로 합치기
   else { userStack = req.body.skillstack; }
-  if (typeof req.body.etc != 'undefined') userStacketc = req.body.etc
-  if (!userStack) { userStack = " "; }
+  //skillstack 한개만 선택된 경우 배열로 인식되지 않아 바로 userstack에 넣음
   let userImage = req.file == undefined ? '/public/images/default_user_image.png' : req.file.path;
   const sql = "UPDATE user SET user_info=?, user_stack=?, user_image=?, user_stacketc=? WHERE user_id=?";
   const params = [userInfo, userStack, userImage, userStacketc, req.session.user['userid']]

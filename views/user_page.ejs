@@ -1,8 +1,32 @@
+<style>
+  .profile-user-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 70%;
+    overflow: hidden;
+  }
+
+  .profile-user-img-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+
 <body>
   <%- include('./partials/login_nav.ejs'); %>
+      <h3 style="text-align: center;"> <%= user_id %> (<%= user_nickname %>)님의 유저페이지</h3>
+      <br>
       <h4 style="margin-left: 30px; "><b>사용자 정보</b></h4>
       <div class = "mypage1">
         <div class = "userinfo">
+          <table>
+            <div class="profile-user-img">
+              <img src="<%= users.user_image %>" alt="profile-user-img" class="profile-user-img-img" />
+            </div>
+          </table>
+          <br>
+
       <p><b>닉네임 : </b></p>
       <p><%- users.user_nickname%></p>
       <p><b>사용가능한 기술스택 : </b></p>

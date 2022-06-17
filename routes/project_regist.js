@@ -17,16 +17,16 @@ router.get('/', function (req, res) {
 router.post('/', async function (req, res) {
   const proj_id = new Date() % 10000;
   const proj_title = req.body.proj_title;
+  const proj_skilletc = req.body.etc;
   let proj_stack = "";
   if (req.body.skillstack instanceof Array) {
     req.body.skillstack.forEach(element => {
       proj_stack = proj_stack + element;
     });
   }
+  //skillstack 배열로 받아서 스트링으로 합치기
   else { proj_stack = req.body.skillstack; };
-  let proj_skilletc="";
-  if (typeof req.body.etc != 'undefined') proj_skilletc = req.body.etc;
-  if (!proj_stack) proj_stack = " ";
+  //skillstack 한개만 선택된 경우 배열로 인식되지 않아 바로 userstack에 넣음
   const proj_content = req.body.proj_content;
   const proj_level = req.body.proj_level;
   const proj_date = new Date();
