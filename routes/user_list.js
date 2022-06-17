@@ -37,6 +37,7 @@ router.post("/", function (req, res) {
   let skillstack = '%' + req.body.skillstack + '%';
   let skilletc = '%' + req.body.etc + '%';
   if (skillstack == '%'+'other'+'%') skillstack = '%%';
+  //기타를 선택한 경우 '선택'이라는 글자가 검색되지 않게함
   const params = [id, nickname, skillstack, skilletc];
   db.query(sql, params, function (err, results) {
     if (err) throw err;

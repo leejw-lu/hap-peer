@@ -10,6 +10,7 @@ router.get('/*', function (req, res) {
   const sql = 'SELECT * FROM project WHERE proj_id=?';
   const sql_parti = 'SELECT * FROM participate WHERE part_project=?';
   const sql2 = 'SELECT * FROM project LEFT OUTER JOIN scrap ON (proj_id = sc_project and sc_user = ?) where proj_id = ?';
+  //로그인한 유저와 조회중인 프로젝트아이디를 갖는 스크랩DB를 불러오기
   proj_id.id = req.params['0'];
 
   db.query(sql, [proj_id.id], function (err, res) {

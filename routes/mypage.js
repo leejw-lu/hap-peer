@@ -14,6 +14,7 @@ router.get('/', function (req, res) {
 
   if (req.session.user) {
     const sql_scrap = "SELECT p.proj_title, p.proj_id FROM user AS u LEFT OUTER JOIN scrap AS s ON u.user_id = s.sc_user LEFT OUTER JOIN project AS p ON s.sc_project = p.proj_id WHERE u.user_id = ?"
+    //유저 아이디에 일치하는 스크랩DB를 불러오고, 프로젝트 테이블에서 스크랩DB에서 불러온 프로젝트ID를 이용해 프로젝트제목 가져오기
     db.query(sql_scrap, [req.session.user['userid']], function (err, rows) {
       if (err) console.error(err);
       scrap = rows;
