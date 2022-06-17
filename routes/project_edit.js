@@ -44,15 +44,23 @@ router.post('/*', function (req, res) {
   if (!proj_stack) proj_stack = " ";
   const recruit_status = req.body.recruit_status;
   const develop_status = req.body.develop_status;
+  
   const sql = "UPDATE project SET proj_title=?, proj_content=?, proj_level=?, proj_stack=?, recruit_status=?, develop_status=?, proj_stacketc=? WHERE proj_id=?";
   const params = [proj_title, proj_content, proj_level, proj_stack, recruit_status, develop_status, proj_skilletc, proj_id.id]
-  db.query(sql, params, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.redirect("/project_detail/" + proj_id.id);
-    }
-  })
+
+  if(recruit_status==0 && develop_status==1){ //팀원모집마감 안했는데 개발완료 상태로 바꾸기 불가능
+    res.write(`<script type="text/javascript">alert('Please recruit team members first!! ')</script>`);
+    res.write(`<script>window.location="/project_detail/${proj_id.id}"</script>`);
+  }
+  else{
+    db.query(sql, params, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect("/project_detail/" + proj_id.id);
+      }
+    })
+  }
 
 })
 
