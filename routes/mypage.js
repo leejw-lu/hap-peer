@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
       console.log(scrap);
     })
 
-    const sql = "SELECT u.user_info, u.user_stack, u.user_image, p.proj_title, p.proj_id, p.recruit_status, p.develop_status FROM user AS u LEFT OUTER JOIN participate AS pa ON u.user_id = pa.part_user LEFT OUTER JOIN project AS p ON pa.part_project = p.proj_id WHERE u.user_id = ?";
+    const sql = "SELECT u.user_info, u.user_stack, u.user_stacketc, u.user_image, p.proj_title, p.proj_id, p.recruit_status, p.develop_status FROM user AS u LEFT OUTER JOIN participate AS pa ON u.user_id = pa.part_user LEFT OUTER JOIN project AS p ON pa.part_project = p.proj_id WHERE u.user_id = ?";
     const sql_evcount = "select count(*) as num from evaluation where ev_rater=? and ev_evaluated= 1 and ev_project= ? "     //평가한 팀원명수
     const sql_toev = "select count(*) as num from evaluation where ev_rater= ? and ev_project=? "     //평가해야할 팀원명수
 
