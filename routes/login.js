@@ -15,11 +15,11 @@ router.post('/', function (req, res) {
   const userid = req.body.userid;
   const password = req.body.password;
 
-  if (userid.length > 0 && password.length > 0) {
+  if (userid.length > 0 && password.length > 0) { //빈칸모두 채우기
     db.query('SELECT * FROM user WHERE user_id =?', [userid], (err, rows) => {
       if (rows.length > 0) {
-        bcrypt.compare(password, rows[0].user_password, (err, result) => {
-          if (result) {
+        bcrypt.compare(password, rows[0].user_password, (err, result) => {  //비번비교
+          if (result) { //로그인 성공 -> 세션저장
             req.session.user = {
               userid: rows[0].user_id,
               nickname: rows[0].user_nickname,

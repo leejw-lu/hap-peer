@@ -6,12 +6,15 @@ router.get('/*', function (req, res) {
 
   const pj_id = [req.params['0']];
   let pj_title;
+
+  //프로젝트 이름 가져오기
   const sql = "select proj_title from project where proj_id= ? ";
   db.query(sql, [pj_id], function (err, rows) {
     if (err) console.error("err: ", err);
     pj_title = rows[0].proj_title;
   })
 
+  //유저 (닉네임) join 평가(피평가자,평가유무)
   const sql2 = "select u.user_nickname, e.ev_rated, e.ev_evaluated from evaluation as e join user as u on e.ev_rated=u.user_id where e.ev_project= ? and e.ev_rater= ? ";
   const params = [pj_id, req.session.user['userid']];
 
@@ -27,6 +30,7 @@ router.get('/*', function (req, res) {
 
 })
 
+//팀원평가
 router.post('/:pj_id/item', function (req, res) {
   const pj_id = req.body.pj_id;
   const ev_rated = req.body.ev_rated;
@@ -39,7 +43,7 @@ router.post('/:pj_id/item', function (req, res) {
   });
 })
 
-
+//제출
 router.post('/:pj_id/submit', function (req, res) {
   const pj_id = req.body.pj_id;
   const ev_rated = req.body.ev_rated;
@@ -49,21 +53,20 @@ router.post('/:pj_id/submit', function (req, res) {
   const value4 = req.body.ev_value4;
   const value5 = req.body.ev_value5;
 
-  console.log("52행",value1);
-
   const sql =
     "UPDATE evaluation SET ev_evaluated=1, ev_value1=?, ev_value2=?, ev_value3=? ,ev_value4=? ,ev_value5=? WHERE ev_project =? AND ev_rater=? AND ev_rated=? ";
   const params = [value1, value2, value3, value4, value5, pj_id, req.session.user['userid'], ev_rated];
 
+  //평가값 모두 채워야 제출가능
   if(value1==undefined || value2==undefined || value3==undefined || value4 ==undefined || value5==undefined){
     res.write(`<script type="text/javascript">alert('Fill in Evaluation!!')</script>`);
     res.write(`<script type="text/javascript">history.go(-1);</script>`);
   }
-  else{
+  else{ 
     db.query(sql, params, function (err) {
       if (err) console.error("err : " + err);
       else {
-        console.log("평점정보:", params);
+        //console.log("평점정보:", params);
         return res.redirect("/evaluation/" + pj_id);
       }
     })

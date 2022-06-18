@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
+//쪽지보내기-받는사람 직접입력
 router.get('/', function (req, res) {
   res.render("message_send", {
     user_id: req.session.user['userid'],
@@ -9,6 +10,7 @@ router.get('/', function (req, res) {
   });
 })
 
+//쪽지보내기-sender에게 답장
 router.post('/reply', function (req, res) {
   const m_sender = req.body.m_sender;
   res.render("message_send", {
@@ -29,7 +31,7 @@ router.post('/', function (req, res) {
 
   if (receiver.length > 0 && content.length > 0) {
     db.query("SELECT * FROM user WHERE user_id = ?", [receiver], function (err, rows) {
-      if (rows.length > 0) {
+      if (rows.length > 0) {  //받는사람ID 존재하는지 확인
         db.query(sql, params, function (err) {
           if (err) console.error(err);
           else {

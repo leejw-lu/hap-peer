@@ -27,7 +27,7 @@ router.post('/*/delete', function (req, res) {
   db.query(sql, params, function (err, result) {
     if (err) console.error(err);
 
-    if (result.length > 0) {
+    if (result.length > 0) {  //보낸사람 delete 1로 변경
       db.query(sql2, [m_id], function (err, result) {
         if (err) console.error("err : " + err);
         else {
@@ -36,7 +36,7 @@ router.post('/*/delete', function (req, res) {
         }
       });
     }
-    else {
+    else {  // 받는사람 delete 1로 변경
       db.query(sql3, [m_id], function (err, result) {
         if (err) console.error("err : " + err);
         else {
