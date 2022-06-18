@@ -15,6 +15,8 @@ router.post("/", function (req, res) {
   const passwordBy = bcrypt.hashSync(password, 5);
   //const image = req.body.image;
 
+  //회원가입시 작성한 유저 id, 비밀번호, 닉네임, 이미지, 스택, 기타스택 DB에 삽입
+  //user_image는 회원가입시 따로 업로드받지 않고  default 유저 이미지 경로로 저장
   const sql = "INSERT INTO user (user_id, user_password, user_nickname, user_image, user_stack, user_stacketc) VALUES (?, ?, ?, ?, ?, ?)";
   const params = [userid, passwordBy, nickname, '/public/images/default_user_image.png', " ", ""]
 
