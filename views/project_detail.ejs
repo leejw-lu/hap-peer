@@ -48,7 +48,7 @@
               <form style="display: inline" action="/project_detail/delete" method="post">
               <input type="hidden" name="delete_user" value="<%= lists.part_user%>">
               <input type="hidden" name="proj_id" value="<%= project_detail.proj_id%>">
-              <input type="submit" class="delete" value="x" aria-label="Close">
+              <input type="submit" class="delete" value="x" aria-label="Close" onClick="return confirm('Do you want to delete this member?')">
               </form>
             <% } %>
             </div>
