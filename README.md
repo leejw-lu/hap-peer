@@ -38,7 +38,8 @@ node 및 npm 설치 후 진행!
 
 ### ❗️Clone Repository
 ```bash
-git clone https://github.com/leejw-lu/hap-peer.git ; cd hap-peer ;
+git clone https://github.com/leejw-lu/hap-peer.git ; 
+cd hap-peer ;
 ```
 
 ### 📩 Install Pakages
@@ -46,7 +47,15 @@ git clone https://github.com/leejw-lu/hap-peer.git ; cd hap-peer ;
 npm install
 ```
 
-### 📚 Add db.js
+### 🛠️ Create DB
+```bash
+mysql –uroot –p
+
+CREATE DATABASE happeer;
+use happeer;
+source happeerDB.sql
+```
+### 📚 Add db.js (app.js와 같은경로 위치에 파일추가)
 ```js
 const mysql = require("mysql");
 
