@@ -29,16 +29,23 @@ router.post('/', function (req, res) {
   const sql = "INSERT INTO message (m_sender, m_receiver, m_type, m_content, m_date) VALUES (?, ?, ?, ?, ? )";
   const params = [sender, receiver, type, content, date];
 
-  if (receiver.length > 0 && content.length > 0) {
+  if (receiver.length > 0 && content.length > 0) {  //빈칸없이 작성
     db.query("SELECT * FROM user WHERE user_id = ?", [receiver], function (err, rows) {
       if (rows.length > 0) {  //받는사람ID 존재하는지 확인
-        db.query(sql, params, function (err) {
-          if (err) console.error(err);
-          else {
-            res.write(`<script type="text/javascript">alert('message sent successfully!')</script>`);
-            res.write('<script>window.location="/message"</script>');
-          }
-        })
+        if(sender==receiver){ //자기 자신에게 쪽지 보내기 X
+          res.write(`<script type="text/javascript">alert('Cannot send a message to yourself!!')</script>`);
+          res.write('<script>window.location="/message_send"</script>');
+        }
+        else{
+          db.query(sql, params, function (err) {
+            if (err) console.error(err);
+            else {
+              res.write(`<script type="text/javascript">alert('message sent successfully!')</script>`);
+              res.write('<script>window.location="/message"</script>');
+            }
+          })
+        }
+
       }
       else {
         res.write(`<script type="text/javascript">alert('Receiver ID does not exit!')</script>`);
