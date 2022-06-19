@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+  <% if (user_id != "비회원" ) { %>
+  <%- include('./partials/login_nav.ejs'); %>
+  <% } 
+    
+       else  { %>
+  <%- include('./partials/default_nav.ejs'); %>
+  <% }
+    %>
+
+
+  <div class="container">
+    
+      <h4>LEVEL 1</h4>
+      <div class="row level 1">
+        <% project_list.forEach(function(lists) { %>
+        <% if (lists.proj_level == 1) {%>
+          <div class="col-md-4">
+          <div class="card border-secondary mb-3" style="max-width: 25rem; max-height: 20rem;">
+            <div class="card-header">★☆☆☆☆</div>
+            <div class="card-body">
+              <h4 class="card-title">PROJECT : <%= lists.proj_title %></h4>
+              <p class="card-text">
+                <% if (lists.proj_content.length > 35) { %>
+                  <%- lists.proj_content.substring(0,35) + "..." %></p>
+                <% } else { %>
+                  <%- lists.proj_content.substring(0,35) %></p>
+                <% } %>
+              ▶ <a href='/project_detail/<%= lists.proj_id %>'>바로가기</a>
+            </div>
+          </div>
+          </div>      
+        </br>
+        <%}%>
+        <% }) %>
+      </div>
+     
+    
+      <hr>
+    
+      <h4>LEVEL 2</h4>
+      <div class="row level 2">
+          <% project_list.forEach(function(lists) { %>
+          <% if (lists.proj_level == 2) {%>
+            <div class="col-md-4">
+            <div class="card border-secondary mb-3" style="max-width: 25rem;">
+              <div class="card-header">★★☆☆☆</div>
+              <div class="card-body">
+                <h4 class="card-title">PROJECT : <%= lists.proj_title %></h4>
+                <p class="card-text">
+                  <% if (lists.proj_content.length > 35) { %>
+                    <%- lists.proj_content.substring(0,35) + "..." %></p>
+                  <% } else { %>
+                    <%- lists.proj_content.substring(0,35) %></p>
+                  <% } %>
+                ▶ <a href='/project_detail/<%= lists.proj_id %>'>바로가기</a>
+              </div>
+            </div>
+            </div>    
+          </br>
+          <%}%>
+          <% }) %>
+        </div>
+    
+      <hr>
+    
+      <h4>LEVEL 3</h4>
+      <div class="row level 3">
+          <% project_list.forEach(function(lists) { %>
+          <% if (lists.proj_level == 3) {%>        
+            <div class="col-md-4">
+            <div class="card border-secondary mb-3" style="max-width: 25rem;">
+              <div class="card-header">★★★☆☆</div>
+              <div class="card-body">
+                <h4 class="card-title">PROJECT : <%= lists.proj_title %></h4>
+                <p class="card-text">
+                  <% if (lists.proj_content.length > 35) { %>
+                    <%- lists.proj_content.substring(0,35) + "..." %></p>
+                  <% } else { %>
+                    <%- lists.proj_content.substring(0,35) %></p>
+                  <% } %>
+                ▶ <a href='/project_detail/<%= lists.proj_id %>'>바로가기</a>
+              </div>
+            </div>
+            </div>   
+          </br>
+          <%}%>
+          <% }) %>
+        </div>
+    
+      <hr>
+    
+      <h4>LEVEL 4</h4>
+      <div class="row level 4">
+      <% project_list.forEach(function(lists) { %>
+      <% if (lists.proj_level == 4) {%>   
+        <div class="col-md-4">
+        <div class="card border-secondary mb-3" style="max-width: 25rem;">
+          <div class="card-header">★★★★☆</div>
+          <div class="card-body">
+            <h4 class="card-title">PROJECT : <%= lists.proj_title %></h4>
+            <p class="card-text">
+              <% if (lists.proj_content.length > 35) { %>
+                <%- lists.proj_content.substring(0,35) + "..." %></p>
+              <% } else { %>
+                <%- lists.proj_content.substring(0,35) %></p>
+              <% } %>
+            ▶ <a href='/project_detail/<%= lists.proj_id %>'>바로가기</a>
+          </div>
+        </div>
+        </div>
+      </br>
+      <%}%>
+      <% }) %>
+    </div>
+    
+      <hr>
+    
+      <h4>LEVEL 5</h4>
+      <div class="row level 5">
+      <% project_list.forEach(function(lists) { %>
+      <% if (lists.proj_level == 5) {%>   
+        <div class="col-md-4">
+        <div class="card border-secondary mb-3" style="max-width: 25rem;">
+          <div class="card-header">★★★★★</div>
+          <div class="card-body">
+            <h4 class="card-title">PROJECT : <%= lists.proj_title %></h4>
+            <p class="card-text">
+              <% if (lists.proj_content.length > 35) { %>
+                <%- lists.proj_content.substring(0,35) + "..." %></p>
+              <% } else { %>
+                <%- lists.proj_content.substring(0,35) %></p>
+              <% } %>
+            ▶ <a href='/project_detail/<%= lists.proj_id %>'>바로가기</a>
+          </div>
+        </div>
+        </div> 
+      </br>
+      <%}%>
+      <% }) %>
+      </div>
+    
+  </div>
+</body>
+</html>

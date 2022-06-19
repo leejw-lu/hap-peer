@@ -1,0 +1,91 @@
+<body>
+  <% if (user_id != "비회원" ) { %>
+  <%- include('./partials/login_nav.ejs'); %>
+  <% } 
+    
+       else  { %>
+  <%- include('./partials/default_nav.ejs'); %>
+  <% }
+    %>
+  <h4>프로젝트 검색🔍</h4>
+  <form action="/project_sort" method="post">
+    제목 :
+    <input type="text" name="title"> &nbsp;
+    작성자 :
+    <input type="text" name="teamleader"> &nbsp;
+    난이도 :
+    <select name="level">
+      <option value="">전체</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select> &nbsp;
+    기술스택 :
+    <select id="skillstack" name="skillstack">
+      <option value="">전체</option>
+      <option value=" C ">C</option>
+      <option value=" C++ ">C++</option>
+      <option value=" C# ">C#</option>
+      <option value=" JAVA ">Java</option>
+      <option value=" Python ">Python</option>
+      <option value=" Visual Basic ">Visual Basic</option>
+      <option value=" JS ">JS</option>
+      <option value=" SQL ">SQL</option>
+      <option value=" PHP ">PHP</option>
+      <option value=" OBJECTIVE-C ">OBJECTIVE-C</option>
+      <option value=" RUBY ">RUBY</option>
+      <option value=" HTML ">HTML</option>
+      <option value=" Assembly Language ">Assembly</option>
+      <option value=" Groovy ">Groovy</option>
+      <option value=" R ">R</option>
+      <option value=" Swift ">Swift</option>
+      <option value="other">기타</option>
+    </select> &nbsp;
+    <input type="text" id="etc" name="etc" value="" />
+    <script>
+      $(function () {
+        $("#etc").hide();
+        $("#skillstack").change(function () {
+          if ($("#skillstack").val() == "other") {
+            $("#etc").show();
+          } else {
+            $("#etc").hide();
+          }
+        })
+      });
+    </script>
+    <input type="submit" value="검색"></br>
+  </form>
+</body>
+<hr>
+
+<% if(locals.sortData){ %>
+  <% if(sortData[0]!="") {%>
+    &nbsp; 제목 : <%=sortData[0]%> <%}%>
+  <% if(sortData[1]!="") {%>
+    &nbsp; 작성자 : <%=sortData[1]%> <%}%>
+  <% if(sortData[2]!="") {%>
+    &nbsp; 난이도 : <%=sortData[2]%> <%}%>
+  <% if(sortData[3]!=""&&sortData[3]!="other") {%>
+    &nbsp; 기술스택 : <%=sortData[3]%> <%}%>
+  <% if(sortData[4]!="" ) {%>
+    &nbsp; 기술스택 : <%=sortData[4]%> <%}%>
+&nbsp; 검색결과 </br></br>
+<%}%>
+<table>
+  <% if(locals.data){ %>
+  <% if(data.length == 0) {%>
+  NULL
+  <% } %>
+  <% let a = 1;%>
+  <tr><% for(let i=0;i<data.length;i++){ %><td><%= a %>.</td>
+    <td><a href='/project_detail/<%= data[i].proj_id %>'>
+        <%= data[i].proj_title %>
+        <% a++ %>
+      </a></td>
+  </tr>
+  <% } %>
+  <% } %>
+</table>

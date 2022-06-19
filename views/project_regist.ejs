@@ -1,0 +1,93 @@
+<body>
+  <%- include('./partials/login_nav.ejs'); %>
+  <div class="col mb-3">
+    <label class="col col-form-label">프로젝트 등록</label>
+    <form name="form" action="/project_regist" method="post">
+      <div>
+        <div class="row">
+          <lable class="col-sm-2 col-form-label">프로젝트 이름</lable>
+          <div class="col-sm-7">
+            <input style="width: 700px;" class="form-control" placeholder="Project Name" type="text" name="proj_title">
+          </div>
+        </div>
+        <div class="row">
+          <lable class="col-sm-2 col-form-label">프로젝트 소개</lable>
+          <div class="col-sm-7">
+            <textarea class="form-control" placeholder="Project Info" style="width: 700px;height:250px;resize: none;"
+              type="text" name="proj_content"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <lable class="col-sm-2 col-form-label">프로젝트 필요 스택</lable>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" C " />
+          <label class="form-check-label" for="flexCheckDefault">C</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" C# " />
+          <label class="form-check-label" for="flexCheckDefault">C#</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" C++ " />
+          <label class="form-check-label" for="flexCheckDefault">C++</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" JAVA " />
+          <label class="form-check-label" for="flexCheckDefault">JAVA</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" Python " />
+          <label class="form-check-label" for="flexCheckDefault">Python</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" Visual Basic " />
+          <label class="form-check-label" for="flexCheckDefault">Visual Basic</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" JS " />
+          <label class="form-check-label" for="flexCheckDefault">JS</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" SQL " />
+          <label class="form-check-label" for="flexCheckDefault">SQL</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" PHP " />
+          <label class="form-check-label" for="flexCheckDefault">PHP</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" OBJECTIVE-C " />
+          <label class="form-check-label" for="flexCheckDefault">OBJECTIVE-C</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" RUBY " />
+          <label class="form-check-label" for="flexCheckDefault">RUBY</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" HTML " />
+          <label class="form-check-label" for="flexCheckDefault">HTML</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" Assembly Language " />
+          <label class="form-check-label" for="flexCheckDefault">Assembly Language</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" Groovy " />
+          <label class="form-check-label" for="flexCheckDefault">Groovy</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" R " />
+          <label class="form-check-label" for="flexCheckDefault">R</label>
+          <input class="form-check-input" type="checkbox" name="skillstack" value=" Swift " />
+          <label class="form-check-label" for="flexCheckDefault">Swift</label>
+          <br>
+          <lable class="col-sm-2 col-form-label"></lable>
+          기타 스택 입력
+          <input class="form-check-input" type="checkbox" name="skilletc" id="ok" name="choice" value="기타" />
+          <input type="text" id="etc" name="etc" value="선택안함" disabled="disabled">
+          <script>
+            $(document).ready(function () {
+              $('input:checkbox[id="ok"]').change(function () {
+                if ($('input:checkbox[id="ok"]').is(":checked") == false) {
+                  $('input:text[name="etc"]').val("선택안함");
+                  $('input:text[name="etc"]').attr("disabled", true);
+                } else {
+                  $('input:text[name="etc"]').val("");
+                  $('input:text[name="etc"]').attr("disabled", false);
+                }
+              });
+            });
+          </script>
+        </div>
+        <div>
+          <div>
+            <lable class="col-sm-2 col-form-label">프로젝트 난이도</lable>
+          </div>
+          <input type="radio" id="1" name="proj_level" value="1">
+          <label for="1">⭐️</label>
+          <input type="radio" id="2" name="proj_level" value="2">
+          <label for="2">⭐️⭐️</label>
+          <input type="radio" id="3" name="proj_level" value="3">
+          <label for="3">⭐️⭐️⭐️</label>
+          <input type="radio" id="4" name="proj_level" value="4">
+          <label for="4">⭐️⭐️⭐️⭐️</label>
+          <input type="radio" id="5" name="proj_level" value="5">
+          <label for="5">⭐️⭐️⭐️⭐️⭐️</label>
+        </div>
+        <input class="btn btn-primary" type="submit" value="프로젝트 등록">
+      </div>
+    </form>
+  </div>
+
+</body>

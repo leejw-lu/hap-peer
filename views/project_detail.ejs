@@ -1,0 +1,98 @@
+<body>
+  <% if (user_id != "비회원" ) { %>
+  <%- include('./partials/login_nav.ejs'); %>
+  <% }  else  { %>
+  <%- include('./partials/default_nav.ejs'); %>
+  <% }
+    %>
+
+  <h3 style="margin: 1em;">프로젝트 상세보기</h3>
+  <div class="left">
+    <div id="leader">
+      <lable class="col-form-label">팀장</lable>
+      <%- project_detail.proj_leader%>
+      <% if (user_id != "비회원" ) { %>
+      <% if (user_id != project_detail.proj_leader) { %>
+      <form action="/message_send/reply" method="post" style="display: inline;">
+        <input type="hidden" name="m_sender" value="<%= project_detail.proj_leader%>">
+        <input class="btn" type="submit" name="reply" value="쪽지 바로 보내기">
+      </form>
+      <% }%>
+      <% }%>
+    </div>
+    <div>
+      <lable class="col-form-label">필요기술스택</lable>
+    <% if (project_detail.proj_stack!=''){%> <%-project_detail.proj_stack%> <%}%>
+        <% if (project_detail.proj_stacketc!=''){%> <%-project_detail.proj_stacketc%> <%}%></br>
+      <% if (project_detail.recruit_status == 0 ) { %>
+      </div>
+      <div>
+        <lable class="col-form-label">팀원모집이 마감되었나요?</lable> NO<br>
+        <% } else  { %>
+        <lable class="col-form-label">팀원모집이 마감되었나요?</lable> YES<br>
+        <% } %>
+        </div>
+        <div>
+        <% if (project_detail.develop_status == 0 ) { %>
+        <lable class="col-form-label">개발완료된 프로젝트인가요?</lable>NO</br>
+        <% }  else  { %>
+        <lable class="col-form-label">개발완료된 프로젝트인가요?</lable>YES</br>
+        <% } %>
+        </div>
+        <div>
+          <lable class="col-form-label">참여 팀원</lable><br>
+          <% part_proj.forEach(function(lists) { %>
+            <div class="teamUsers">
+            <a href='/user_page/<%= lists.part_user %>'><%- lists.part_user%></a>
+            <% if (user_id == project_detail.proj_leader && lists.part_user != project_detail.proj_leader && project_detail.recruit_status == 0) {%>
+              <form style="display: inline" action="/project_detail/delete" method="post">
+              <input type="hidden" name="delete_user" value="<%= lists.part_user%>">
+              <input type="hidden" name="proj_id" value="<%= project_detail.proj_id%>">
+              <input type="submit" class="delete" value="x" aria-label="Close" onClick="return confirm('Do you want to delete this member?')">
+              </form>
+            <% } %>
+            </div>
+          <% }) %>
+          </div>
+          <% if (user_id == project_detail.proj_leader) {%>
+            <% if (project_detail.recruit_status == 0) {%>
+            <form style="margin: 0.2em" action="/project_detail" method="post">
+              <input type="text" name="member">
+              <input type="submit" value="팀원 추가하기">
+            </form>
+            <% } %>
+            <% } %>
+  </div>
+
+  <div class="center">
+    <div style="font-size: larger;">
+      <lable style="font-size: large;" class="col-sm-3 col-form-label">프로젝트 제목</lable>
+      <b> <%- project_detail.proj_title%></b>
+    </div>
+    <br>
+    <div>
+      <lable class="col-form-label">프로젝트 소개</lable>
+      <div class="projectInfo">
+        <%- project_detail.proj_content%>
+      </div>
+    </div>
+    <div>
+      <lable class="col-form-label">프로젝트 난이도</lable>
+    <%- project_detail.proj_level%></br>
+    </div>
+    <div>
+        <% if (user_id != "비회원" && user_id != project_detail.proj_leader && project_detail.sc_user != user_id) {%>
+        <button><a href="/scrap/<%= project_detail.proj_id%>">스크랩하기</a></button>
+        <% } %>
+        <form action="/scrap/<%= project_detail.proj_id%>" method="post">
+          <% if (user_id != "비회원" && user_id != project_detail.proj_leader && project_detail.sc_user == user_id) {%>
+          <input type="submit" value="스크랩삭제">
+          <% } %>
+        </form>
+    </div>
+    <% if (user_id == project_detail.proj_leader) {%>
+      <a style="margin: 0.3em;" class="col-form-label btn btn-primary"
+        href="/project_edit/<%= project_detail.proj_id%>">프로젝트 수정하기</a>
+        <% } %>
+  </div>
+</body>

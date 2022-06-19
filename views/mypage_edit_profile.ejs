@@ -1,0 +1,89 @@
+<body>
+  <%- include('./partials/login_nav.ejs'); %>
+
+  <h3>프로필 편집</h3>
+  <form action="/mypage_edit_profile" method="post" enctype="multipart/form-data">
+    <table>
+      <tr>
+        <%
+        let i;
+        for(i=0; i<rows.length; i++)
+        {
+            let data = rows[i];
+        %>
+        <td>프로필 이미지</td>
+        <td><input type='file' name='img' accept='image/jpg, image/png, image/jpeg' /></td>
+      </tr>
+      <tr>
+        <td>아이디 </td>
+        <td> <%= user_id %> </td>
+      </tr>
+      <tr>
+        <td>소개</td>
+        <td><textarea cols="50" rows="10" type="text" name="userInfo"><%=data.user_info%></textarea></td> 
+      </tr>
+      <tr>
+        <td>STACK</td>
+        <td> <% var selectedStack = data.user_stack + " "; %>
+          <input type="checkbox" name="skillstack" value=" C " <% if (selectedStack.includes(" C ")){ %> checked <%}%> > C 
+                <input type="checkbox" name="skillstack" value=" C# " <% if (selectedStack.includes(" C# ")){ %>
+            checked <%}%> > C# 
+                <input type="checkbox" name="skillstack" value=" C++ " <% if (selectedStack.includes(" C++ ")){ %>
+            checked
+            <%}%> > C++ 
+                <input type="checkbox" name="skillstack" value=" JAVA "<% if (selectedStack.includes(" JAVA ")){ %>checked
+            <%}%>> JAVA 
+                <input type="checkbox" name="skillstack" value=" Python "<% if (selectedStack.includes(" Python ")){ %>checked
+            <%}%>> Python 
+                <input type="checkbox" name="skillstack" value=" Visual Basic "<% if (selectedStack.includes(" Visual Basic ")){ %>checked
+            <%}%>> Visual Basic 
+                <input type="checkbox" name="skillstack" value=" JS "<% if (selectedStack.includes(" JS ")){ %>checked <%}%>> JS 
+                <input type="checkbox" name="skillstack" value=" SQL "<% if (selectedStack.includes(" SQL ")){ %>checked
+            <%}%>> SQL 
+              </tr><tr><td></td><td>
+                <input type="checkbox" name="skillstack" value=" PHP "<% if (selectedStack.includes(" PHP ")){ %>checked <%}%>> PHP 
+                <input type="checkbox" name="skillstack" value=" OBJECTIVE-C "<% if (selectedStack.includes(" OBJECTIVE-C ")){ %>checked
+            <%}%>> OBJECTIVE-C
+                <input type="checkbox" name="skillstack" value=" RUBY "<% if (selectedStack.includes(" RUBY ")){ %>checked <%}%>> RUBY
+                <input type="checkbox" name="skillstack" value=" HTML "<% if (selectedStack.includes(" HTML ")){ %>checked
+            <%}%>> HTML
+                <input type="checkbox" name="skillstack" value=" Assembly Language "<% if (selectedStack.includes(" Assembly Language ")){ %>checked
+            <%}%>> Assembly Language
+                <input type="checkbox" name="skillstack" value=" Groovy "<% if (selectedStack.includes(" Groovy ")){ %>checked <%}%>> Groovy   
+                <input type="checkbox" name="skillstack" value=" R "<% if (selectedStack.includes(" R ")){ %>checked
+            <%}%>> R
+                <input type="checkbox" name="skillstack" value=" Swift "<% if (selectedStack.includes(" Swift ")){ %>checked <%}%>> Swift
+              </td></tr></td>
+              </tr><tr><td></td><td>
+                기타 스택 입력 <% if (data.user_stacketc == "") {%>
+                  <input type="checkbox" name="skilletc" id="ok" name = "choice" value="기타"/>
+                  <input type="text" id="etc" name="etc" value="선택안함" disabled="disabled"/><%}%>
+                <% if (data.user_stacketc != "") {%>
+                  <input type="checkbox" name="skilletc" id="ok" name = "choice" value="기타" checked/>
+                  <input type = "text" id="etc" name="etc" value="<%=data.user_stacketc%>"/><%}%>
+<script>
+ $(document).ready(function () {
+ $('input:checkbox[id="ok"]').change(function(){
+   if($('input:checkbox[id="ok"]').is(":checked") == false)
+   {
+     $('input:text[name="etc"]').val("선택안함");
+     $('input:text[name="etc"]').attr("disabled", true);
+   }
+   else
+   {
+     $('input:text[name="etc"]').val("");
+     $('input:text[name="etc"]').attr("disabled", false);
+   }
+ });
+});
+</script>
+</td>
+</tr>
+</tr>
+<tr>
+<td><input type="submit" value="저장"></td>
+</tr>
+<%}%> 
+</table>
+</form>
+</body>
