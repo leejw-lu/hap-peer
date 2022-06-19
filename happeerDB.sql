@@ -13,7 +13,7 @@ CREATE TABLE `user` (
 
 -- 프로젝트 테이블
 CREATE TABLE `project` (
-  `proj_id` int NOT NULL AUTO_INCREMENT,
+  `proj_id` int NOT NULL ,
   `proj_leader` varchar(45) NOT NULL,
   `proj_title` varchar(45) NOT NULL,
   `proj_content` varchar(500) NOT NULL,
